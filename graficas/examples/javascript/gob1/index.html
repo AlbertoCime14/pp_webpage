@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Gobierno 1</title>
+	<!-- Styles -->
+	<style>
+  @font-face {
+  font-family: Barlow-Regular;
+    src: url('../src/Barlow-Regular.ttf');
+  }
+
+	#chartdiv {
+  font-family:"Barlow-Regular" ,-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  width: 100%;
+  max-height: 900px;
+  height: 100vh;
+}
+	</style>
+</head>
+<body>
+	<div id="chartdiv"></div>
+</body>
+<!-- Resources -->
+<script src="../../../core.js"></script>
+<script src="https://www.amcharts.com/lib/4/charts.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+
+<!-- Chart code -->
+<script>
+am4core.useTheme(am4themes_animated);
+
+var chart = am4core.create("chartdiv", am4charts.XYChart);
+
+//chart.language = "";
+
+var data = [];
+
+chart.data = [
+{
+  "estado": "México",
+  "valor": 98.3,
+  "opacity": 0.5
+}, {
+  "estado": "Guanajuato",
+  "valor": 98.1,
+  "opacity": 0.5
+}, {
+  "estado": "Baja California",
+  "valor": 96.9,
+  "opacity": 0.5
+}, {
+  "estado": "Puebla",
+  "opacity": 0.5,
+  "valor": 95.8
+}, {
+  "estado": "[font-size: 20px;font-weight: bold]Yucatán[/]",
+  "valor": 93.8
+}, {
+  "estado": "Sonara",
+  "opacity": 0.5,
+  "valor": 93.2
+}, {
+  "estado": "Jalisco",
+  "opacity": 0.5,
+  "valor": 92.6
+}, {
+  "estado": "Morelos",
+  "opacity": 0.5,
+  "valor": 91.3
+}, {
+  "estado": "Oaxaca",
+  "opacity": 0.5,
+  "valor": 89.9
+}, {
+  "estado": "Chihuahua",
+  "opacity": 0.5,
+  "valor": 89.1
+}, {
+  "estado": "Campeche",
+  "opacity": 0.5,
+  "valor": 84
+}, {
+  "estado": "Hidalgo",
+  "opacity": 0.5,
+  "valor": 83.7
+}, {
+  "estado": "Sinaloa",
+  "opacity": 0.5,
+  "valor": 82.5
+}, {
+  "estado": "Aguascalientes",
+  "opacity": 0.5,
+  "valor": 81.9
+}, {
+  "estado": "San Luis Potosí",
+  "valor": 80.9,
+  "opacity": 0.5
+}, {
+  "estado": "Querétaro",
+  "valor": 80.7,
+  "opacity": 0.5
+}, {
+  "estado": "Ciudad de México",
+  "valor": 80.1,
+  "opacity": 0.5
+}, {
+  "estado": "Chiapas",
+  "valor": 78.8,
+  "opacity": 0.5
+}, {
+  "estado": "Tlaxcala",
+  "valor": 78.4,
+  "opacity": 0.5
+}, {
+  "estado": "Nuevo León",
+  "valor": 77.3,
+  "opacity": 0.5
+}, {
+  "estado": "Veracruz",
+  "valor": 74.6,
+  "opacity": 0.5
+}, {
+  "estado": "Tabasco",
+  "valor": 72.7,
+  "opacity": 0.5
+}, {
+  "estado": "Durango",
+  "valor": 72.5,
+  "opacity": 0.5
+}, {
+  "estado": "Nayarit",
+  "valor": 71.4,
+  "opacity": 0.5
+}, {
+  "estado": "Michoacán de Ocampo",
+  "valor": 70.9,
+  "opacity": 0.5
+}, {
+  "estado": "Zacatecas",
+  "valor": 67.7,
+  "opacity": 0.5
+}, {
+  "estado": "Tamaulipas",
+  "valor": 67.2,
+  "opacity": 0.5
+}, {
+  "estado": "Colima",
+  "valor": 62.9,
+  "opacity": 0.5
+}, {
+  "estado": "Quintana Roo",
+  "valor": 54.3,
+  "opacity": 0.5
+}, {
+  "estado": "Coahuila de Zaragoza",
+  "valor": 50.5,
+  "opacity": 0.5
+}, {
+  "estado": "Guerrero",
+  "valor": 40.2,
+  "opacity": 0.5
+}, {
+  "estado": "Baja California Sur",
+  "valor": 33,
+  "opacity": 0.5
+}
+ ];
+
+var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+categoryAxis.renderer.grid.template.location = 0;
+categoryAxis.renderer.ticks.template.disabled = true;
+categoryAxis.renderer.line.opacity = 0;
+categoryAxis.renderer.grid.template.disabled = true;
+categoryAxis.renderer.minGridDistance = 40;
+categoryAxis.dataFields.category = "estado";
+
+categoryAxis.renderer.labels.template.horizontalCenter = "right";
+categoryAxis.renderer.labels.template.verticalCenter = "middle";
+categoryAxis.renderer.labels.template.rotation = 270;
+
+var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+valueAxis.tooltip.disabled = true;
+valueAxis.renderer.line.opacity = 0;
+valueAxis.renderer.ticks.template.disabled = true;
+valueAxis.min = 0;
+valueAxis.max = 100;
+
+var columnSeries = chart.series.push(new am4charts.ColumnSeries());
+columnSeries.dataFields.categoryX = "estado";
+columnSeries.dataFields.valueY = "valor";
+columnSeries.tooltipText = "{valueY.value}";
+columnSeries.sequencedInterpolation = true;
+columnSeries.defaultState.transitionDuration = 1500;
+columnSeries.fill = am4core.color("#4E8994");//   chart.colors.getIndex(1);
+
+var valueLabel = columnSeries.bullets.push(new am4charts.LabelBullet());
+valueLabel.label.text = "{valueY}";
+valueLabel.label.dy = -12;
+valueLabel.label.hideOversized = false;
+valueLabel.label.truncate = false;
+
+var columnTemplate = columnSeries.columns.template;
+//columnTemplate.column.cornerRadiusTopLeft = 10;
+//columnTemplate.column.cornerRadiusTopRight = 10;
+columnTemplate.strokeWidth = 1;
+columnTemplate.strokeOpacity = 1;
+columnTemplate.stroke = columnSeries.fill;
+
+var desaturateFilter = new am4core.DesaturateFilter();
+desaturateFilter.saturation = 0.5;
+
+columnTemplate.filters.push(desaturateFilter);
+
+// first way - get properties from data. but can only be done with columns, as they are separate objects.    
+columnTemplate.propertyFields.strokeDasharray = "stroke";
+columnTemplate.propertyFields.fillOpacity = "opacity";
+
+// add some cool saturation effect on hover
+var desaturateFilterHover = new am4core.DesaturateFilter();
+desaturateFilterHover.saturation = 1;
+
+var hoverState = columnTemplate.states.create("hover");
+hoverState.transitionDuration = 2000;
+hoverState.filters.push(desaturateFilterHover);
+
+
+chart.cursor = new am4charts.XYCursor();
+chart.cursor.behavior = "none";
+chart.cursor.lineX.opacity = 0;
+chart.cursor.lineY.opacity = 0;
+//chart.exporting.menu = new am4core.ExportMenu();
+</script>
+
+<!-- HTML -->
+
+</html>
+
+

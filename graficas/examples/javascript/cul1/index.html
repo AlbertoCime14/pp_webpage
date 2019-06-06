@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Cultura 1</title>
+<link rel="stylesheet" href="../src/index.css" />
+<style>
+.amcharts-axis-label{
+    font-family: "Barlow-Regular";
+    font-size: 14px;
+  }
+
+#chartdiv {  
+  width: 100%;
+  max-height: 800px;
+  height: 100vh;
+}
+
+.amcharts-chart-div a {display:none !important;}
+</style>
+</head>
+<body>
+	<div id="chartdiv"></div>
+</body>
+<!--<script src="https://www.amcharts.com/lib/3/amcharts.js"></script>-->
+<script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+<script src="https://www.amcharts.com/lib/3/xy.js"></script>
+<script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+
+<script src="http://cdn.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+<link  type="text/css" href="http://cdn.amcharts.com/lib/3/plugins/export/export.css" rel="stylesheet">
+
+
+
+<script type="text/javascript">
+	
+	// SVG images are only temporarily hosted here for the sake of the demo
+// download these great icons from
+/*
+https://www.google.co.id/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#safe=off&q=nucleo%20social%20icons
+*/
+
+var dataProvider = [ {
+    "y": 2.0,
+    "x": 330.16,
+    "value": 2,
+    "title": "Aguascalientes"
+  }, {
+    "y": 2.6,
+    "x": 1698.78,
+    "value": 2,
+    "title": "Baja California"
+  }, {
+    "y": 1.4,
+    "x": 1012.16,
+    "value": 2,
+    "title": "Baja California Sur"
+  }, {
+    "y": 2.3,
+    "x": 698.58,
+    "value": 2,
+    "title": "Campeche"
+  }, {
+    "y": 2.7,
+    "x": 991.63,
+    "value": 2,
+    "title": "Coahuila de Zaragoza"
+  }, {
+    "y": 1.7,
+    "x": 360.51,
+    "value": 2,
+    "title": "Colima"
+  }, {
+    "y": 2.4,
+    "x": 95.59,
+    "value": 2,
+    "title": "Chiapas"
+  }, {
+    "y": 0.6,
+    "x": 343.04,
+    "value": 2,
+    "title": "Chihuahua"
+  }, {
+    "y": 1.1,
+    "x": 2700.56,
+    "value": 2,
+    "title": "Ciudad de México"
+  }, {
+    "y": 0.8,
+    "x": 133.70,
+    "value": 2,
+    "title": "Durango"
+  }, {
+    "y": 1.9,
+    "x": 435.98,
+    "value": 2,
+    "title": "Guanajuato"
+  }, {
+    "y": 0.4,
+    "x": 135.68,
+    "value": 2,
+    "title": "Guerrero"
+  }, {
+    "y": 2.8,
+    "x": 447.33,
+    "value": 2,
+    "title": "Hidalgo"
+  }, {
+    "y": 1.5,
+    "x": 636.74,
+    "value": 2,
+    "title": "Jalisco"
+  }, {
+    "y": 2.6,
+    "x": 342.97,
+    "value": 2,
+    "title": "México"
+  }, {
+    "y": 2.1,
+    "x": 410.27,
+    "value": 2,
+    "title": "Michoacán de Ocampo"
+  }, {
+    "y": 1.2,
+    "x": 323.06,
+    "value": 2,
+    "title": "Morelos"
+  }, {
+    "y": -0.9,
+    "x": 292.76,
+    "value": 2,
+    "title": "Nayarit"
+  }, {
+    "y": 2.2,
+    "x": 1353.80,
+    "value": 2,
+    "title": "Nuevo León"
+  }, {
+    "y": 1.6,
+    "x": 154.40,
+    "value": 2,
+    "title": "Oaxaca"
+  }, {
+    "y": 1.3,
+    "x": 214.22,
+    "value": 2,
+    "title": "Puebla"
+  }, {
+    "y": 1.8,
+    "x": 283.43,
+    "value": 2,
+    "title": "Querétaro"
+  }, {
+    "y": 2.1,
+    "x": 2372.04,
+    "value": 2,
+    "title": "Quintana Roo"
+  }, {
+    "y": 0.7,
+    "x": 226.99,
+    "value": 2,
+    "title": "San Luis Potosí"
+  }, {
+    "y": 1.3,
+    "x": 547.28,
+    "value": 2,
+    "title": "Sinaloa"
+  }, {
+    "y": 1.4,
+    "x": 534.24,
+    "value": 2,
+    "title": "Sonora"
+  }, {
+    "y": 1.4,
+    "x": 146.05,
+    "value": 2,
+    "title": "Tabasco"
+  }, {
+    "y": 1.0,
+    "x": 258.87,
+    "value": 2,
+    "title": "Tamaulipas"
+  }, {
+    "y": 1.6,
+    "x": 107.66,
+    "value": 2,
+    "title": "Tlaxcala"
+  }, {
+    "y": 0.7,
+    "x": 195.82,
+    "value": 2,
+    "title": "Veracruz de Ignacio de la Llave"
+  }, {
+    "y": 1.3,
+    "x": 310.20,
+    "value": 2.5,
+    "title": "Yucatán"
+  }, {
+    "y": 0.5,
+    "x": 162.57,
+    "value": 2,
+    "title": "Zacatecas"
+  } ];
+
+var chart = AmCharts.makeChart( "chartdiv", {
+  "hideCredits":true,
+  /*"export": {
+    "enabled": true
+  },*/
+  "type": "xy",
+  "balloon":{
+   "fixedPosition":true,
+  },
+  "dataProvider": dataProvider,
+  "valueAxes": [ {
+    "position": "bottom",
+    "axisAlpha": 10
+  }, {
+    "minMaxMultiplier": 1.2,
+    "axisAlpha": 0,
+    "position": "left"
+  } ],
+  "guides": [
+    {
+      "fillAlpha": 1,
+      "fillColor": "#4F0000",
+      //"fillColor" : "#7E65AA",
+      "value": 625,
+      "toValue": 625.20
+    }
+  ],
+  "startDuration": 1.5,
+  "graphs": [{
+    "balloonText": "[[title]]: <b>[[value]]</b>",
+    // start with just the circle...
+    "bullet": "circle",
+    "bulletBorderAlpha": 0.2,
+    "bulletAlpha": 0.8,
+    "lineAlpha": 0,
+    "fillAlphas": 0,
+    "valueField": "value",
+    "xField": "x",
+    "yField": "y",
+    "minBulletSize": 30,
+    "maxBulletSize": 100,
+    "colorField": "color", // add this for colors based on value of bubble
+  }, {
+    // start with just the circle...
+    "showBalloon": false,
+    "bullet": "custom",
+    "customBulletField": "bullet",
+    "maxBulletSize": 40,
+    "minBulletSize": 20,
+    "bulletBorderAlpha": 0.2,
+    "bulletAlpha": 0.8,
+    "lineAlpha": 0,
+    "fillAlphas": 0,
+    "valueField": "value",
+    "xField": "x",
+    "yField": "y",
+    "colorField": "color", // add this for colors based on value of bubble
+  }],
+  "marginLeft": 46,
+  "marginBottom": 35,
+  "addClassNames": true/*,
+  "exporting":{
+    "menu":{
+      "align":"right",
+      "verticalAlign": "bottom"
+    }
+  }*/
+} );
+
+// add custom handler that fires before the chart is drawn
+// the second parameter is means that it is applicable to XY chart only
+AmCharts.addInitHandler(function(chart) {
+  // cycle through all data points and assign color per Y value
+  for (var x in chart.dataProvider) {
+    var dp = chart.dataProvider[x];
+    if (dp.value > 40)
+      dp.color = "#2ecc71";
+    else if (dp.value > 25)
+      dp.color = "#1abc9c";
+    else
+      //dp.color = "#f39c12";
+  		dp.color = "#7E65AA";
+  }
+}, ['xy']);
+
+</script>
+
+
+</html>

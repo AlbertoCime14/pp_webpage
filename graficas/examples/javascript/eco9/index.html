@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Styles -->
+<link rel="stylesheet" type="text/css" href="../src/index.css">
+  <title>Economía 9</title>
+</head>
+<body>
+  <div id="chartdiv"></div>
+</body>
+<!-- Resources -->
+<script src="../../../core.js"></script>
+<script src="../../../charts.js"></script>
+<script src="../../../themes/animated.js"></script>
+
+<!-- Chart code -->
+<script>
+
+am4core.useTheme(am4themes_animated);
+
+var chart = am4core.create("chartdiv", am4charts.PieChart);
+
+chart.data = [
+    {
+	  "visitantes": "Visitantes nacionales con pernocta",
+	  "porcentaje": 77.11
+	}, {
+	  "visitantes": "Vistantes internacionales con pernocta",
+	  "porcentaje": 22.89
+	} 
+];
+
+
+chart.innerRadius = am4core.percent(50);
+
+
+var series = chart.series.push(new am4charts.PieSeries());
+series.dataFields.value = "porcentaje";
+series.dataFields.category = "visitantes";
+
+var colorSet = new am4core.ColorSet();
+colorSet.list = ["#00A984","#02644e"].map(function(color) {
+  return new am4core.color(color);
+});
+series.colors = colorSet;
+
+
+
+series.labels.template.bent = true;
+series.labels.template.radius = 4;
+series.labels.template.fontSize = 22;
+
+series.slices.template.states.getKey("hover").properties.scale = 1.1;
+series.labels.template.states.create("hover").properties.fill = am4core.color("#000000");
+//chart.exporting.menu = new am4core.ExportMenu();
+
+</script>
+
+<!-- HTML -->
+
+</html>
+
+

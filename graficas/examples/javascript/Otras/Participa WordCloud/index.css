@@ -1,0 +1,13 @@
+body {
+  font-family: "Barlow Black";
+  background-color: #ffffff;
+  overflow: hidden;
+  margin: 0;
+}
+
+#chartdiv {
+  width: 100%;
+  max-height: 800px;
+  height: 100vh;
+  font-family: Courier New;
+}

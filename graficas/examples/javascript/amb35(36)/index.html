@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script type="text/javascript" src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+  <script type="text/javascript" src="https://www.amcharts.com/lib/3/serial.js"></script>
+  <script type="text/javascript" src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
+  <link rel="stylesheet" href="../src/index.css" />
+  <style type="text/css">
+  .amcharts-axis-label{
+    font-family: "Barlow-Regular";
+    font-size: 14px;
+  }
+
+  #chartdiv {  
+    width: 100%;
+    max-height: 800px;
+    height: 100vh;
+  }
+  </style>
+
+</head>
+<body>
+<div class="container">
+    <div id="chartdiv"></div>  
+</div>
+
+</body>
+<script type="text/javascript">
+  var data = [
+{'category': 'Adecuada-1','name_fr':'Adecuada','date':'Valle de México','Décile 1':62.6420761676886, "color":"#40520f"},
+{'category': 'Adecuada-2','name_fr':'Adecuada','date':' Saltillo','Décile 1':60.3997411795016,"color":"#40520f"},
+{'category': 'Adecuada-3','name_fr':'Adecuada','date':' Guadalajara','Décile 1':59.6919183417324,"color":"#40520f"},
+{'category': 'Media-Alta-4','name_fr':'Media-Alta','date':' León','Décile 1':52.7201319957247,"color":"#658316"},
+{'category': 'Media-Alta-5','name_fr':'Media-Alta','date':' Toluca','Décile 1':50.8712850830091,"color":"#658316"},
+{'category': 'Media-Alta-6','name_fr':'Media-Alta','date':' Mérida','Décile 1':48.8421664199756,"color":"#658316"},
+{'category': 'Media-Alta-7','name_fr':'Media-Alta','date':' Morelia','Décile 1':45.4518936877479,"color":"#658316"},
+{'category': 'Media-Alta-8','name_fr':'Media-Alta','date':' Querétaro','Décile 1':45.2445667495201,"color":"#658316"},
+{'category': 'Media-Baja-9','name_fr':'Media-Baja','date':' Aguascalientes','Décile 1':44.2664953856984,"color":"#9fce21"},
+{'category': 'Media-Baja-10','name_fr':'Media-Baja','date':' Monterrey','Décile 1':44.1532709656325,"color":"#9fce21"},
+{'category': 'Media-Baja-11','name_fr':'Media-Baja','date':' Chihuahua','Décile 1':43.0834273615047,"color":"#9fce21"},
+{'category': 'Media-Baja-12','name_fr':'Media-Baja','date':' Veracruz','Décile 1':42.0401534508074,"color":"#9fce21"},
+{'category': 'Media-Baja-13','name_fr':'Media-Baja','date':' San Luis Potosí-Soledad','Décile 1':41.6882601545517,"color":"#9fce21"},
+{'category': 'Media-Baja-14','name_fr':'Media-Baja','date':' Cancún','Décile 1':41.3104130675933,"color":"#9fce21"},
+{'category': 'Media-Baja-15','name_fr':'Media-Baja','date':' Puebla-Tlaxcala','Décile 1':39.7075840185647,"color":"#9fce21"},
+{'category': 'Media-Baja-16','name_fr':'Media-Baja','date':' Tijuana','Décile 1':37.3748222051804,"color":"#9fce21"},
+{'category': 'Media-Baja-17','name_fr':'Media-Baja','date':' Cuernavaca','Décile 1':37.1724018469981,"color":"#9fce21"},
+{'category': 'Media-Baja-18','name_fr':'Media-Baja','date':' Tampico-Pánuco','Décile 1':35.6032784511328,"color":"#9fce21"},
+{'category': 'Baja-19','name_fr':'Baja','date':' Villahermosa','Décile 1':30.7696976575951,"color":"#c7ea6b"},
+{'category': 'Baja-20','name_fr':'Baja','date':' Acapulco','Décile 1':27.11249155425,"color":"#c7ea6b"}
+];
+
+let byName = _.groupBy(data, "name_fr");
+let guides = _.map(byName, function(items, key) {
+    return {
+        "category": _.first(items).category,
+        "toCategory": _.last(items).category,
+        "lineAlpha": 0,
+        "expand": true,
+        "label": key,
+        "labelRotation": 0,
+        "tickLength": 80
+    };
+});
+
+var chart = AmCharts.makeChart("chartdiv", {
+    "hideCredits":true,
+    "type": "serial",
+    "graphs": [
+        {
+            "type": "column",
+            "fillAlphas": 1,
+            "title": "Décile 1",
+            "valueField": "Décile 1",
+            "colorField":"color",
+            "lineColor":"FFFFFF"
+        }/*,
+        {
+            "type": "column",
+            "fillAlphas": .9,
+            "title": "Décile 5",
+            "valueField": "Décile 5"
+        },
+        {
+            "type": "column",
+            "fillAlphas": .9,
+            "title": "Décile 9",
+            "valueField": "Décile 9"
+        }*/
+    ],
+    "columnSpacing": 1,
+    "valueAxes": [
+        {
+            "position": "left",
+            "title": ""
+        }
+    ],
+    /*"legend": {
+        "useGraphSettings": true,
+        "position": "top",
+        "align": "center"
+    },*/
+    "categoryField": "category",
+    "categoryAxis": {
+        "gridAlpha": 0,
+        "labelRotation": 90,
+        "guides": guides,
+        "labelFunction": function(label, item) {
+            return item.dataContext.date;
+        }
+    },
+    "dataProvider": data
+    
+});
+
+var panelsSettings = new AmCharts.PanelsSettings();
+panelsSettings.fontFamily = "Barlow-Regular";
+chart.panelsSettings = panelsSettings;
+
+</script>
+</html>

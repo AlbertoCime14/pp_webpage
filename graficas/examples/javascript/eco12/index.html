@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Styles -->
+<link rel="stylesheet" type="text/css" href="../src/index.css">
+  <title>Economía 12</title>
+</head>
+<body>
+  <div id="chartdiv"></div>
+</body>
+<!-- Resources -->
+<script src="../../../core.js"></script>
+<script src="../../../charts.js"></script>
+<script src="../../../themes/animated.js"></script>
+
+<!-- Chart code -->
+<script>
+
+am4core.useTheme(am4themes_animated);
+
+var chart = am4core.create("chartdiv", am4charts.PieChart);
+
+chart.data = [
+    {
+	  "trabajadores": "Trabajadores independientes empleadores",
+	  "porcentaje": 14.9
+	}, {
+	  "trabajadores": "Trabajadores independientes por cuenta propia",
+	  "porcentaje": 85.1
+	}
+];
+
+
+chart.innerRadius = am4core.percent(50);
+/*
+chart.colors.list = [
+  am4core.color("#43355b"),
+  am4core.color("#4b3b66"),
+  am4core.color("#534272"),
+  am4core.color("#5c487e"),
+  
+  am4core.color("#644e8a"),
+  am4core.color("#6c5496"),
+  am4core.color("#745aa2"),
+  am4core.color("#7e65aa"),
+  am4core.color("#8870b1"),
+  am4core.color("#917cb8"),
+  am4core.color("#9b87be"),
+  am4core.color("#a593c5"),
+  am4core.color("#af9ecc"),
+  am4core.color("#b9aad2")
+];*/
+
+
+
+var series = chart.series.push(new am4charts.PieSeries());
+series.dataFields.value = "porcentaje";
+series.dataFields.category = "trabajadores";
+
+var colorSet = new am4core.ColorSet();
+colorSet.list = ["#00A984","#02644e"].map(function(color) {
+  return new am4core.color(color);
+});
+series.colors = colorSet;
+
+
+
+series.labels.template.bent = true;
+series.labels.template.radius = 4;
+series.labels.template.fontSize = 20;
+
+series.slices.template.states.getKey("hover").properties.scale = 1.1;
+series.labels.template.states.create("hover").properties.fill = am4core.color("#000000");
+//chart.exporting.menu = new am4core.ExportMenu();
+
+</script>
+
+<!-- HTML -->
+
+</html>
+
+

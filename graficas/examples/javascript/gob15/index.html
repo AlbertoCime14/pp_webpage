@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Cultura 2</title>
+  <!-- Styles -->
+  <link rel="stylesheet" href="../src/index.css" />
+  <style>
+  #chartdiv {
+    width: 100%;
+    height: 500px;
+  }
+
+  .amcharts-axis-label{
+    font-family: "Barlow-Regular";
+    font-size: 14px;
+  }
+
+  .amcharts-chart-div a {display:none !important;}
+  </style>
+  
+</head>
+<body>
+  <div id="chartdiv"></div> 
+</body>
+<!--<script src="../src/amcharts.js"></script>-->
+<script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+<!--<script src="amcharts.js"></script>-->
+<script src="https://www.amcharts.com/lib/3/serial.js"></script>
+<script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+
+<script src="http://cdn.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+<link  type="text/css" href="http://cdn.amcharts.com/lib/3/plugins/export/export.css" rel="stylesheet">
+
+<!-- Chart code -->
+<script>
+var chart = AmCharts.makeChart("chartdiv", {
+  "hideCredits":true,
+  /*"export": {
+    "enabled": true
+  },*/
+  "addClassNames": true,
+  "type": "serial",
+  "theme": "light",
+  "graphs": [{
+    "type": "candlestick",
+    "balloonText": "Primer lugar: [[high]]\n Promedio nacional: [[open]]\n Yucatán: [[close]]\n Último lugar: [[low]]",
+    "highField": "high",
+    "openField": "open",
+    "closeField": "close",
+    "valueField": "close",
+    "title": "Diferencial entre Yucatán y el promedio nacional",
+    "lowField": "low",
+    //"fillColors": "#404040",
+    "fillColors": "#FFFFFF",
+    "negativeFillColors": "#4E8994",
+    "lineColor": "#43355b",
+    "lineAlpha": 1,
+    "fillAlphas": 0.9,
+    "columnWidth": 0.4
+  }, {
+    "type": "column",
+    "columnWidth": 0.2,
+    "valueField": "high",
+    "title": "Primer lugar",
+    "openField": "high",
+    "lineColor": "#ED7D31",
+    "lineThickness": 4,
+    "labelText": "[[high]]",
+    "showBalloon": true,
+    "clustered": false
+  }, {
+    "type": "column",
+    "columnWidth": 0.2,
+    "valueField": "low",
+    "title": "Último lugar",
+    "openField": "low",
+    "lineColor": "#A5A5A5",
+    "lineThickness": 4,
+    "labelText": "[[low]]",
+    "showBalloon": true,
+    "clustered": false,
+    "labelPosition": "bottom"
+  }, {
+    "type": "column",
+    "columnWidth": 0.2,
+    "valueField": "open",
+    "title": "Promedio nacional",
+    "openField": "open",
+    "lineColor": "#5B9BD5",
+    "lineThickness": 4,
+    "labelText": "[[open]]",
+    "showBalloon": true,
+    "clustered": false,
+    "labelPosition":"left"
+  }, {
+    "type": "column",
+    "columnWidth": 0.2,
+    "valueField": "close",
+    "title": "Yucatán",
+    "openField": "close",
+    "lineColor": "#FFC000",
+    "lineThickness": 4,
+    "labelText": "[[close]]",
+    "showBalloon": true,
+    "clustered": false,
+    "labelPosition":"right"
+  }],
+  "chartCursor": {
+    "valueLineEnabled": true,
+    "valueLineBalloonEnabled": true
+  },
+  "categoryField": "exp",
+  "valueAxes": [{
+    "position": "left",
+    "title": "",
+    "minimum": 0,
+    "maximum": 90,
+    "axisAlpha": 0,
+  }],  
+  "legend": {
+    "useGraphSettings": true,
+    "align": "center",
+    "labelText": "[[title]]"
+  },
+
+  "dataProvider": [{
+    "exp": "Agua potable",
+    "high": 78.2,
+    "open": 50.7,
+    "close": 73.2,
+    "low": 26
+  }, {
+    "exp": "Drenaje y alcantarillado",
+    "high": 64.9,
+    "open": 45.8,//Promedio nacional
+    "close": 39.3,//Yucatán
+    "low": 25.9
+  }, {
+    "exp": "Alumbrado público",
+    "high": 60.2,
+    "open": 36.9,
+    "close": 47.4,
+    "low": 23.7
+  }, {
+    "exp": "Recolección de basura",
+    "high": 76.8,
+    "open": 56,
+    "close": 66.9,
+    "low": 28.2
+  }]
+});
+</script>
+</html>
+
+
+
+
+<!-- HTML -->

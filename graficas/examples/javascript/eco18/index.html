@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="../src/index.css">
+  <title>Economía 18</title>
+</head>
+<body>
+  <!-- HTML -->
+  <div id="chartdiv"></div>
+</body>
+</html>
+
+
+
+
+<!-- Resources -->
+<script src="../../../core.js"></script>
+<script src="../../../charts.js"></script>
+<script src="../../../themes/animated.js"></script>
+
+<!-- Chart code -->
+<script>
+// Themes begin
+am4core.useTheme(am4themes_animated);
+// Themes end
+
+// Create chart instance
+var chart = am4core.create("chartdiv", am4charts.PieChart);
+
+// Set data
+var selected;
+var types = [{
+  type: "Otros",
+  percent: 12.4,
+  color: "#00A984",
+  subs: [{
+    type: "Otras especies",
+    percent: 10.2,
+  }, {
+    type: "Pargo",
+    percent: 1.2
+  }, {
+    type: "Camarón",
+    percent: 1.0
+  }]
+}, {
+  type: "Pulpo",
+  percent: 55.0,
+  color: "#024335"
+}, {
+  type: "Mero",
+  percent: 20.9,
+  color: "#02644e"
+}, {
+  type: "Langosta",
+  percent: 5.1,
+  color: "#028569"
+}, {
+  type: "Rubia y villajaiba",
+  percent: 3.9,
+  color: "#02a07e"
+}, {
+  type: "Pepino de mar",
+  percent: 2.1,
+  color: "#02c298"
+}, {
+  type: "Mojarra",
+  percent: 0.6,
+  color: "#02e4b2"
+}];
+
+// Add data
+chart.innerRadius = am4core.percent(50);
+chart.data = generateChartData();
+
+// Add and configure Series
+var pieSeries = chart.series.push(new am4charts.PieSeries());
+pieSeries.dataFields.value = "percent";
+pieSeries.dataFields.category = "type";
+pieSeries.slices.template.propertyFields.fill = "color";
+pieSeries.slices.template.propertyFields.isActive = "pulled";
+pieSeries.slices.template.strokeWidth = 0;
+
+function generateChartData() {
+  var chartData = [];
+  for (var i = 0; i < types.length; i++) {
+    if (i == selected) {
+      for (var x = 0; x < types[i].subs.length; x++) {
+        chartData.push({
+          type: types[i].subs[x].type,
+          percent: types[i].subs[x].percent,
+          color: types[i].color,
+          pulled: true
+        });
+      }
+    } else {
+      chartData.push({
+        type: types[i].type,
+        percent: types[i].percent,
+        color: types[i].color,
+        id: i
+      });
+    }
+  }
+  return chartData;
+}
+
+pieSeries.labels.template.fontSize = 24;
+pieSeries.slices.template.events.on("hit", function(event) {
+  if (event.target.dataItem.dataContext.id != undefined) {
+    selected = event.target.dataItem.dataContext.id;
+  } else {
+    selected = undefined;
+  }
+  chart.data = generateChartData();
+});
+</script>
+

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Innovación 4</title>
+</head>
+<!-- Styles -->
+<link rel="stylesheet" type="text/css" href="../src/index.css">
+<body>
+  <div id="chartdiv"></div>
+</body>
+<!-- Resources -->
+<script src="../../../core.js"></script>
+<script src="../../../charts.js"></script>
+<script src="../../../themes/animated.js"></script>
+
+<!-- Chart code -->
+<script>
+am4core.useTheme(am4themes_animated);
+
+var chart = am4core.create("chartdiv", am4charts.XYChart);
+
+
+
+    chart.data = [
+        {
+          "Lugar": "1",
+          "Entidad": "Ciudad de México",
+          "2016": 75.5,
+          "fillOpacity": 0.5,
+          "Promedio Nacional": 34.5
+        },
+        {
+          "Lugar": "2",
+          "Entidad": "Querétaro",
+          "2016": 66.5,
+          "fillOpacity": 0.5,
+          "Promedio Nacional": 34.5
+        },
+        {
+          "Lugar": "3",
+          "Entidad": "Morelos",
+          "2016": 60.5,
+          "fillOpacity": 0.5,
+          "Promedio Nacional": 34.5
+        },
+        {
+          "Lugar": "4",
+          "Entidad": "Aguascalientes",
+          "2016": 56.1,
+          "fillOpacity": 0.5,
+          "Promedio Nacional": 34.5
+        },
+        {
+          "Lugar": "5",
+          "Entidad": "Coahuila",
+          "2016": 53.6,
+          "fillOpacity": 0.5,
+          "Promedio Nacional": 34.5
+        },
+        {
+          "Lugar": "6",
+          "Entidad": "[font-size: 20px; font-weight: bold;]Yucatán[/]",
+          "2016": 47.3,
+          "fillOpacity": 1,
+          "Promedio Nacional": 34.5
+        },
+        {
+          "Lugar": "7",
+          "Entidad": "Sonora",
+          "2016": 46.8,
+          "fillOpacity": 0.5,
+          "Promedio Nacional": 34.5
+        },
+        {
+          "Lugar": "8",
+          "Entidad": "Campeche",
+          "2016": 45.6,
+          "fillOpacity": 0.5,
+          "Promedio Nacional": 34.5
+        },
+        {
+          "Lugar": "9",
+          "Entidad": "Nuevo León",
+          "2016": 41.3,
+          "fillOpacity": 0.5,
+          "Promedio Nacional": 34.5
+        },
+        {
+          "Lugar": "10",
+          "Entidad": "Puebla",
+          "2016": 38.3,
+          "fillOpacity": 0.5,
+          "Promedio Nacional": 34.5
+        },
+        {
+          "Lugar": "11",
+          "Entidad": "Colima",
+          "2016": 38.3,
+          "fillOpacity": 0.5,
+          "Promedio Nacional": 34.5
+        },
+        {
+          "Lugar": "12",
+          "Entidad": "Jalisco",
+          "2016": 37.4,
+          "fillOpacity": 0.5,
+          "Promedio Nacional": 34.5
+        },
+        {
+          "Lugar": "13",
+          "Entidad": "Baja California",
+          "2016": 35.2,
+          "fillOpacity": 0.5,
+          "Promedio Nacional": 34.5
+        },
+        {
+          "Lugar": "14",
+          "Entidad": "Guanajuato",
+          "2016": 34.2,
+          "fillOpacity": 0.5,
+          "Promedio Nacional": 34.5
+        },
+        {
+          "Lugar": "15",
+          "Entidad": "San Luis Potosí",
+          "2016": 33.7,
+          "fillOpacity": 0.5,
+          "Promedio Nacional": 34.5
+        },
+        {
+          "Lugar": "16",
+          "Entidad": "Sinaloa",
+          "2016": 32.4,
+          "fillOpacity": 0.5,
+          "Promedio Nacional": 34.5
+        },
+        {
+          "Lugar": "17",
+          "Entidad": "Baja California Sur",
+          "2016": 32.1,
+          "fillOpacity": 0.5,
+          "Promedio Nacional": 34.5
+        },
+        {
+          "Lugar": "18",
+          "Entidad": "Chihuahua",
+          "2016": 31.7,
+          "fillOpacity": 0.5,
+          "Promedio Nacional": 34.5
+        },
+        {
+          "Lugar": "19",
+          "Entidad": "Tabasco",
+          "2016": 27.9,
+          "fillOpacity": 0.5,
+          "Promedio Nacional": 34.5
+        },
+        {
+          "Lugar": "20",
+          "Entidad": "Tlaxcala",
+          "2016": 26.7,
+          "fillOpacity": 0.5,
+          "Promedio Nacional": 34.5
+        },
+        {
+          "Lugar": "21",
+          "Entidad": "Hidalgo",
+          "2016": 26.3,
+          "fillOpacity": 0.5,
+          "Promedio Nacional": 34.5
+        },
+        {
+          "Lugar": "22",
+          "Entidad": "Tamaulipas",
+          "2016": 25.9,
+          "fillOpacity": 0.5,
+          "Promedio Nacional": 34.5
+        },
+        {
+          "Lugar": "23",
+          "Entidad": "Veracruz",
+          "2016": 23.6,
+          "fillOpacity": 0.5,
+          "Promedio Nacional": 34.5
+        },
+        {
+          "Lugar": "24",
+          "Entidad": "Durango",
+          "2016": 23.4,
+          "fillOpacity": 0.5,
+          "Promedio Nacional": 34.5
+        },
+        {
+          "Lugar": "25",
+          "Entidad": "Zacatecas",
+          "2016": 23.2,
+          "fillOpacity": 0.5,
+          "Promedio Nacional": 34.5
+        },
+        {
+          "Lugar": "26",
+          "Entidad": "México",
+          "2016": 22.7,
+          "fillOpacity": 0.5,
+          "Promedio Nacional": 34.5
+        },
+        {
+          "Lugar": "27",
+          "Entidad": "Oaxaca",
+          "2016": 22,
+          "fillOpacity": 0.5,
+          "Promedio Nacional": 34.5
+        },
+        {
+          "Lugar": "28",
+          "Entidad": "Michoacán",
+          "2016": 20.5,
+          "fillOpacity": 0.5,
+          "Promedio Nacional": 34.5
+        },
+        {
+          "Lugar": "29",
+          "Entidad": "Nayarit",
+          "2016": 19.8,
+          "fillOpacity": 0.5,
+          "Promedio Nacional": 34.5
+        },
+        {
+          "Lugar": "30",
+          "Entidad": "Quintana Roo",
+          "2016": 15.1,
+          "fillOpacity": 0.5,
+          "Promedio Nacional": 34.5
+        },
+        {
+          "Lugar": "31",
+          "Entidad": "Guerrero",
+          "2016": 12.5,
+          "fillOpacity": 0.5,
+          "Promedio Nacional": 34.5
+        },
+        {
+          "Lugar": "32",
+          "Entidad": "Chiapas",
+          "2016": 7.5,
+          "fillOpacity": 0.5,
+          "Promedio Nacional": 34.5
+        }
+       ];
+
+chart.padding(40, 40, 40, 40);
+
+var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+categoryAxis.renderer.grid.template.location = 0;
+categoryAxis.dataFields.category = "Entidad";
+categoryAxis.renderer.minGridDistance = 1;
+categoryAxis.renderer.labels.template.rotation = -90;
+
+// Create value axis
+var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+//valueAxis.renderer.inversed = true;
+//valueAxis.title.text = "Place taken";
+valueAxis.renderer.minLabelPosition = 0.01;
+
+//Etiquetas debajo de la barra vertical centradas
+categoryAxis.renderer.labels.template.horizontalCenter = "right";
+categoryAxis.renderer.labels.template.verticalCenter = "middle";
+categoryAxis.renderer.labels.template.rotation = 270;
+
+var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+
+var series = chart.series.push(new am4charts.ColumnSeries());
+series.dataFields.categoryX = "Entidad";
+series.dataFields.valueY = "2016";
+series.tooltipText = "{valueY.value}"
+series.columns.template.fill = am4core.color('#00A8E4');
+series.columns.template.propertyFields.fillOpacity = "fillOpacity";
+
+//Valores de las barras verticales
+var valueLabel = series.bullets.push(new am4charts.LabelBullet());
+valueLabel.label.text = "{valueY}";
+valueLabel.label.dy = -10;
+valueLabel.label.truncate = false;
+valueLabel.label.hideOversized = false;
+
+
+var lineSeries = chart.series.push(new am4charts.LineSeries());
+lineSeries.dataFields.categoryX = "Entidad";
+lineSeries.dataFields.valueY = "Promedio Nacional";
+lineSeries.tooltipText = "Promedio Nacional: {valueY.value}";
+lineSeries.sequencedInterpolation = true;
+lineSeries.defaultState.transitionDuration = 1500;
+lineSeries.stroke = am4core.color("#FF0000"); //chart.colors.getIndex(11);
+lineSeries.fill = lineSeries.stroke;
+lineSeries.strokeWidth = 2;
+
+
+
+var label = chart.createChild(am4core.Label);
+label.text = "Promedio Nacional: 34.5";
+label.fontSize = 14;
+label.align = "center";
+label.isMeasured = false;
+label.x = am4core.percent(90);
+label.horizontalCenter = "middle";
+label.y = am4core.percent(42);
+
+chart.cursor = new am4charts.XYCursor();
+
+// as by default columns of the same series are of the same color, we add adapter which takes colors from chart.colors color set
+//series.columns.template.adapter.add("fill", function (fill, target) {
+//  return chart.colors.getIndex(target.dataItem.index);
+//});
+</script>
+
+<!-- HTML -->
+
+</html>

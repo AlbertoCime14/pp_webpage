@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Gobierno 2(Amcharts 3)</title>
+	<!-- Styles -->
+    <link rel="stylesheet" href="../src/index.css" />
+	<style>
+    @font-face {
+        font-family: Barlow-Regular;
+        src: url('../src/Barlow-Regular.ttf');
+    }
+
+	#chartdiv {
+       font-family:"Barlow-Regular";
+	   width: 100%;
+	   height: 500px;
+	}
+
+    text.amcharts-graph-label{
+        background-color:"#000000" !important;
+    }
+
+	</style>
+</head>
+<body>
+	<div id="chartdiv"></div>
+</body>
+
+<!--<script src="export/export.min.js"></script>
+<script src="amcharts.js"></script>-->
+<script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+<script src="radar.js"></script>
+<script src="light.js"></script>
+
+<script src="http://cdn.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+<link  type="text/css" href="http://cdn.amcharts.com/lib/3/plugins/export/export.css" rel="stylesheet">
+
+
+
+<!-- Chart code -->
+<script>
+var chart = AmCharts.makeChart("chartdiv", {
+    "hideCredits":true,
+    "addClassNames": true,
+    /*"export": {
+        "enabled": true
+    },*/
+    "type": "radar",
+    //"theme": "light",
+    "dataProvider": [
+    {
+        "country": "Productividad",
+        "Aglomeración urbana de Mérida":59.09,
+        "Mérida": 59.09,
+        "Kanasín": 61.8,
+        "Progreso": 69.96,
+        "Umán": 74.93
+    },
+    {
+        "country": "Infraestructura de Desarrollo",
+        "Aglomeración urbana de Mérida":61.88,
+        "Mérida": 64.2,
+        "Kanasín": 50.63,
+        "Progreso": 57.7,
+        "Umán": 50.75
+    },
+    {
+        "country": "Calidad de Vida",
+        "Aglomeración urbana de Mérida":69.96,
+        "Mérida": 75.26,
+        "Kanasín": 57.87,
+        "Progreso": 72.77,
+        "Umán": 62.94
+    },
+    {
+        "country": "Equidad e Inclusión Social",
+        "Aglomeración urbana de Mérida":74.93,
+        "Mérida": 73.69,
+        "Kanasín": 69.19,
+        "Progreso": 71.94,
+        "Umán": 71.74
+    },
+    {
+        "country": "Sostenibilidad Ambiental",
+        "Aglomeración urbana de Mérida":29.54,
+        "Mérida": 30.51,
+        "Kanasín": 31.5,
+        "Progreso": 53.67,
+        "Umán": 31.27
+    },
+    {
+        "country": "Gobernanza y Legislación Urbana",
+        "Aglomeración urbana de Mérida":32.84,
+        "Mérida": 32.96,
+        "Kanasín": 28.96,
+        "Progreso": 34.83,
+        "Umán": 31.78
+    }
+    ],
+    "valueAxes": [{
+        "axisTitleOffset": 50,
+        "minimum": 0,
+        "maximum": 100,
+        "axisAlpha": 0.15
+    }, {
+        "id": "v2",
+        "axisTitleOffset": 20,
+        "minimum": 0,
+        "maximum": 100,
+        "axisAlpha": 0,
+        "inside": true
+    }],
+    "startDuration": 2,
+    "graphs": [{
+        "labelColorField": "#008000",
+        "balloonText": "[[value]]",
+        "bullet": "round",
+        "lineColor": "#1c3656",
+        "valueField": "Aglomeración urbana de Mérida",
+        //"labelText": "[[value]]",
+        "labelPosition": "right",
+        "title": "Aglomeración urbana de Mérida",
+        "fillColorsField":"#000000",
+        "bulletSize":4
+
+    },
+    {
+        "balloonText": "[[value]]",
+        "bullet": "square",
+        "lineColor": "#2c588d",
+        "valueField": "Mérida",
+        //"labelText": "[[value]]",
+        "labelPosition": "bottom",
+        "title": "Mérida",
+        "backgroundColor": "#000000",
+        "bulletSize":4
+    },
+    {
+        "balloonText": "[[value]]",
+        "bullet": "circle",
+        "lineColor": "#3873B9",
+        "valueField": "Kanasín",
+        //"labelText": "[[value]]",
+        "labelPosition": "bottom",
+        "title": "Kanasín",
+        "backgroundColor": "#000000",
+        "bulletSize":4
+    },
+    {
+        "balloonText": "[[value]]",
+        "bullet": "rectangle",
+        "lineColor": "#538ac0",
+        "valueField": "Progreso",
+        //"labelText": "[[value]]",
+        "labelPosition": "bottom",
+        "title": "Progreso",
+        "backgroundColor": "#000000",
+        "bulletSize":4
+    },
+    {
+        "balloonText": "[[value]]",
+        //"bullet": "square",
+        "lineColor": "#89b0dd",
+        "valueField": "Umán",
+        //"labelText": "[[value]]",
+        "labelPosition": "bottom",
+        "title": "Umán",
+        "backgroundColor": "#000000"
+    }],
+    "legend": {
+        "useGraphSettings": true,
+        "align": "center",
+        "labelText": "[[title]]"
+      },
+    "categoryField": "country",
+    /*"export": {
+    "enabled": true,
+    "beforeCapture": function() {
+      var chart = this.setup.chart;
+      chart.graphs[0].labelText = "[[value]]";
+      chart.validateNow();
+    },
+    "afterCapture": function() {
+      var chart = this.setup.chart;
+      setTimeout(function() {
+        chart.graphs[0].labelText = "";
+        chart.validateNow();
+      }, 10);
+    }
+  }*/
+});
+
+</script>
+</html>
+
+
+<!-- Resources -->
+
+
+<!-- HTML -->

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script type="text/javascript" src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+  <script type="text/javascript" src="https://www.amcharts.com/lib/3/serial.js"></script>
+  <script type="text/javascript" src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
+  <link rel="stylesheet" href="../src/index.css" />
+  <style type="text/css">
+  .amcharts-axis-label{
+    font-family: "Barlow-Regular";
+    font-size: 14px;
+  }
+
+  #chartdiv {  
+    width: 100%;
+    max-height: 800px;
+    height: 100vh;
+  }
+  </style>
+
+</head>
+<body>
+<div class="container">
+    <div id="chartdiv"></div>  
+</div>
+
+</body>
+<script type="text/javascript">
+  var data = [
+//1
+{
+    'category': 'Eficiencia-1',
+    'name_fr':'Eficiencia Terminal Medica Superior',
+    'date':'Nacional',
+    'Décile 1':66.6,
+    "color1": "#0C3F6C",
+    'Décile 2':58.9,
+    "color2": "#1680DE"
+},
+{   
+    'category': 'Eficiencia-2',
+    'name_fr':'Eficiencia Terminal Medica Superior',
+    'date':'Yucatán',
+    'Décile 1':64.8,
+    "color1": "#0C3F6C",
+    'Décile 2':57.3,
+    "color2": "#1680DE"
+},
+//2
+{
+    'category': 'EficienciaTS-3',
+    'name_fr':'Eficiencia Terminal Secundaria',
+    'date':'Nacional',
+    'Décile 1':85.8,
+    "color1": "#0C3F6C",
+    'Décile 2':78.6,
+    "color2": "#1680DE"
+},
+{   
+    'category': 'EficienciaTS-4',
+    'name_fr':'Eficiencia Terminal Secundaria',
+    'date':'Yucatán',
+    'Décile 1':84.4,
+    "color1": "#0C3F6C",
+    'Décile 2':73.3,
+    "color2": "#1680DE"
+},
+//3
+{
+    'category': 'EficienciaTP-3',
+    'name_fr':'Eficiencia Terminal Primaria',
+    'date':'Nacional',
+    'Décile 1':96.9,
+    "color1": "#0C3F6C",
+    'Décile 2':92.4,
+    "color2": "#1680DE"
+},
+{   
+    'category': 'EficienciaTP-4',
+    'name_fr':'Eficiencia Terminal Primaria',
+    'date':'Yucatán',
+    'Décile 1':100.3,
+    "color1": "#0C3F6C",
+    'Décile 2':92.3,
+    "color2": "#1680DE"
+},
+
+];
+
+let byName = _.groupBy(data, "name_fr");
+let guides = _.map(byName, function(items, key) {
+    return {
+        "category": _.first(items).category,
+        "toCategory": _.last(items).category,
+        "lineAlpha": 0,
+        "expand": true,
+        "label": key,
+        "labelRotation": 0,
+        "tickLength": 80
+    };
+});
+
+var chart = AmCharts.makeChart("chartdiv", {
+    "hideCredits":true,
+    "type": "serial",
+    "graphs": [
+        {
+            "type": "column",
+            "fillAlphas": 1,
+            "title": "Ciclo 2017-2018",
+            "valueField": "Décile 1",
+            "colorField":"color1",
+            "lineColor":"FFFFFF",
+            "labelText": "[[value]]",
+        },
+        {
+            "type": "column",
+            "fillAlphas": .9,
+            "title": "Ciclo 2007-2008",
+            "valueField": "Décile 2",
+            "colorField":"color2",
+            "lineColor":"FFFFFF",
+            "labelText": "[[value]]",
+        }/*,
+        {
+            "type": "column",
+            "fillAlphas": .9,
+            "title": "Décile 9",
+            "valueField": "Décile 9"
+        }*/
+    ],
+    "columnSpacing": 1,
+    "valueAxes": [
+        {
+            "position": "left",
+            "title": ""
+        }
+    ],
+    "legend": {
+        "useGraphSettings": true,
+        "position": "bottom",
+        "align": "center"
+    },
+    "categoryField": "category",
+    "categoryAxis": {
+        "gridAlpha": 0,
+        "labelRotation": 90,
+        "guides": guides,
+        "labelFunction": function(label, item) {
+            return item.dataContext.date;
+        }
+    },
+    "dataProvider": data,
+    "rotate":true
+    
+});
+</script>
+</html>
