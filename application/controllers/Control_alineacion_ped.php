@@ -56,42 +56,32 @@ class Control_alineacion extends CI_Controller {
 	public function consultar_eje_dependencia()
 	{
 		$_SESSION['id_dependencia'] = $dependencia_id;
-		$eje = new M_alineacion_entregable();
+		$eje = new M_eje_ped();
 		$datos = $eje->ejes_alineados_dependencia($dependencia_id);	
 		$json = "";
 		if($datos!=false)
 		{
-			if($datos[0]->transversal==1) $transv = "Transversal";
-            elseif($datos[0]->transversal==0)
-            {
-              if($datos[0]->ejeid_ped>0) $transv = "Sectorial";
-              else $transv = "No aplica";
-            }
+			
 
-			$json = $datos[0]->ejeid.'-'.$datos[0]->eje.'-'.$datos[0]->ejeid_ped.'-'.$transv;
-		}		
-
-		echo $json;
-
+			$json = $datos[0]->ejeid.'-'.$datos[0]->eje;
+			echo $json;
+		}else{
+			echo "error en la consulta de los ejes";
+		}	
 
 	}
 
-	public function consulta()
+	public function consulta_tema_ped()
 	{
-		$ejeid = $this->input->post('ejeid', TRUE);
-		$eje = new M_alineacion();
-		$datos = $eje->ejes_alineados($ejeid);
+		$ejeid = $this->input->post('ejeid', TRUE);//este input es el que contiene los id de los ejes para poder ahcer la consulta a la base de datos
+		$eje = new M_eje_ped();
+		$datos = $eje->temas_Alineados($ejeid);
 		$json = "";
 		if($datos!=false)
 		{
-			if($datos[0]->transversal==1) $transv = "Transversal";
-            elseif($datos[0]->transversal==0)
-            {
-              if($datos[0]->ejeid_ped>0) $transv = "Sectorial";
-              else $transv = "No aplica";
-            }
+			
 
-			$json = $datos[0]->ejeid.'-'.$datos[0]->eje.'-'.$datos[0]->ejeid_ped.'-'.$transv;
+			$json = $datos[0]->temaid.'-'.$datos[0]->tema;
 		}		
 
 		echo $json;
@@ -102,35 +92,68 @@ class Control_alineacion extends CI_Controller {
 
 
 	
-	public function ejes_transv()
+	public function recuper_objetivos()
 	{
-		$op = $this->input->post('op', TRUE);
-		$model = new M_alineacion();
-		$ejes = $model->ejes($op);
-		if($ejes!=false)
+		$temaid = $this->input->post('temaid', TRUE);//este input recupera el id del tema
+		$model = new M_eje_ped();
+		
+		$datos = $model->objetivos_alineados($temaid);
+		$json = "";
+		if($datos!=false)
 		{
-			foreach ($ejes as $veje) {
-				echo '<option value="'.$veje->ejeid.'">'.$veje->eje.'</option>';
-			}
-		}
+			
+
+			$json = $datos[0]->objetivoid.'-'.$datos[0]->objetivo;
+		}		
+
+		echo $json;
 	}
 
 
 	//=============================== funciones alineacion objetivos
 
-	public function carga_objetivos()
+	public function recuperar_estrategia()
 	{
-		$id = $this->input->post('id', TRUE);
-		$model = new M_alineacion();
-		$objetivos = $model->carga_objetivos($id);
-		if($objetivos!=false) 
+		$objetivoid = $this->input->post('objetivoid', TRUE);//este input recupera el id del objetivo
+		$model = new M_eje_ped();
+		
+		$datos = $model->estrategias_alineadas($objetivoid);
+		$json = "";
+		if($datos!=false)
 		{
-			foreach ($objetivos as $vobj) {
-				echo '<option value="'.$vobj->objetivoid.'">'.$vobj->objetivo.'</option>';
-			}
-		}
-	}
+			
 
+			$json = $datos[0]->estrategiaid.'-'.$datos[0]->estrategia;
+		}		
+
+		echo $json;
+	}
+	public function recuperar_linea_accion()
+	{
+		$estrategiaid = $this->input->post('estrategiaid', TRUE);//este input recupera el id de la estrategia
+		$model = new M_eje_ped();
+		$datos = $model->lineas_accion_alineadas($estrategiaid);
+		$json = "";
+		if($datos!=false) 
+		{
+			$json = $datos[0]->lineaaccionid.'-'.$datos[0]->lineaaccion;
+		}
+
+		echo $json;
+	}
+	public function recuperar_ods()
+	{
+		$lineaaccionid = $this->input->post('lineaaccionid', TRUE);//este input recupera el id de la linea de accion
+		$model = new M_eje_ped();
+		$datos = $model->lineas_accion_alineadas($lineaaccionid);
+		$json = "";
+		if($datos!=false) 
+		{
+			$json = $datos[0]->id_ods.'-'.$datos[0]->numero_ods;
+		}
+
+		echo $json;
+	}
 	
 
 
@@ -167,19 +190,7 @@ class Control_alineacion extends CI_Controller {
         </table>';
 	}*/
 
-	public function consulta_objetivo()
-	{
-		$objid = $this->input->post('objid', TRUE);
-		$model = new M_alineacion();
-		$obj = $model->obj_alinead($objid);
-		$json = "";
-		if($obj!=false) 
-		{
-			$json = $obj[0]->objetivoid.'-'.$obj[0]->objetivo.'-'.$obj[0]->ejeid.'-'.$obj[0]->objetivoid_ped;
-		}
-
-		echo $json;
-	}
+	
 
 	
 }

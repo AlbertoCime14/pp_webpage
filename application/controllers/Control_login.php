@@ -11,7 +11,7 @@ class Control_login extends CI_Controller {
 		
 		//$this->load->library('session');
 	}
-public function inicia_sesion()
+	public function inicia_sesion()
 	{
 		$depen = $this->input->post('user', TRUE);
 		$pass = $this->input->post('pass', TRUE);
