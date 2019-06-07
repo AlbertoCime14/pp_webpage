@@ -84,8 +84,3 @@ $route['consulta_obj'] = 'control_alineacion/consulta_objetivo';
 //==================== inicio de sesión ===========
 $route['login'] = 'Control_login/inicia_sesion';
 
-
-//==================== captura de la actividad ===========
-$route['actividad'] = 'Control_Actividad/crear_Actividad';
-
-//==================== alineacion de la acttividad estrategia con el ped ===========
