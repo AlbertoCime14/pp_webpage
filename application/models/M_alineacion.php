@@ -32,17 +32,7 @@ class M_alineacion extends CI_Model {
 		else return("false");
 	}
 
-	public function ejes_alineados($ejeid=0)
-	{	
-		$this->db->select('ejeid,eje,ejeid_ped,transversal');
-		$this->db->from('cat_ejes_municip');
-		$this->db->where('activo',1);
-		if($ejeid>0) $this->db->where('ejeid',$ejeid);
-		
-		$query = $this->db->get();
-		if($query!=false) return $query->result();
-		else return("false");
-	}
+
 
 	public function guarda_eje($datos)
 	{

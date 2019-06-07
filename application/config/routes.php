@@ -54,10 +54,7 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 
-$route['copledey'] = 'control_sitio/copledey';
-$route['ceieg'] = 'control_sitio/ceieg';
-$route['avisos'] = 'control_sitio/avisos';
-$route['armonizacion_contable'] = 'control_sitio/armonizacion_contable';
+
 $route['ejes'] = 'control_sitio/alinea_ejes';
 $route['objetivos'] = 'control_sitio/alinea_objetivos';
 $route['iniciar'] = 'control_sitio/login';
@@ -74,23 +71,21 @@ $route[''] = '';
 */
 $route['consulta'] = 'control_alineacion/consulta';
 
-$route['tabla_eje'] = 'control_alineacion/act_tabla_eje';
-$route['guarda_eje'] = 'control_alineacion/guarda_eje';
-$route['actualiza_eje'] = 'control_alineacion/actualizar_eje';
 
-$route['edita_eje'] = 'control_alineacion/edita_eje';
-$route['elimina_eje'] = 'control_alineacion/elimina_eje';
-$route['ejes_transv'] = 'control_alineacion/ejes_transv';
+
 
 //====================== objetivos ===============
 $route['objetivos_ped'] = 'control_alineacion/carga_objetivos';
-$route['guarda_obj'] = 'control_alineacion/guarda_alinea_obj';
-$route['elimina_obj'] = 'control_alineacion/elimina_objetivo';
+
 $route['tabla_obj'] = 'control_alineacion/act_tabla_obj';
 $route['consulta_obj'] = 'control_alineacion/consulta_objetivo';
-$route['actualiza_obj'] = 'control_alineacion/actualizar_objetivo';
+
 
 //==================== inicio de sesión ===========
-$route['login'] = 'control_alineacion/inicia_sesion';
+$route['login'] = 'Control_login/inicia_sesion';
 
 
+//==================== captura de la actividad ===========
+$route['actividad'] = 'Control_Actividad/crear_Actividad';
+
+//==================== alineacion de la acttividad estrategia con el ped ===========
