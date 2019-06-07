@@ -93,4 +93,6 @@ $route['actualiza_obj'] = 'control_alineacion/actualizar_objetivo';
 //==================== inicio de sesión ===========
 $route['login'] = 'control_alineacion/inicia_sesion';
 
-
+//==================== Actividades listados ===========
+$route['actividades'] = 'control_generico/listar_actividades';
+$route['actividades/editar/(:any)'] = 'control_generico/editar_actividad/';
