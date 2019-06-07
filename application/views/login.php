@@ -63,7 +63,7 @@
 
      <form>
      <div class="form-group">
-       <input type="email" class="form-control input-lg" id="user_mun" placeholder="Municipio">
+       <input type="email" class="form-control input-lg" id="user_mun" placeholder="Dependencia">
      </div>
      <div class="form-group">
        <input type="password" class="form-control input-lg" id="pass_mun" placeholder="Contraseña">
