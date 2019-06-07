@@ -79,9 +79,9 @@ class M_institucion extends CI_Model {
 	//=================login
 	    public function datos_dependencia($dependencia)
 	{
-		$this->db->select('id_institucion,institucion_abrev');
-		$this->db->from('institucion');
-		$this->db->like('institucion_abrev', $dependencia);
+		$this->db->select('id_dependencia,dependencia_abrev');
+		$this->db->from('dependencia');
+		$this->db->like('dependencia_abrev', $dependencia);
 
 		$query = $this->db->get();
 		if($query!=false) return $query->result();
