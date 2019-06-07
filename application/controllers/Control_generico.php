@@ -33,10 +33,19 @@ class Control_generico extends CI_Controller {
 		$this->load->view('login');
 	}
 	public function listar_actividades(){
+		$this->load->view('masterpage/head');
 		$this->load->view('listar_actividades');
+		$this->load->view('masterpage/footer');
 	}
 	public function editar_actividad(){
+	$this->load->view('masterpage/head');
 	$this->load->view('editar_actividad');	
+	$this->load->view('masterpage/footer');
+	}
+	public function editar_entregables(){
+	$this->load->view('masterpage/head');
+	$this->load->view('editar_entregables');
+	$this->load->view('masterpage/footer');
 	}
 
 	

@@ -87,3 +87,4 @@ $route['login'] = 'Control_login/inicia_sesion';
 //===============Control de actividades=========
 $route['actividades'] = 'control_generico/listar_actividades';
 $route['actividades/editar/(:any)'] = 'control_generico/editar_actividad/';
+$route['actividades/entregables/(:any)'] = 'control_generico/editar_entregables/';
