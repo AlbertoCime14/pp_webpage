@@ -84,3 +84,6 @@ $route['consulta_obj'] = 'control_alineacion/consulta_objetivo';
 //==================== inicio de sesión ===========
 $route['login'] = 'Control_login/inicia_sesion';
 
+//===============Control de actividades=========
+$route['actividades'] = 'control_generico/listar_actividades';
+$route['actividades/editar/(:any)'] = 'control_generico/editar_actividad/';

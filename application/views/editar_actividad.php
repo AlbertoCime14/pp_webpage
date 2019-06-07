@@ -126,6 +126,7 @@
       <!--Tabla de contenidos-->
       <section>
 <div class="form-group row">
+  <div class="col-xs-1"></div>
   <label for="inputState7" class="col-xs-2 form-label">Origen de financiamiento:</label>
   <div class="col-xs-3">
   <select id="inputState7" class="form-control">
@@ -133,6 +134,7 @@
     <option>...</option>
   </select>
   </div>
+  
   <label for="inputState7" class="col-xs-2 form-label">Nombre la fuente de financiamiento:</label>
   <div class="col-xs-3">
   <select id="inputState7" class="form-control">
