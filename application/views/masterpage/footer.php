@@ -1,3 +1,7 @@
+<!--Botones desabilidatos-->
+<input type="text" value="<?=base_url();?>" id="url" style="visibility: hidden">
+<input type="text" value="<?=$_SESSION['id_dependencia'];?>" id="id_institucion" style="visibility: hidden">
+
 <script src="<?=base_url();?>js/jquery-2.1.3.min.js"></script>
 <script src="<?=base_url();?>js/bootstrap.min.js"></script>
 <script src="<?=base_url();?>js/jquery.easing.min.js"></script>
@@ -26,6 +30,9 @@
 <script src="<?=base_url();?>js/jquery.themepunch.revolution.min.js"></script>
 <script src="<?=base_url();?>js/main.js" type="text/javascript"></script>
 <script src="<?=base_url();?>js/notie.js"></script>
+
+<!--Aqui para poner las nuevas funciones-->
+<script src="<?=base_url();?>js/funcionesactividades.js"></script>
 
 <script>
 

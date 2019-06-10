@@ -24,7 +24,8 @@ class Control_generico extends CI_Controller {
 		parent::__construct();
 		session_start();
 		$this->load->helper('url');
-		$this->load->model('M_alineacion');
+		//$this->load->model('M_alineacion');
+		$this->load->model('Modelo_actividad');
 		//$this->load->library('session');
 	}
 
@@ -33,9 +34,17 @@ class Control_generico extends CI_Controller {
 		$this->load->view('login');
 	}
 	public function listar_actividades(){
+		// $data = $this->Modelo_actividad->listar_actividades(); 
+		 $data['mydata'] = $this->Modelo_actividad->listar_actividades();
 		$this->load->view('masterpage/head');
-		$this->load->view('listar_actividades');
+		$this->load->view('listar_actividades',$data);
 		$this->load->view('masterpage/footer');
+
+	}
+	public function agregaractividad(){
+		$nombre = $this->input->post('nombre');
+		$this->Modelo_actividad->agregaractividad($nombre);
+
 	}
 	public function editar_actividad(){
 	$this->load->view('masterpage/head');
@@ -47,6 +56,9 @@ class Control_generico extends CI_Controller {
 	$this->load->view('editar_entregables');
 	$this->load->view('masterpage/footer');
 	}
-
+	public function example(){
+		 $data = $this->Modelo_actividad->listar_actividades(); 
+		 print_r($data);
+	}
 	
 }

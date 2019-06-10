@@ -36,17 +36,16 @@
             </div>
             </div>
                      <div class="col-xs-4">
-                           <input type="text" class="form-control"  placeholder="Ingrese el nombre de la actividad">
+                           <input type="text" class="form-control"  placeholder="Ingrese el nombre de la actividad" id="txtActividad">
                      </div>
                      <div class="col-xs-2">
-                       <input type="submit" class="form-control" value="Crear">
+                       <input type="submit" class="form-control" value="Crear"  onclick="add_actividad()" id="btnAdd">
                      </div>
                    </div>
     </div>
     <div class="panel-body">
       <!--Tabla de contenidos-->
-
-      <table class="table table-striped">
+        <table class="table table-striped" id="tablacontenidos">
   <thead>
     <tr>
       <th scope="col">Nombre de actividad</th>
@@ -57,18 +56,23 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">Actividad 1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-
-      <td style="text-align: center;"><a href="editar/<?=base64_encode("ok")?>">Editar | </a><a href="javascript:void(0)" onclick="ok();">Eliminar | </a> <a href="entregables/<?=base64_encode("ok")?>">Editar entregables| </a><a href="javascript:void(0)" onclick="ok();">Generar reporte</a> </td>
-    </tr>
-  </tbody>
+ <?php
+  
+ foreach($mydata as $datos)
+  {
+ 
+  echo "<tr>";
+   echo "<td>".$datos['id'] ." </td>";
+    echo "<td>".$datos['Nombre'] ." </td>";
+    echo "<td>".$datos['Ejemplo1'] ." </td>";
+    echo "</tr>";
+ 
+  }
+ ?>
+    </tbody>
 </table>
-
-    </div>
+      <!--Cierre-->
+         </div>
   </div>
 </div>
 </section>
