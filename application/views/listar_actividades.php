@@ -65,6 +65,10 @@
    echo "<td>".$datos['id'] ." </td>";
     echo "<td>".$datos['Nombre'] ." </td>";
     echo "<td>".$datos['Ejemplo1'] ." </td>";
+    echo '  <td style="text-align: center;"><a href="editar/'.base64_encode($datos['id']).'">Editar |</a>
+          <a href="javascript:void(0)" >Eliminar | </a> 
+          <a href="entregables/'.base64_encode($datos['id']).'" >Editar entregables| </a>
+          <a href="javascript:void(0)">Generar reporte</a> </td> ';
     echo "</tr>";
  
   }
