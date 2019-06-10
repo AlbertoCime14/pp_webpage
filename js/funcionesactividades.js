@@ -25,6 +25,12 @@ function add_actividad() {
 
 }
 /*
-      
+      Aqui empieza a cambiar todos los input cuando cargan
 
 */
+
+function busquedapp(){
+    document.getElementById('cboPP').disabled=false;
+    var eje=document.getElementById('cboEje').value;
+    alert(eje);
+}

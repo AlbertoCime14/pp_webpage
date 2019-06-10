@@ -47,8 +47,9 @@ class Control_generico extends CI_Controller {
 
 	}
 	public function editar_actividad(){
+	 $dataeje['ejes'] = $this->Modelo_actividad->recuperareje();
 	$this->load->view('masterpage/head');
-	$this->load->view('editar_actividad');	
+	$this->load->view('editar_actividad',$dataeje);	
 	$this->load->view('masterpage/footer');
 	}
 	public function editar_entregables(){

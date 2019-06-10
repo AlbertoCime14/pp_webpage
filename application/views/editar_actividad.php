@@ -15,16 +15,22 @@
 <div class="form-group row">
   <label for="inputState1" class="col-xs-1 form-label">Eje:</label>
   <div class="col-xs-3">
-  <select id="inputState1" class="form-control">
-    <option selected>Choose...</option>
-    <option>...</option>
+  <select id="cboEje" class="form-control" onchange="busquedapp()">
+    <option selected>Seleccione...</option>
+    <?php 
+    foreach($ejes as $datoseje)
+  {
+      echo ' <option value="'.$datoseje['ejeid'].'">'.$datoseje['eje'].'</option>';
+  }
+    ?>
+    
   </select>
   </div>
     <label for="inputState2" class="col-xs-1 form-label">Politica publica:</label>
   <div class="col-xs-3">
-  <select id="inputState2" class="form-control">
-    <option selected>Choose...</option>
-    <option>...</option>
+  <select id="cboPP" class="form-control" disabled="disabled">
+    <option selected>Seleccione...</option>
+    
   </select>
   </div>
     <label for="inputState3" class="col-xs-1 form-label">Objetivo:</label>

@@ -56,22 +56,32 @@
     </tr>
   </thead>
   <tbody>
+<!--
 
+              'id'        => $row->id_actividad_estrategica,
+              'Nombre'    => $row->Nombre,
+              'Eje'       => $row->eje ,
+              'PP'        => $row->nombre_pp ,
+              'UBP'       => $row->nombre_ubp ,
+
+            -->
  <?php
   $url=base_url();
  foreach($mydata as $datos)
   {
 
   echo "<tr>";
-   echo "<td>".$datos['id'] ." </td>";
+ //  echo "<td>".$datos['id'] ." </td>";
     echo "<td>".$datos['Nombre'] ." </td>";
-    echo "<td>".$datos['Ejemplo1'] ." </td>";
+    echo "<td>".$datos['Eje'] ." </td>";
+     echo "<td>".$datos['PP'] ." </td>";
+        echo "<td>".$datos['UBP'] ." </td>";
     echo '  <td style="text-align: center;"><a href="'.$url.'actividades/editar/'.base64_encode($datos['id']).'">Editar |</a>
           <a href="javascript:void(0)" >Eliminar | </a> 
           <a href="'.$url.'actividades/entregables/'.base64_encode($datos['id']).'" >Editar entregables| </a>
           <a href="javascript:void(0)">Generar reporte</a> </td> ';
     echo "</tr>";
-    
+
  
   }
  ?>
