@@ -26,6 +26,8 @@ class Control_generico extends CI_Controller {
 		$this->load->helper('url');
 		//$this->load->model('M_alineacion');
 		$this->load->model('Modelo_actividad');
+		$this->load->model('M_entregable');
+		$this->load->model('M_unidad_medida');
 		//$this->load->library('session');
 	}
 
@@ -39,6 +41,16 @@ class Control_generico extends CI_Controller {
 		$this->load->view('masterpage/head');
 		$this->load->view('listar_actividades',$data);
 		$this->load->view('masterpage/footer');
+
+	}
+	public function listar_entregable(){
+		// $data = $this->Modelo_actividad->listar_actividades(); 
+		
+		 //$data['mydata'] = $this->M_entregable->listar_entregables();
+		 $data['mydata']= $this->M_unidad_medida->listar_unidad();
+		 $this->load->view('masterpage/head');
+		 $this->load->view('editar_entregables',$data);
+		 $this->load->view('masterpage/footer');
 
 	}
 	public function agregaractividad(){

@@ -88,6 +88,9 @@ $route['login'] = 'Control_login/inicia_sesion';
 $route['actividades'] = 'control_generico/listar_actividades';
 $route['actividades/add'] = 'control_generico/agregaractividad';
 $route['actividades/editar/(:any)'] = 'control_generico/editar_actividad/';
+$route['actividadess'] = 'control_generico/example';
 $route['actividades/entregables/(:any)'] = 'control_generico/editar_entregables/';
 
-$route['actividadess'] = 'control_generico/example';
+//===============Control de entregables=========
+$route['actividades/entregables/(:any)'] = 'control_generico/listar_entregable/';
+$route['entregables/add'] = 'Control_entregable/agregar_entregable';
