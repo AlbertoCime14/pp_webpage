@@ -13,6 +13,16 @@ class Control_entregable extends CI_Controller {
 		//$this->load->library('session');
 	}
 
+	public function agregar_entregable(){
+		$model = new M_entregable();
+		$nombre = $this->input->post('nombre');
+		$datos = $model->agregar_entregable($nombre);
+		
+		
+		
+
+	}
+
 
 
 
