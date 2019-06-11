@@ -113,7 +113,7 @@
                    <div class="col-xs-1"></div>
             <label for="inputState7" class="col-xs-2 form-label">Fecha de inicio de la actividad:</label>
  <div class="col-xs-3">
-<input type="date" class="form-control">
+<input type="date" class="form-control" id="txtFechaInicio">
  </div>
               <label for="inputState7" class="col-xs-2 form-label">Monto total:</label>
  <div class="col-xs-3">
@@ -126,7 +126,7 @@
            <div class="col-xs-1"></div>
                       <label for="inputState7" class="col-xs-2 form-label">Fecha de termino de la actividad:</label>
  <div class="col-xs-3">
-<input type="date" class="form-control">
+<input type="date" class="form-control" id="txtFechafin">
  </div>
         </div>
       </section>
@@ -169,7 +169,7 @@
       </section>
     </div>
   </div>
-  <input type="submit" class="btn btn-dark" value="Guardar" >
+  <input type="submit" class="btn btn-dark" value="Guardar" onclick="actualizaractividad()">
 </div>
 </section>
 <!--

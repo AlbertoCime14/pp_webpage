@@ -56,6 +56,10 @@ class Modelo_actividad extends CI_Model {
             ];
         }
         return $datos;
+  }
+  public function actualizaractividad($data,$id){
+$this->db->where('id_actividad_estrategica', $id);
+$this->db->update('s0_actividad_estrategica', $data);
 
   }
 

@@ -506,3 +506,59 @@ function busquedaplan(){
             return datos;
           
 }
+
+
+function actualizaractividad(){
+    //=============================================Mandar datos para actualizar la actividad====================//
+/** url del sitio**/
+  var url=document.getElementById("url").value;
+/** id de la actividad modificando**/
+var txtActividadId=document.getElementById('txtActividadId').value;
+/** id Lineas de accion**/
+var cboLineaacion=document.getElementById('cboLineaacion').value;
+/** id UBP**/
+var cboUbp=document.getElementById('cboUbp').value;
+/** id poblacion objetivo**/
+var cobPoblacion=document.getElementById('cobPoblacion').value;
+/** id origen de la fuente de financiamiento**/
+var cbofuente=document.getElementById('cbofuente').value;
+/** id de la fuente de financiamiento**/
+var nombrefuente=document.getElementById('nombrefuente').value;
+/** Sacar el monto propio**/
+var txtMontoPropio=document.getElementById('txtMontoPropio').value;
+/** Sacarl el monto de otras fuentes**/
+var txtMontoOtras=document.getElementById('txtMontoOtras').value;
+/** Para sacar la fecha de inicio**/
+var txtFechaInicio=document.getElementById('txtFechaInicio').value;
+/** Para sacar la fecha de fin**/
+var txtFechafin=document.getElementById('txtFechafin').value;
+
+//===============================Campos utilizables cuando se requieran===================//
+var Nombre="example";
+var objetivo_general="example";
+var descripcion="example";
+var elaboro="example";
+var autorizo="example";
+
+//===========================llamada  de ajax paara actualizar los datos===============//
+/******** Datos de la actualizacion  *********/
+var datos="id_actividad_estrategica="+txtActividadId+"&Nombre="+Nombre+"&objetivo_general="+objetivo_general+"&descripcion="+descripcion+"&monto_propio="+txtMontoPropio+"&monto_otro="+txtMontoOtras+"&fecha_inicio="+txtFechaInicio+"&fecha_fin="+txtFechafin+"&elaboro="+elaboro+"&autorizo="+autorizo+"&cat_lineaaccion_ped_lineaaccionid="+cboLineaacion+"&ubp_id_ubp="+cboUbp+"&poblacion_objetivo_id_poblacion="+cobPoblacion+"&origen_fuente_id_origen="+cbofuente+"&fuente_financiamiento_id_ff="+nombrefuente;
+              $.ajax({         
+                type: "POST",
+                url: url+"actividades/editar/"+txtActividadId,
+                data: datos,
+                success: function(data) {         
+                //=========================================//
+                notie.alert({ type: 1, text: 'Correcto!', time: 2 });
+                setTimeout(function(){ location.href = url+"actividades"; }, 1000);
+
+
+
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Status: " + textStatus);
+                    alert("Error: " + errorThrown);
+
+                }
+                });
+}
