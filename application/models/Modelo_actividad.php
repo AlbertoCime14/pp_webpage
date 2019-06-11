@@ -58,10 +58,5 @@ class Modelo_actividad extends CI_Model {
         return $datos;
 
   }
-  public function recuperarpp(){
-    
-  }
-  public function actualizaractividad(){
 
-  } 
 }

@@ -28,16 +28,15 @@
   </div>
     <label for="inputState2" class="col-xs-1 form-label">Politica publica:</label>
   <div class="col-xs-3">
-  <select id="cboPP" class="form-control" disabled="disabled">
+  <select id="cboPP" class="form-control" disabled="disabled" onchange="busquedaobjetivo()">
     <option selected>Seleccione...</option>
     
   </select>
   </div>
     <label for="inputState3" class="col-xs-1 form-label">Objetivo:</label>
   <div class="col-xs-3">
-  <select id="inputState3" class="form-control">
-    <option selected>Choose...</option>
-    <option>...</option>
+  <select id="cboObjetivo" class="form-control" disabled="disabled">
+    <option selected>Seleccione...</option>
   </select>
   </div>
 </div>
@@ -178,6 +177,13 @@
   <input type="submit" class="btn btn-dark" value="Guardar" >
 </div>
 </section>
+<!--
+Variables de la actividad
+-->
+<?php 
+  $idactividad = $this->uri->segment(3);
+?>
+<input type="text" id="txtActividadId" style="visibility: hidden;" value=<?=base64_decode($idactividad);?>>
 <!--Footer Begins-->
 <footer>
 

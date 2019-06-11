@@ -91,3 +91,9 @@ $route['actividades/editar/(:any)'] = 'control_generico/editar_actividad/';
 $route['actividades/entregables/(:any)'] = 'control_generico/editar_entregables/';
 
 $route['actividadess'] = 'control_generico/example';
+
+//==================Recuperar combobox anidados===============//
+//=======================cat temas ====================//
+$route['actividades/pp/(:any)'] = 'control_combobox/busquedapp/';
+//======================cat objtivos ===============//
+$route['actividades/obj/(:any)'] = 'control_combobox/busquedaobjetivo/';
