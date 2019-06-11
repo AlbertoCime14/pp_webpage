@@ -137,7 +137,35 @@ class M_combobox extends CI_Model {
         foreach ($query->result() as $row) {
            $datos[] = [
              'id_ubp'       => $row->id_ubp , 
-              'numero_ubp'       => $row->numero_ubp ,  
+              'numero_ubp'       => $row->numero_ubp ,
+            ];
+        }
+        return $datos;
+    }
+      public function recuperarnombreubp($id_ubp){
+        $this->db->select('*');
+        $this->db->from('s0_ubp');
+        $this->db->where('id_ubp',$id_ubp);
+        $query = $this->db->get();
+		
+        foreach ($query->result() as $row) {
+           $datos[] = [
+              'nombre_ubp'       => $row->nombre_ubp ,
+            ];
+        }
+        return $datos;
+    }
+        public function recuperarplanpresupuestal($id_ubp){
+        $this->db->select('*');
+        $this->db->from('s0_programa_presupuestal');
+         $this->db->join('s0_ubp','s0_ubp.programa_presupuestal_id_pp=s0_programa_presupuestal.id_pp','left');
+        $this->db->where('id_ubp',$id_ubp);
+        $query = $this->db->get();
+		
+        foreach ($query->result() as $row) {
+           $datos[] = [
+              'num_pp'       => $row->num_pp ,
+              'nombre_pp'    => $row->nombre_pp ,
             ];
         }
         return $datos;

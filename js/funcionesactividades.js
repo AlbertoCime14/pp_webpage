@@ -44,7 +44,7 @@ function busquedapp(ideje){
       var url=document.getElementById("url").value;
             $.ajax({         
                 type: "GET",
-                url: url+"actividades/pp/"+eje,
+                url: url+"actividades/cat_temas/"+eje,
                 data: "ok=ok",
                 success: function(data) {         
                 value=0;
@@ -388,9 +388,13 @@ function actualizar_monto(){
 (function(){
  busquedaubp();   
 })();
+
+
+
 function busquedaubp(){
     //El boleano valida un numero en los input y mantener los values dinamicamente
- var validador = false;
+ var validador = true;
+ var optionvalue=0;
          /*Url estatica*/
       var url=document.getElementById("url").value;
             $.ajax({         
@@ -402,32 +406,19 @@ function busquedaubp(){
                 JSON.parse(data, function (k, v) {
                     if(isNaN(v)===true){
 
-                        if(typeof v === 'object'){}else{
-                            //texto                          
+                        if(typeof v === 'object'){}else{                          
                         }
                     }else{
                     //numero
-                     value=v;
-                   
-                    if (validador=== true) {
-                           //enetero
-                           validador=false;
+                     value=v;     
+                    if (validador=== true) {          
+                        optionvalue=value;
+                        validador=false;
                         } else {
-                          //decimanl
-                            //guarda el valor del option
-                               //este guarda el nombre del option
-                         var o = new Option("option text", value);
-                        $("#cboUbp").append(o);  
-                        validador=true;
-                                           
-                        }
-
-                        if(validador=== false){
-                           $(o).html(v);
-                        }else{
-
-                        }
-                   
+                     //este guarda el nombre del option
+                           $('#cboUbp').prepend("<option value="+optionvalue+">"+value+"</option>");
+                            validador=true;
+                        }                   
                     }                
                 
             });     
@@ -438,4 +429,80 @@ function busquedaubp(){
 
                 }
                 }); 
+}
+
+
+/** Sirve para actulizar los nombres del los ubp y traer las relaciones con el id del ubp**/
+
+function busquedanombreubpypp(){
+    var ubp=document.getElementById('cboUbp').value;
+         /*Url estatica*/
+      var url=document.getElementById("url").value;
+            $.ajax({         
+                type: "GET",
+                url: url+"actividades/nombreubp/"+ubp,
+                data: "ok=ok",
+                success: function(data) {         
+                value=0;
+                JSON.parse(data, function (k, v) {
+                    if(isNaN(v)===true){
+                        if(typeof v === 'object'){
+
+                        }else{
+                            //texto
+                              $('#nombreUbp').text(v);
+                             var datos=busquedaplan();
+                      
+                        }
+                    }else{
+                    //numero
+                     value=v;
+                    }
+                     
+                
+            });     
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Status: " + textStatus);
+                    alert("Error: " + errorThrown);
+
+                }
+                }); 
+}
+
+/**Busqueda de la fuente**/
+
+function busquedaplan(){
+    var ubp=document.getElementById('cboUbp').value;
+      var url=document.getElementById("url").value;
+    var datos;
+            $.ajax({         
+                type: "GET",
+                url: url+"actividades/pp/"+ubp,
+                data: "ok=ok",
+                success: function(data) {         
+                value=0;
+                JSON.parse(data, function (k, v) {
+                    if(isNaN(v)===true){
+                        if(typeof v === 'object'){}else{
+                            //texto
+                       datos=value;
+                        $('#txtNombrepp').text('Nombre de PP: '+v);
+                        $('#txtNumeropp').text('Numero PP: '+value);    
+                        }
+                    }else{
+                    //numero
+                     value=v;
+                    }                
+                
+            });     
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Status: " + textStatus);
+                    alert("Error: " + errorThrown);
+
+                }
+                }); 
+            return datos;
+          
 }

@@ -51,6 +51,16 @@ class Control_combobox extends CI_Controller {
 	$data['ubp']=$this->M_combobox->recuperarubp();
 	echo json_encode($data);
 	}
+	public function buscarnombreubp(){
+	$idubp=$this->uri->segment(3);
+	$data['nombreubp']=$this->M_combobox->recuperarnombreubp($idubp);
+	echo json_encode($data);
+	}
+	public function buscarplan(){
+	$idubp=$this->uri->segment(3);
+	$data['plan']=$this->M_combobox->recuperarplanpresupuestal($idubp);
+	echo json_encode($data);
+	}
 	
 	
 }

@@ -145,11 +145,11 @@
             <div class="col-xs-1"></div>
             <label for="inputState7" class="col-xs-2 form-label">Numero UBP:</label>
  <div class="col-xs-3">
-  <select id="cboUbp" class="form-control">
+  <select id="cboUbp" class="form-control" onchange="busquedanombreubpypp()">
     <option selected>Seleccione...</option>
   </select>
  </div>
-             <label for="inputState7" class="col-xs-6 form-label">Nombre de PP: Seguimiento del desempeño de la gestion</label>
+             <label id="txtNombrepp" class="col-xs-6 form-label"></label>
 
          </div>
       </section>
@@ -158,10 +158,10 @@
             <div class="col-xs-1"></div>
           <label class="col-xs-2 form-label">Nombre de la UBP:</label>
                <div class="col-xs-3 form-label">
-          <label>Ejemplo de ubp sdsdssdssdsd</label>
+          <label id="nombreUbp"></label>
         </div>
            <div class="col-xs-2 form-label">
-          <label>Numero PP: 155</label>
+          <label id="txtNumeropp"></label>
         </div>
         </div>
 

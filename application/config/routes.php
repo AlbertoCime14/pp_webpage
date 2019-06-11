@@ -96,7 +96,7 @@ $route['actividadess'] = 'control_generico/example';
 
 //==================Recuperar combobox anidados===============//
 //=======================cat temas ====================//
-$route['actividades/pp/(:any)'] = 'control_combobox/busquedapp/';
+$route['actividades/cat_temas/(:any)'] = 'control_combobox/busquedapp/';
 //======================cat objtivos ===============//
 $route['actividades/obj/(:any)'] = 'control_combobox/busquedaobjetivo/';
 //=======================cat estategias =================//
@@ -113,6 +113,11 @@ $route['actividades/fuente'] = 'control_combobox/busquedafuente/';
 $route['actividades/nombrefuente'] = 'control_combobox/busquedanombrefuente/';
 //========================recuperar ubp de la institucion ==================//
 $route['actividades/ubp'] = 'control_combobox/busquedaubp/';
+//========================recuperar nombre de la ubp ==================//
+$route['actividades/nombreubp/(:any)'] = 'control_combobox/buscarnombreubp/';
+//========================recuperar nombre de la ubp ==================//
+$route['actividades/pp/(:any)'] = 'control_combobox/buscarplan/';
+
 
 //===============Control de entregables=========
 $route['actividades/entregables/(:any)'] = 'control_generico/listar_entregable/';
