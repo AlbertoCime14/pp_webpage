@@ -44,10 +44,10 @@ class Control_generico extends CI_Controller {
 
 	}
 	public function listar_entregable(){
-		// $data = $this->Modelo_actividad->listar_actividades(); 
+		 $data['mydata'] = $this->M_entregable->listar_entregables(); 
 		
 		 //$data['mydata'] = $this->M_entregable->listar_entregables();
-		 $data['mydata']= $this->M_unidad_medida->listar_unidad();
+		 //$data['mydata']= $this->M_unidad_medida->listar_unidad();
 		 $this->load->view('masterpage/head');
 		 $this->load->view('editar_entregables',$data);
 		 $this->load->view('masterpage/footer');

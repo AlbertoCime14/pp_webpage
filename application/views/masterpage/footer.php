@@ -18,7 +18,7 @@
 <script src="<?=base_url();?>js/jquery.flexslider.min.js"></script>
 <script src="<?=base_url();?>js/jquery.validate.min.js"></script>
 <script src="<?=base_url();?>js/jquery.form.min.js"></script>
-<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
 <script src="<?=base_url();?>js/map.grey.js"></script>
 <script src="<?=base_url();?>js/isotope.pkgd.min.js" type="text/javascript"></script>
 <script src="<?=base_url();?>js/owl.carousel.min.js"></script>

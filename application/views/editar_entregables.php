@@ -26,7 +26,8 @@
                       <input type="text" class="form-control" placeholder="Ingrese el nombre del entregable" id="txtEntregable">
       
             </div>
-            <div class="col-xs-2">  <input type="submit" class="form-control" value="Crear"  onclick="add_entregable()" id="btnAdd">
+            <div class="col-xs-2">  
+                <input  id="btnAdd" type="submit" class="form-control" value="Crear"  onclick="add_entregable();">
             </div>
     
         </div>
@@ -35,7 +36,7 @@
 
     <div class="panel-body">
       <!--Tabla de contenidos-->
-      <table class="table table-striped">
+      <table class="table table-striped" id="tablacontenidos">
   <thead>
     <tr>
       <th scope="col">Nombre</th>
@@ -50,61 +51,62 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-     <td><input type="text" class="form-control"></td>
-     <td>
-        <select id="inputState7" class="form-control">
-        <?php
- 
+   
+  <?php
+  
  foreach($mydata as $datos)
   {
 
+  echo "<tr>";
+ //  echo "<td>".$datos['id'] ." </td>";
+      echo "<td>".$datos['nombre'] ." </td>";
+      echo '<td>';
+          echo '<select id="cbo_unidad'.$datos['id_entregables'].'" class="form-control">';
+          
+          echo '<option selected>Seleccione...</option>';
+      echo ' </select>';
+      echo '</td>';
+   
+      echo '<td>';
+        echo '<select id="cbo_periodicidad" class="form-control">';
+          
+          echo '<option selected>Seleccione...</option>';
+      echo ' </select>';
+      echo '</td>';
+      echo '<td>';
+      echo '<select id="inputState7" class="form-control">';
+          echo ' <option value="1" selected>Si</option>';
+          echo '<option value="0">No</option>';
+      echo ' </select>';
+   echo '</td>';
+   echo '<td>';
+   echo '<select id="inputState7" class="form-control">';
+        echo ' <option value="1" selected>Si</option>';
+        echo '<option value="0">No</option>';
+   echo ' </select>';
+echo '</td>';
+echo '<td>';
+echo '<select id="inputState7" class="form-control">';
+    echo ' <option value="1" selected>Si</option>';
+    echo '<option value="0">No</option>';
+echo ' </select>';
+echo '</td>';
+echo '<td>';
+    echo '<input type="text" class="form-control">';
+echo '</td>';
+echo '<td>';
+    echo '<input type="text" class="form-control">';
+echo '</td>';
+echo '<td>';
+    echo '<input type="text" class="form-control">';
+echo '</td>';
+
+    echo "</tr>";
   
-   //echo "<td>".$datos['id'] ." </td>";
-    echo '<option selected>'.$datos['nombre'] .'</option>';
-    //echo "<td>".$datos['Ejemplo1'] ." </td>";
-    
-    
+
  
   }
  ?>
-  </select>
-     </td>
- 
-     <td>
-               <select id="inputState7" class="form-control">
-    <option selected>Trimestral</option>
-    <option>Bimestral</option>
-  </select>
-     </td>
-     <td>
-               <select id="inputState7" class="form-control">
-    <option selected>Si</option>
-    <option>No</option>
-  </select>
-     </td>
-     <td>
-               <select id="inputState7" class="form-control">
-    <option selected>Si</option>
-    <option>No</option>
-  </select>
-     </td>
-     <td>
-               <select id="inputState7" class="form-control">
-    <option selected>Si</option>
-    <option>No</option>
-  </select>
-     </td>
-     <td>
-       <input type="text" class="form-control">
-     </td>
-     <td>
-       <input type="text" class="form-control">
-     </td>
-     <td>
-       <input type="text" class="form-control">
-     </td>
-    </tr>
   </tbody>
 </table>
 <section>
@@ -167,6 +169,6 @@
 <footer>
 <!-- Contact Section -->
 <?php include("contacto.php") ?>
-<?php $actividad_id = "5"; ?>
-<input type="text" value="<?php $actividad_id = "5"; ?>" id="pene" style="visibility: hidden">
+<?php $actividad_id = base64_decode($this->uri->segment(3));?>
+<input type="text" value="<?= $actividad_id; ?>" id="id_Actividad" style="visibility: hidden">
 </footer>

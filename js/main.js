@@ -440,7 +440,7 @@ $(window).load(function(){
 
 		      }
 			  
-		      google.maps.event.addDomListener(window, 'load', init_map);
+		     // google.maps.event.addDomListener(window, 'load', init_map);
 		 
 /* ===================================================================
            Accordions "Plus & Minus" Icons
