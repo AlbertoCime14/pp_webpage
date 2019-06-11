@@ -50,23 +50,22 @@
     <option>...</option>
   </select>
   </div>
-    <label for="inputState2" class="col-xs-1 form-label">Lineas de acción:</label>
+    <label for="inputState2" class="col-xs-1 form-label" >Lineas de acción:</label>
   <div class="col-xs-3">
-  <select id="cboLineaacion" class="form-control" disabled="disabled">
+  <select id="cboLineaacion" class="form-control" disabled="disabled" onchange="busquedaods()">
     <option selected>Seleccione...</option>
   </select>
   </div>
      <label for="inputState2" class="col-xs-1 form-label">Población objetivo:</label>
   <div class="col-xs-3">
-  <select id="inputState2" class="form-control">
-    <option selected>Choose...</option>
-    <option>...</option>
+  <select id="cobPoblacion" class="form-control">
+    <option selected>Seleccione...</option>
   </select>
   </div>
 </div>
       </section>
         <section>
-       <label for="inputState3" class="col-xs-1 form-label" id="ods">ODS: 1</label>
+       <label class="col-xs-1 form-label" id="lblods" style="visibility: hidden;">ODS: </label>
   </section>
     </div>
   </div>
@@ -82,17 +81,15 @@
   <div class="col-xs-1"></div>
   <label for="inputState7" class="col-xs-2 form-label">Origen de financiamiento:</label>
   <div class="col-xs-3">
-  <select id="inputState7" class="form-control">
-    <option selected>Choose...</option>
-    <option>...</option>
+  <select id="cbofuente" class="form-control">
+    <option selected>Seleccione...</option>
   </select>
   </div>
   
   <label for="inputState7" class="col-xs-2 form-label">Nombre la fuente de financiamiento:</label>
   <div class="col-xs-3">
-  <select id="inputState7" class="form-control">
-    <option selected>Choose...</option>
-    <option>...</option>
+  <select id="nombrefuente" class="form-control">
+    <option selected>Seleccione...</option>
   </select>
   </div>
 </div>
@@ -120,7 +117,7 @@
  </div>
               <label for="inputState7" class="col-xs-2 form-label">Monto total:</label>
  <div class="col-xs-3">
-<input type="text" class="form-control" placeholder="0.00MXN">
+<input type="txtMontototal" class="form-control" placeholder="0.00MXN" disabled="disabled">
  </div>       
       </section>
       <section>

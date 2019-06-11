@@ -156,6 +156,7 @@ Busqueda del las alineacciones mediante el id estrategias
 **/
 
 function busquedalineaaccion(){
+        $('#busquedapoblacion').empty();
      document.getElementById('cboLineaacion').disabled=false;
      $('#cboLineaacion').empty();
     var estrategia=document.getElementById('cboEstrategia').value;
@@ -191,4 +192,175 @@ function busquedalineaaccion(){
                 }); 
 }
 
+/***
+Busqueda de ods mediante el id estrategia
+*/
 
+function busquedaods(){
+    // document.getElementById('cboLineaacion').disabled=false;
+     //$('#ods').empty();
+    var estrategia=document.getElementById('cboEstrategia').value;
+         /*Url estatica*/
+      var url=document.getElementById("url").value;
+            $.ajax({         
+                type: "GET",
+                url: url+"actividades/ods/"+estrategia,
+                data: "ok=ok",
+                success: function(data) {         
+                value=0;
+                JSON.parse(data, function (k, v) {
+                    if(isNaN(v)===true){
+                        if(typeof v === 'object'){}else{
+                            //texto
+                         //    var o = new Option("option text", value);
+                         //    $("#cboLineaacion").append(o);
+                         //    $(o).html(v);
+                       
+                        }
+                    }else{
+                    //numero
+                     value=v;
+                     if(v==""){
+
+                     }else{
+                         //document.getElementById("lblods").value = "Johnny Bravo";
+                           //$("#lblods").show();
+                           $('#lblods').text('ODS: '+v);
+                           $("#lblods").css('visibility','');
+                     }
+                    
+                    }
+                     
+                
+            });     
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Status: " + textStatus);
+                    alert("Error: " + errorThrown);
+
+                }
+                }); 
+}
+
+/**
+Funcion para llamar a otra funcion de llenado del combobox de la poblacion
+**/
+(function(){
+ busquedapoblacion();   
+})();
+/**
+Busqueda de la poblacion especifica**/
+function busquedapoblacion(){
+         /*Url estatica*/
+      var url=document.getElementById("url").value;
+            $.ajax({         
+                type: "GET",
+                url: url+"actividades/poblacionobj",
+                data: "ok=ok",
+                success: function(data) {         
+                value=0;
+                JSON.parse(data, function (k, v) {
+                    if(isNaN(v)===true){
+                        if(typeof v === 'object'){}else{
+                            //texto
+                             var o = new Option("option text", value);
+                             $("#cobPoblacion").append(o);
+                             $(o).html(v);
+                        }
+                    }else{
+                    //numero
+                     value=v;
+                    }                
+                
+            });     
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Status: " + textStatus);
+                    alert("Error: " + errorThrown);
+
+                }
+                }); 
+}
+
+
+
+/**
+Funcion para llamar a otra funcion de llenado del combobox de la poblacion
+**/
+
+/***
+================================Llenado de actividad monetaria=====================
+***/
+
+
+/**Busqueda de la fuente**/
+(function(){
+ busquedafuente();   
+})();
+function busquedafuente(){
+         /*Url estatica*/
+      var url=document.getElementById("url").value;
+            $.ajax({         
+                type: "GET",
+                url: url+"actividades/fuente",
+                data: "ok=ok",
+                success: function(data) {         
+                value=0;
+                JSON.parse(data, function (k, v) {
+                    if(isNaN(v)===true){
+                        if(typeof v === 'object'){}else{
+                            //texto
+                             var o = new Option("option text", value);
+                             $("#cbofuente").append(o);
+                             $(o).html(v);
+                        }
+                    }else{
+                    //numero
+                     value=v;
+                    }                
+                
+            });     
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Status: " + textStatus);
+                    alert("Error: " + errorThrown);
+
+                }
+                }); 
+}
+
+/***Busqueda del nombre de la fuente**/
+(function(){
+ busquedanombrefuente();   
+})();
+function busquedanombrefuente(){
+         /*Url estatica*/
+      var url=document.getElementById("url").value;
+            $.ajax({         
+                type: "GET",
+                url: url+"actividades/nombrefuente",
+                data: "ok=ok",
+                success: function(data) {         
+                value=0;
+                JSON.parse(data, function (k, v) {
+                    if(isNaN(v)===true){
+                        if(typeof v === 'object'){}else{
+                            //texto
+                             var o = new Option("option text", value);
+                             $("#nombrefuente").append(o);
+                             $(o).html(v);
+                        }
+                    }else{
+                    //numero
+                     value=v;
+                    }                
+                
+            });     
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Status: " + textStatus);
+                    alert("Error: " + errorThrown);
+
+                }
+                }); 
+}

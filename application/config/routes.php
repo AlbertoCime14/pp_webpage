@@ -105,7 +105,12 @@ $route['actividades/cat/(:any)'] = 'control_combobox/busquedaestrategias/';
 $route['actividades/cat_linea/(:any)'] = 'control_combobox/busquedalineaaccion/';
 //========================recuperar ods ==================//
 $route['actividades/ods/(:any)'] = 'control_combobox/busquedaods/';
-
+//========================recuperar poblacion objetivo ==================//
+$route['actividades/poblacionobj'] = 'control_combobox/busquedapoblacionobj/';
+//========================recuperar fuente ==================//
+$route['actividades/fuente'] = 'control_combobox/busquedafuente/';
+//========================recuperar nombre de la fuente ==================//
+$route['actividades/nombrefuente'] = 'control_combobox/busquedanombrefuente/';
 
 //===============Control de entregables=========
 $route['actividades/entregables/(:any)'] = 'control_generico/listar_entregable/';

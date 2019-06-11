@@ -74,17 +74,58 @@ class M_combobox extends CI_Model {
         $this->db->select('*');
         $this->db->from('s0_ods');
          $this->db->join('s0_cat_lineaaccion_ped','s0_cat_lineaaccion_ped.ods_id_ods=s0_ods.id_ods');
-        $this->db->where('s0_ods.id_ods',$idestrategia);
+        $this->db->where('s0_cat_lineaaccion_ped.lineaaccionid',$idestrategia);
         $query = $this->db->get();
 		
         foreach ($query->result() as $row) {
            $datos[] = [
-             'nombre_ods'       => $row->nombre_ods , 
+             //'nombre_ods'       => $row->nombre_ods , 
               'numero_ods'       => $row->numero_ods ,  
             ];
         }
         return $datos;
     }
-	
-	
+      //Busqueda del la poblacion objetivo
+      public function recuperarpoblacionobj(){
+        $this->db->select('*');
+        $this->db->from('s0_poblacion_objetivo');
+        $query = $this->db->get();
+		
+        foreach ($query->result() as $row) {
+           $datos[] = [
+             'id_poblacion'       => $row->id_poblacion , 
+              'nombre'       => $row->nombre ,  
+            ];
+        }
+        return $datos;
+    }
+          //Busqueda de la fuente de financiamiento
+      public function recuperarfuente(){
+        $this->db->select('*');
+        $this->db->from('s0_origen_fuente');
+        $query = $this->db->get();
+		
+        foreach ($query->result() as $row) {
+           $datos[] = [
+             'id_origen'       => $row->id_origen , 
+              'nombre'       => $row->nombre ,  
+            ];
+        }
+        return $datos;
+    }
+    	//Busqueda del nombre de la fuente de financiamiento
+    public function recuperarnombrefuente(){
+        $this->db->select('*');
+        $this->db->from('s0_fuente_financiamiento');
+        $query = $this->db->get();
+		
+        foreach ($query->result() as $row) {
+           $datos[] = [
+             'id_ff'       => $row->id_ff , 
+              'nombre_ff'       => $row->nombre_ff ,  
+            ];
+        }
+        return $datos;
+    }
+
 }

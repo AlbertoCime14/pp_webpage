@@ -30,9 +30,21 @@ class Control_combobox extends CI_Controller {
 		$data['cat_linea']=$this->M_combobox->recuperarlineasaccion($idestrategia);
 		echo json_encode($data);
 	}
-		public function busquedaods(){
+	public function busquedaods(){
 		$idlineaaccion=$this->uri->segment(3);
 		$data['ods']=$this->M_combobox->recuperarods($idlineaaccion);
 		echo json_encode($data);
+	}
+	public function busquedapoblacionobj(){
+		$data['poblacion']=$this->M_combobox->recuperarpoblacionobj();
+		echo json_encode($data);
+	}
+	public function busquedafuente(){
+	$data['fuente']=$this->M_combobox->recuperarfuente();
+	echo json_encode($data);
+	}
+		public function busquedanombrefuente(){
+	$data['nombrefuente']=$this->M_combobox->recuperarnombrefuente();
+	echo json_encode($data);
 	}
 }
