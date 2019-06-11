@@ -23,10 +23,10 @@
         <div class="form-group row">
           <div class="col-xs-6"></div>
             <div class="col-xs-4">
-                      <input type="text" class="form-control" placeholder="Ingrese el nombre del entregable">
+                      <input type="text" class="form-control" placeholder="Ingrese el nombre del entregable" id="txtEntregable">
       
             </div>
-            <div class="col-xs-2">  <input type="submit"  class="form-control" value="Crear">
+            <div class="col-xs-2">  <input type="submit" class="form-control" value="Crear"  onclick="add_entregable()" id="btnAdd">
             </div>
     
         </div>
@@ -54,10 +54,23 @@
      <td><input type="text" class="form-control"></td>
      <td>
         <select id="inputState7" class="form-control">
-    <option selected>Si</option>
-    <option>No</option>
+        <?php
+ 
+ foreach($mydata as $datos)
+  {
+
+  
+   //echo "<td>".$datos['id'] ." </td>";
+    echo '<option selected>'.$datos['nombre'] .'</option>';
+    //echo "<td>".$datos['Ejemplo1'] ." </td>";
+    
+    
+ 
+  }
+ ?>
   </select>
      </td>
+ 
      <td>
                <select id="inputState7" class="form-control">
     <option selected>Trimestral</option>
@@ -121,13 +134,11 @@
   <tbody>
     <tr>
            <td>            
-      <select id="inputState7" class="form-control">
-    <option selected>Si</option>
-    <option>No</option>
+     <input type="text"  id="nombre_entregable" class="form-control" disabled>
   </select>
 </td>
-      <td>            
-      <select id="inputState7" class="form-control">
+<td>            
+    <select id="inputState7" class="form-control">
     <option selected>Si</option>
     <option>No</option>
   </select>
@@ -156,4 +167,6 @@
 <footer>
 <!-- Contact Section -->
 <?php include("contacto.php") ?>
+<?php $actividad_id = "5"; ?>
+<input type="text" value="<?php $actividad_id = "5"; ?>" id="pene" style="visibility: hidden">
 </footer>

@@ -33,7 +33,7 @@
 
 <!--Aqui para poner las nuevas funciones-->
 <script src="<?=base_url();?>js/funcionesactividades.js"></script>
-
+<script src="<?=base_url();?>js/funcionesentregables.js"></script>
 <script>
 
  function inicia_sesion() {

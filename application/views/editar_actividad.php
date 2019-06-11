@@ -35,7 +35,7 @@
   </div>
     <label for="inputState3" class="col-xs-1 form-label">Objetivo:</label>
   <div class="col-xs-3">
-  <select id="cboObjetivo" class="form-control" disabled="disabled">
+  <select id="cboObjetivo" class="form-control" disabled="disabled" onchange="busquedaestrategias()">
     <option selected>Seleccione...</option>
   </select>
   </div>
@@ -45,16 +45,15 @@
         <div class="form-group row">
   <label for="inputState1" class="col-xs-1 form-label">Estrategia:</label>
   <div class="col-xs-3">
-  <select id="inputState1" class="form-control">
-    <option selected>Choose...</option>
+  <select id="cboEstrategia" class="form-control" disabled="disabled" onchange="busquedalineaaccion()">
+    <option selected>Seleccione...</option>
     <option>...</option>
   </select>
   </div>
     <label for="inputState2" class="col-xs-1 form-label">Lineas de acción:</label>
   <div class="col-xs-3">
-  <select id="inputState2" class="form-control">
-    <option selected>Choose...</option>
-    <option>...</option>
+  <select id="cboLineaacion" class="form-control" disabled="disabled">
+    <option selected>Seleccione...</option>
   </select>
   </div>
      <label for="inputState2" class="col-xs-1 form-label">Población objetivo:</label>
@@ -67,7 +66,7 @@
 </div>
       </section>
         <section>
-       <label for="inputState3" class="col-xs-1 form-label">ODS: 1</label>
+       <label for="inputState3" class="col-xs-1 form-label" id="ods">ODS: 1</label>
   </section>
     </div>
   </div>

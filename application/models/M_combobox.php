@@ -39,6 +39,52 @@ class M_combobox extends CI_Model {
         }
         return $datos;
     }
+    //Busqueda de estrategias mediante el id objetivo
+    	public function recuperarestrategias($idobjetivo){
+        $this->db->select('*');
+        $this->db->from('s0_cat_estrategias_ped');
+        $this->db->where('cat_objetivos_objetivoid',$idobjetivo);
+        $query = $this->db->get();
+		
+        foreach ($query->result() as $row) {
+           $datos[] = [
+             'estrategiaid'       => $row->estrategiaid , 
+              'estrategia'       => $row->estrategia ,  
+            ];
+        }
+        return $datos;
+    }
+    //Busqueda de la linea de accion mediante el id estrategia
+        public function recuperarlineasaccion($idestrategia){
+        $this->db->select('*');
+        $this->db->from('s0_cat_lineaaccion_ped');
+        $this->db->where('cat_estrategias_ped_estrategiaid',$idestrategia);
+        $query = $this->db->get();
+		
+        foreach ($query->result() as $row) {
+           $datos[] = [
+             'lineaaccionid'       => $row->lineaaccionid , 
+              'lineaaccion'       => $row->lineaaccion ,  
+            ];
+        }
+        return $datos;
+    }
+       //Busqueda del ODS mediante el id estrategia
+        public function recuperarods($idestrategia){
+        $this->db->select('*');
+        $this->db->from('s0_ods');
+         $this->db->join('s0_cat_lineaaccion_ped','s0_cat_lineaaccion_ped.ods_id_ods=s0_ods.id_ods');
+        $this->db->where('s0_ods.id_ods',$idestrategia);
+        $query = $this->db->get();
+		
+        foreach ($query->result() as $row) {
+           $datos[] = [
+             'nombre_ods'       => $row->nombre_ods , 
+              'numero_ods'       => $row->numero_ods ,  
+            ];
+        }
+        return $datos;
+    }
 	
 	
 }
