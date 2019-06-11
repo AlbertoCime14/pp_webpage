@@ -100,11 +100,11 @@
           <div class="col-xs-1"></div>
             <label for="inputState7" class="col-xs-2 form-label">Monto de recursos propios:</label>
  <div class="col-xs-3">
-<input type="text" class="form-control" placeholder="0.00MXN">
+<input type="number" class="form-control" placeholder="0.00MXN" id="txtMontoPropio"  onkeyup ="actualizar_monto()">
  </div>
              <label for="inputState7" class="col-xs-2 form-label">Monto de otras fuentes de financiamiento:</label>
  <div class="col-xs-3">
-<input type="text" class="form-control" placeholder="0.00MXN">
+<input type="number" class="form-control" placeholder="0.00MXN" id="txtMontoOtras" onkeyup="actualizar_monto()"> 
  </div>
          </div>
       </section>
@@ -117,7 +117,7 @@
  </div>
               <label for="inputState7" class="col-xs-2 form-label">Monto total:</label>
  <div class="col-xs-3">
-<input type="txtMontototal" class="form-control" placeholder="0.00MXN" disabled="disabled">
+<input type="text" class="form-control" placeholder="0.00MXN" disabled="disabled" value="0" id="txtMontototal">
  </div>       
       </section>
       <section>
@@ -145,9 +145,8 @@
             <div class="col-xs-1"></div>
             <label for="inputState7" class="col-xs-2 form-label">Numero UBP:</label>
  <div class="col-xs-3">
-  <select id="inputState7" class="form-control">
-    <option selected>Choose...</option>
-    <option>...</option>
+  <select id="cboUbp" class="form-control">
+    <option selected>Seleccione...</option>
   </select>
  </div>
              <label for="inputState7" class="col-xs-6 form-label">Nombre de PP: Seguimiento del desempeño de la gestion</label>

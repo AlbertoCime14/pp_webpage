@@ -47,4 +47,10 @@ class Control_combobox extends CI_Controller {
 	$data['nombrefuente']=$this->M_combobox->recuperarnombrefuente();
 	echo json_encode($data);
 	}
+	public function busquedaubp(){
+	$data['ubp']=$this->M_combobox->recuperarubp();
+	echo json_encode($data);
+	}
+	
+	
 }

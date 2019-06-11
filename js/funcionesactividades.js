@@ -364,3 +364,76 @@ function busquedanombrefuente(){
                 }
                 }); 
 }
+
+/**Actualizacion del valor monetario**/
+function actualizar_monto(){
+    var MontoPropio=document.getElementById("txtMontoPropio").value;
+    var MontoOtras=document.getElementById("txtMontoOtras").value;
+    if(MontoPropio==""  || MontoOtras==""){
+
+    }else{
+           var montototal=parseFloat(MontoPropio)+parseFloat(MontoOtras);
+       // document.getElementById("txtMontototal").value; 
+          var txtMontototal = document.getElementById("txtMontototal");
+             txtMontototal.value = "$"+montototal+" MXN";
+    }
+ 
+  //  document.getElementById('txtMontototal').innerHTML = MontoPropio+MontoOtras;
+ //document.getElementById("txtMontototal").value=MontoPropio+MontoOtras;
+  
+
+}
+
+/***Busqueda de las ubp mediante la institucion**/
+(function(){
+ busquedaubp();   
+})();
+function busquedaubp(){
+    //El boleano valida un numero en los input y mantener los values dinamicamente
+ var validador = false;
+         /*Url estatica*/
+      var url=document.getElementById("url").value;
+            $.ajax({         
+                type: "GET",
+                url: url+"actividades/ubp",
+                data: "ok=ok",
+                success: function(data) {         
+                value=0;
+                JSON.parse(data, function (k, v) {
+                     contador++;
+                    if(isNaN(v)===true){
+
+                        if(typeof v === 'object'){}else{
+                            //texto                          
+                        }
+                    }else{
+                    //numero
+                     value=v;
+                   
+                    if (validador==true) {
+                           //enetero
+                            alert(k);
+                        } else {
+                          //decimanl
+                            //guarda el valor del option
+                               //este guarda el nombre del option
+
+                            /****       var o = new Option("option text", value);
+                        $("#cboUbp").append(o);
+                         contador=contador+1;
+                     $(o).html("ok");
+                     ****/
+                      
+                        }
+                   
+                    }                
+                
+            });     
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Status: " + textStatus);
+                    alert("Error: " + errorThrown);
+
+                }
+                }); 
+}

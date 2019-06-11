@@ -111,6 +111,8 @@ $route['actividades/poblacionobj'] = 'control_combobox/busquedapoblacionobj/';
 $route['actividades/fuente'] = 'control_combobox/busquedafuente/';
 //========================recuperar nombre de la fuente ==================//
 $route['actividades/nombrefuente'] = 'control_combobox/busquedanombrefuente/';
+//========================recuperar ubp de la institucion ==================//
+$route['actividades/ubp'] = 'control_combobox/busquedaubp/';
 
 //===============Control de entregables=========
 $route['actividades/entregables/(:any)'] = 'control_generico/listar_entregable/';

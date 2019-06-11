@@ -6,7 +6,7 @@ class Modelo_actividad extends CI_Model {
 	{
 		parent::__construct();
 		$this->db = $this->load->database('default',TRUE);
-		
+  		
     }
     
     public function listar_actividades(){
@@ -45,7 +45,7 @@ class Modelo_actividad extends CI_Model {
             $this->db->select('*');
             $this->db->from('s0_cat_ejes');
         $this->db->join('s0_tbl_eje_dependencia','s0_cat_ejes.ejeid=s0_tbl_eje_dependencia.id_cat_eje','left');
-         $this->db->where('id_institucion',1);
+         $this->db->where('id_institucion',  $_SESSION['id_dependencia'] );
 
         $query = $this->db->get();
     

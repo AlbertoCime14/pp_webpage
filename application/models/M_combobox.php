@@ -127,5 +127,20 @@ class M_combobox extends CI_Model {
         }
         return $datos;
     }
+     //Busqueda del los ubp
+    public function recuperarubp(){
+        $this->db->select('*');
+        $this->db->from('s0_ubp');
+        $this->db->where('dependencia_id_dependencia',$_SESSION['id_dependencia']);
+        $query = $this->db->get();
+		
+        foreach ($query->result() as $row) {
+           $datos[] = [
+             'id_ubp'       => $row->id_ubp , 
+              'numero_ubp'       => $row->numero_ubp ,  
+            ];
+        }
+        return $datos;
+    }
 
 }
