@@ -400,7 +400,6 @@ function busquedaubp(){
                 success: function(data) {         
                 value=0;
                 JSON.parse(data, function (k, v) {
-                     contador++;
                     if(isNaN(v)===true){
 
                         if(typeof v === 'object'){}else{
@@ -410,20 +409,23 @@ function busquedaubp(){
                     //numero
                      value=v;
                    
-                    if (validador==true) {
+                    if (validador=== true) {
                            //enetero
-                            alert(k);
+                           validador=false;
                         } else {
                           //decimanl
                             //guarda el valor del option
                                //este guarda el nombre del option
+                         var o = new Option("option text", value);
+                        $("#cboUbp").append(o);  
+                        validador=true;
+                                           
+                        }
 
-                            /****       var o = new Option("option text", value);
-                        $("#cboUbp").append(o);
-                         contador=contador+1;
-                     $(o).html("ok");
-                     ****/
-                      
+                        if(validador=== false){
+                           $(o).html(v);
+                        }else{
+
                         }
                    
                     }                
