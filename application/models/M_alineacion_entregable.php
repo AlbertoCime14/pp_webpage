@@ -11,7 +11,8 @@ class M_alineacion_entregable extends CI_Model {
     
    	public function getCompromiso(){
    		$this->db->select('*');
-   		$this->db->from('s0_compromisos');
+		$this->db->from('s0_compromisos');
+		$this->db->order_by('nombre_compromiso');
    		$query = $this->db->get();
    		return $query->result();
    	}

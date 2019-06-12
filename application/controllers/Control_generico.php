@@ -241,10 +241,10 @@ public function editar_entregables(){
 		$html.='</select>
 			</td>
 			<td>
-			<input name="meta_'.$id_entregable.'" id="meta_'.$datos['id_entregables'].'" type="number" class="form-control" value="'.$datos['meta_Anual'].'">
+			<input name="meta_'.$id_entregable.'" id="meta_'.$datos['id_entregables'].'" type="number" step="any" class="form-control" value="'.$datos['meta_Anual'].'">
 			</td>
 			<td>
-			<input name="avance_'.$id_entregable.'" id="avance_'.$datos['id_entregables'].' "type="number" class="form-control"  value="'.$datos['avace_acumulado'].'">
+			<input name="avance_'.$id_entregable.'" id="avance_'.$datos['id_entregables'].' "type="number" min="1" max="100" class="form-control"  value="'.$datos['avace_acumulado'].'">
 			</td>
 			<td>
 			<input name="monto_'.$id_entregable.'" id="monto_'.$datos['id_entregables'].' "type="number" class="form-control"  value="'.$datos['monto_ejercido'].'">
