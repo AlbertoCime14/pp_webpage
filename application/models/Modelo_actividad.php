@@ -93,28 +93,24 @@ public function recuperaractividad($idactividad){
   /**********  Recupera los combox previamente guardados del la bd *************/
   public function recuperarcombobox($idactividad){
   $this->db->select('*');
-  $this->db->from('s0_cat_ejes'); 
-  $this->db->join('s0_cat_temas','s0_cat_temas.cat_ejes_ejeid=s0_cat_ejes.ejeid'); 
-  $this->db->join('s0_cat_objetivos','s0_cat_objetivos.cat_temas_temaid=s0_cat_temas.temaid');
-  $this->db->join('s0_cat_estrategias_ped','s0_cat_estrategias_ped.cat_objetivos_objetivoid=s0_cat_objetivos.objetivoid'); 
-  $this->db->join('s0_cat_lineaaccion_ped','s0_cat_lineaaccion_ped.cat_estrategias_ped_estrategiaid=s0_cat_estrategias_ped.estrategiaid');
-  $this->db->join('s0_ods','s0_ods.ods_id_ods=s0_cat_lineaaccion_ped.ods_id_ods');
-    
-
-      $this->db->where('s0_cat_lineaaccion_ped.lineaaccionid',$idactividad);
+  $this->db->from('s0_actividad_estrategica');
+  $this->db->join('s0_cat_lineaaccion_ped','s0_actividad_estrategica.cat_lineaaccion_ped_lineaaccionid=s0_cat_lineaaccion_ped.lineaaccionid');
+  $this->db->join('s0_cat_estrategias_ped','s0_cat_lineaaccion_ped.cat_estrategias_ped_estrategiaid=s0_cat_estrategias_ped.estrategiaid');
+  $this->db->join('s0_cat_objetivos','s0_cat_estrategias_ped.cat_objetivos_objetivoid=s0_cat_objetivos.objetivoid');
+    $this->db->join('s0_cat_temas','s0_cat_objetivos.cat_temas_temaid=s0_cat_temas.temaid');
+   $this->db->join('s0_cat_ejes','s0_cat_temas.cat_ejes_ejeid=s0_cat_ejes.ejeid');
+   $this->db->where('s0_actividad_estrategica.id_actividad_estrategica',$idactividad);
      
     $query = $this->db->get();
     
         foreach ($query->result() as $row) {
            $datos[] = [
-            
-             'lineaaccionid'           => $row->lineaaccionid,
-              'id_ods'           => $row->id_ods,
-              'numero_ods'           => $row->numero_ods,
-              'estrategiaid'           => $row->estrategiaid,
-              'objetivoid'           => $row->objetivoid,
+           // 'id_actividad_estrategica' =>$row->id_actividad_estrategica,
+              'ejeid'           => $row->ejeid,
               'temaid'           => $row->temaid,
-               'ejeid'           => $row->ejeid
+              'objetivoid'           => $row->objetivoid,
+              'estrategiaid'           => $row->estrategiaid,
+              'lineaaccionid'           => $row->lineaaccionid
 
             ];
         }

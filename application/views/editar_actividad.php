@@ -185,3 +185,6 @@ Variables de la actividad
 <!-- Contact Section -->
 <?php include("contacto.php") ?>
 </footer>
+
+<!--Aqui para poner las nuevas funciones-->
+<script src="<?=base_url();?>js/funcionesactividades.js"></script>
