@@ -35,7 +35,13 @@
                   
             </div>
             </div>
-                     <div class="col-xs-4">
+                        <div class="col-xs-2">
+                          <select id="cboUbp" class="form-control" onchange="busquedanombreubpypp()">
+                            <option>UBP</option>
+                          </select>
+                        </div>
+
+                     <div class="col-xs-2">
                            <input type="text" class="form-control"  placeholder="Ingrese el nombre de la actividad" id="txtActividad">
                      </div>
                      <div class="col-xs-2">
@@ -95,9 +101,15 @@
 <!--Aqui para poner las nuevas funciones-->
 <script src="<?=base_url();?>js/jquery-2.1.3.min.js"></script>
 
+
+
+
+<!-------------------------- funcion para guardar la actividad -------------------------------------------->
 <script type="text/javascript">
   function add_actividad() {
    var nombre=document.getElementById("txtActividad").value;
+   var ubp_id_ubp=document.getElementById("cboUbp").value;
+   
     document.getElementById("txtActividad").disabled = true;
      document.getElementById("btnAdd").disabled = true;
      /*Url estatica*/
@@ -107,7 +119,7 @@
                 
                 type: "POST",
                 url: url+"actividades/add",
-                data: "nombre="+nombre,
+                data: "nombre="+nombre+"&ubp_id_ubp="+ubp_id_ubp,
                 success: function() {
                     $("#tablacontenidos").load(" #tablacontenidos");
                      document.getElementById("txtActividad").disabled = false;
@@ -143,6 +155,53 @@ function eliminarActividad(id){
   }); 
 }
 
+</script>
+
+<!--------------------seleccionar el ubp --------------------->
+<input type="text" value="<?=base_url();?>" id="url" style="visibility: hidden">
+<script type="text/javascript">
+  (function(){
+ busquedaubp();   
+})();
+function busquedaubp(){
+    //El boleano valida un numero en los input y mantener los values dinamicamente
+ var validador = true;
+ var optionvalue=0;
+         /*Url estatica*/
+      var url=document.getElementById("url").value;
+            $.ajax({         
+                type: "GET",
+                url: url+"actividades/ubp",
+                data: "ok=ok",
+                success: function(data) {         
+                value=0;
+                JSON.parse(data, function (k, v) {
+                    if(isNaN(v)===true){
+
+                        if(typeof v === 'object'){}else{                          
+                        }
+                    }else{
+                    //numero
+                     value=v;     
+                    if (validador=== true) {          
+                        optionvalue=value;
+                        validador=false;
+                        } else {
+                     //este guarda el nombre del option
+                           $('#cboUbp').prepend("<option value="+optionvalue+">"+value+"</option>");
+                            validador=true;
+                        }                   
+                    }                
+                
+            });     
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Status: " + textStatus);
+                    alert("Error: " + errorThrown);
+
+                }
+                }); 
+}
 </script>
 
 <!--Footer Begins-->
