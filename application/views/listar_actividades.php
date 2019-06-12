@@ -4,14 +4,14 @@
 <section class="page-section-top-alt-np mt-25 pb-155 pb-md-105 pb-sm-85" id="section-login-mp"> 
 <div class="container">
   <h2>
-    Actividades
+    Actividades <?=$_SESSION['id_dependencia']?>
   </h2>
   <div class="panel panel-default">
     <div class="panel-heading">
       <!--Buscador-->
          
              <div class="form-group row">
-            <div class="col-xs-5">
+            <!--<div class="col-xs-5">
                       <div class="input-group">
                 <div class="input-group-btn search-panel">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -35,13 +35,14 @@
                   
             </div>
             </div>
+			-->
                         <div class="col-xs-2">
                           <select id="cboUbp" class="form-control" onchange="busquedanombreubpypp()">
                             <option>UBP</option>
                           </select>
                         </div>
 
-                     <div class="col-xs-2">
+                     <div class="col-xs-8">
                            <input type="text" class="form-control"  placeholder="Ingrese el nombre de la actividad" id="txtActividad">
                      </div>
                      <div class="col-xs-2">
@@ -55,9 +56,6 @@
   <thead>
     <tr>
       <th scope="col">Nombre de actividad</th>
-      <th scope="col">Eje</th>
-      <th scope="col">PP</th>
-      <th scope="col">UBP</th>
       <th scope="col" style="text-align: center;">Opciónes</th>
     </tr>
   </thead>
@@ -79,9 +77,6 @@
   echo "<tr>";
  //  echo "<td>".$datos['id'] ." </td>";
     echo "<td>".$datos['Nombre'] ." </td>";
-    echo "<td>".$datos['Eje'] ." </td>";
-     echo "<td>".$datos['PP'] ." </td>";
-        echo "<td>".$datos['UBP'] ." </td>";
     echo '  <td style="text-align: center;"><a href="'.$url.'actividades/editar/'.base64_encode($datos['id']).'">Editar |</a>
           <a href="javascript:void(0)" >Eliminar | </a> 
           <a href="'.$url.'actividades/entregables/'.base64_encode($datos['id']).'" >Editar entregables| </a>
