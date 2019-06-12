@@ -56,4 +56,16 @@ class M_alineacion_entregable extends CI_Model {
 		$query = $this->db->get();
 		return $query->result();
 	}
+	public function updateActividad($key, $data){
+		$this->db->where('id_actividad_estrategica', $key);
+		$this->db->update('s0_actividad_estrategica', $data);
+	 return $this->db->affected_rows();
+	}
+	public function getActividad($key){
+		$this->db->select('elaboro, autorizo');
+		$this->db->from('s0_actividad_estrategica');
+		$this->db->where('id_actividad_estrategica', $key);
+		$query = $this->db->get();
+		return $query->result()[0];
+	}
 }

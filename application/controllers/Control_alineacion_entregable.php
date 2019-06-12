@@ -38,4 +38,15 @@ class Control_alineacion_entregable extends CI_Controller {
 			echo $response;
 		}
 	}
+	public function updateActividad(){
+		if(isset($_POST['autorizo']) && !empty($_POST['autorizo']) && isset($_POST['elaboro']) && !empty($_POST['elaboro']) && !empty($_POST['key']) && isset($_POST['key']))
+		{
+			$key = base64_decode($_POST['key']);
+			$data['elaboro'] = $_POST['elaboro'];
+			$data['autorizo'] = $_POST['autorizo'];
+			$this->load->model('M_alineacion_entregable');
+			$response = $this->M_alineacion_entregable->updateActividad($key, $data);
+		}
+		echo $response;
+	}
 }
