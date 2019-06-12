@@ -217,8 +217,10 @@ echo '</td>';
 <?php $actividad_id = base64_decode($this->uri->segment(3));?>
 <input type="text" value="<?= $actividad_id; ?>" id="id_Actividad" style="visibility: hidden">
 </footer>
+<script src="<?=base_url();?>js/funcionesentregables.js"></script>
 <script>
   var numEntregables = <?=$num_entregables?>;
+
   function guardar(f,e){
     e.preventDefault();
     

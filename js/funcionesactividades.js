@@ -616,8 +616,47 @@ var autorizo="example";
                                     success: function(data) {
                                       JSON.parse(data, function (i, o) {
                                             /*********** realiza subconsuta de la vase de datos tiene no tiene vacio el lineaaccionid***************/
-                                            alert(i+ " " +o);
-
+                                          if(i=='ejeid'){
+                                   $('#cboEje option[value='+o+']').attr("selected", true);
+                                busquedapp();
+                                }else{}
+                                        if(i=='temaid'){  
+                                       $(document).ready(setTimeout(function() {
+                                          $('#cboPP option[value='+o+']').attr("selected", true);
+                                        },2000));  
+                                }else{}
+                                /**objetivo mientras carga los id**/
+                                           if(i=='objetivoid'){  
+                                       $(document).ready(setTimeout(function() {
+                                        busquedaobjetivo();
+                                        },3000));  
+                                       $(document).ready(setTimeout(function() {
+                                          $('#cboObjetivo option[value='+o+']').attr("selected", true);
+                                        },4000));  
+                                }else{}
+                                /*****************/
+                                         if(i=='estrategiaid'){  
+                                       $(document).ready(setTimeout(function() {
+                                       busquedaestrategias()
+                                        },5000));  
+                                       $(document).ready(setTimeout(function() {
+                                          $('#cboEstrategia option[value='+o+']').attr("selected", true);
+                                        },6000));  
+                                }else{}
+                                /****************/
+                                         if(i=='lineaaccionid'){  
+                                       $(document).ready(setTimeout(function() {
+                                       busquedalineaaccion();
+                                        },7000));  
+                                       $(document).ready(setTimeout(function() {
+                                          $('#cboLineaacion option[value='+o+']').attr("selected", true);
+                                        },8000));  
+                                }else{}
+                                    if(i=='lineaaccionid'){  
+                                       $(document).ready(setTimeout(function() {
+                                       busquedaods();
+                                        },9000));  
+                                }else{}
                                           });
                                      }});   
                                 }
@@ -629,9 +668,11 @@ var autorizo="example";
                     alert("Status: " + textStatus);
                     alert("Error: " + errorThrown);
 
-                }
-                });
+           }
+      });
 }, 0));
+
+
 
 
   
