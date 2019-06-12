@@ -49,4 +49,22 @@ class Control_alineacion_entregable extends CI_Controller {
 		}
 		echo $response;
 	}
+	public function getView(){
+		$data['compromiso'] = $this->M_alineacion_entregable->getCompromiso();
+		//$key=base64_decode($this->uri->segment(3));
+		$key = base64_decode($_GET['key']);
+		$data['entregables'] = $this->M_alineacion_entregable->getEntregables($key);
+		
+		$data['actividad'] = $this->M_alineacion_entregable->getActividad($key);
+		foreach ($data['entregables'] as $r) {
+			$temp = $this->M_alineacion_entregable->findRecord($r->id_entregables);
+			if(!empty($temp[0])){
+				$array[] = $temp[0];
+			}
+		}
+		$data['alineacion'] = $array;
+
+		
+		$this->load->view('vistaentregable', $data);
+	}
 }

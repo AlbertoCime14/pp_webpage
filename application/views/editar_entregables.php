@@ -9,7 +9,7 @@
   <li class="nav-item">
     <a class="nav-link" id="entregables-tab" data-toggle="tab" href="#entregables" role="tab" aria-controls="entregables" aria-selected="false">Entregables</a>
   </li>
-  <li class="nav-item">
+  <li class="nav-item" onclick="cargarAlineacion()";>
     <a class="nav-link" id="alineacion-tab" data-toggle="tab" href="#alineacion" role="tab" aria-controls="alineacion" aria-selected="false">Alineación</a>
   </li>
 </ul>
@@ -124,7 +124,7 @@ echo '</td>';
   </div>
   <div class="tab-pane fade" id="alineacion" role="tabpanel" aria-labelledby="alineacion-tab">
    		<!--Aqui va los entregables de la actividad previamente seleccionada-->
-     	    <div class="panel panel-default">
+     	    <div class="panel panel-default" id="panel">
     <div class="panel-heading">
       <!--Buscador-->
          Alineación del entregable 

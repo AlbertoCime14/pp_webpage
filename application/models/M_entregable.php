@@ -9,9 +9,10 @@ class M_entregable extends CI_Model {
 		
 	}
 	
-	public function listar_entregables(){
+	public function listar_entregables($key){
         $this->db->select('*');
         $this->db->from('s0_entregables');
+        $this->db->where('actividad_estrategica_id_f2', $key);
         $this->db->order_by('id_entregables');
         $query = $this->db->get();
 		

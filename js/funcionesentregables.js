@@ -185,6 +185,13 @@
             }
           });
         }
+        function cargarAlineacion(){
+          var url=document.getElementById("url").value;
+          $.get(url+'alineacion/consulta?key='+$("#key").val(), function( data ) {
+          $( "#panel" ).html( data );
+          });
+          
+        }
 
 
 

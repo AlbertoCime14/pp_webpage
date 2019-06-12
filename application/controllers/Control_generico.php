@@ -49,7 +49,8 @@ class Control_generico extends CI_Controller {
 	}
 	public function listar_entregable(){
 		$array=null;
-		$data['mydata'] = $this->M_entregable->listar_entregables(); 
+		$key=base64_decode($this->uri->segment(3));
+		$data['mydata'] = $this->M_entregable->listar_entregables($key); 
 		$data['filas'] = '';
 		$data['num_entregables'] = 0;
 
@@ -65,7 +66,7 @@ class Control_generico extends CI_Controller {
 		//Agregue estos metodos
 		
 		$data['compromiso'] = $this->M_alineacion_entregable->getCompromiso();
-		$key=base64_decode($this->uri->segment(3));
+		
 		
 		$data['entregables'] = $this->M_alineacion_entregable->getEntregables($key);
 		
