@@ -38,10 +38,13 @@ class Control_generico extends CI_Controller {
 	}
 	public function listar_actividades(){
 		// $data = $this->Modelo_actividad->listar_actividades(); 
-		 $data['mydata'] = $this->Modelo_actividad->listar_actividades();
-		$this->load->view('masterpage/head');
-		$this->load->view('listar_actividades',$data);
-		$this->load->view('masterpage/footer');
+		if(isset($_SESSION['id_usuario']) && !empty($_SESSION['id_usuario']))
+		{		 
+			$data['mydata'] = $this->Modelo_actividad->listar_actividades();
+			$this->load->view('masterpage/head');
+			$this->load->view('listar_actividades',$data);
+			$this->load->view('masterpage/footer');
+		} else $this->index();
 
 	}
 	public function listar_entregable(){

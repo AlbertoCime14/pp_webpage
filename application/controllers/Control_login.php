@@ -13,7 +13,29 @@ class Control_login extends CI_Controller {
 	}
 	public function inicia_sesion()
 	{
-		$depen = $this->input->post('user', TRUE);
+		$model = new M_login();
+		$where['u.usuario'] = trim($this->input->post('user', TRUE));
+		$where['u.password'] = SHA1($this->input->post('pass', TRUE));
+		$query = $model->datos_usuario($where);
+
+		if($query->num_rows() == 1)
+		{
+			$query = $query->result();
+			foreach ($query as $dato)
+			{
+				$_SESSION['id_dependencia'] = $dato->id_dependencia;
+				$_SESSION['id_usuario'] = $dato->id_usuario;
+				$_SESSION['dependencia_abrev'] = $dato->dependencia_abrev;
+			}
+
+			echo 'correcto';
+
+		}
+		else
+		{
+			echo 'incorrecto';
+		}
+		/*$depen = $this->input->post('user', TRUE);
 		$pass = $this->input->post('pass', TRUE);
 
 		$model = new M_login();
@@ -33,6 +55,13 @@ class Control_login extends CI_Controller {
 			
 			echo 'correcto';
 		}
-		else echo 'incorrecto';
+		else echo 'incorrecto';*/
     }
+
+    public function cerrar_sesion()
+	{
+		session_unset('id_usuario');
+		session_unset('id_dependencia');
+		session_unset('dependencia_abrev');
+	}
 }

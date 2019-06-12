@@ -45,9 +45,35 @@
                 </button>
             <a class="navbar-brand" href="javascript:"><img src="<?=base_url();?>img/logo_seplan.png" alt=""></a>
             </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse-1">
+               <ul class="nav navbar-nav navbar-right">
+                  <!-- Dropdown Mega-Menu 2 Col -->
+                    <li class="dropdown">
+                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" onclick="cerrarSesion(event);">Cerar sesión</a>
+                    </li>
+                </ul>
+            </div>
         </div>
         <!-- /.container -->
     </nav>
   <!-- navbar-end -->
 
 <section id="box-shadow-bottom"></section>
+<script type="text/javascript">
+    function cerrarSesion(e){
+        e.preventDefault();
+        if(confirm('¿Realmente desea cerrar sesión?')){
+            $.ajax({                            
+              type: "POST",
+              url: "<?=base_url()?>index.php/Control_login/cerrar_sesion",
+              success: function(data) {
+                notie.alert({ type: 1, text: 'Sesión cerrada', time: 2 });
+                window.location.href = '<?=base_url();?>';
+              },
+              error: function(XMLHttpRequest, textStatus, errorThrown) {          
+                
+              }
+            });
+        }
+    }
+</script>

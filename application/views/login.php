@@ -61,17 +61,17 @@
    <div class="row">
     <div class="col-md-4 col-md-offset-4">
 
-     <form>
+     <form onsubmit="inicia_sesion(event);">
      <div class="form-group">
-       <input type="email" class="form-control input-lg" id="user_mun" placeholder="Dependencia">
+       <input type="text" class="form-control input-lg" id="user_mun" placeholder="Usuario" required="required">
      </div>
      <div class="form-group">
-       <input type="password" class="form-control input-lg" id="pass_mun" placeholder="Contraseña">
+       <input type="password" class="form-control input-lg" id="pass_mun" placeholder="Contraseña" required="required">
      </div>
     
     <div class="row">
      <div class="col-md-6">
-      <button type="button" onclick="inicia_sesion();" class="btn btn-dark btn-block btn-lg">Iniciar</button>
+      <button type="submit" class="btn btn-dark btn-block btn-lg">Iniciar sesión</button>
      </div>     
     </div><!--/.row-->
     </form>
@@ -123,25 +123,26 @@
 
 <script>
 
- function inicia_sesion() {
-  var user = $('#user_mun').val();
-  var pass = $('#pass_mun').val();
+  function inicia_sesion(e) {
+    e.preventDefault();
+    var user = $('#user_mun').val();
+    var pass = $('#pass_mun').val();
 
-  $.post('<?=base_url();?>login', {user:user,pass:pass}, function(resp) {    
-    
-    if(resp==="incorrecto") notie.alert({ type: 3, text: 'Contraseña incorreecta.', time: 2 });
-    else if(resp==="correcto") {
-      notie.alert({ type: 1, text: 'Correcto!', time: 2 });
-      setTimeout(function(){ location.href = "<?=base_url();?>actividades"; }, 1000);
-      }
-  });
- }
+    $.post('<?=base_url();?>login', {user:user,pass:pass}, function(resp) {    
+      
+      if(resp==="incorrecto") notie.alert({ type: 3, text: 'Datos incorrectos', time: 2 });
+      else if(resp==="correcto") {
+        notie.alert({ type: 1, text: 'Correcto!', time: 2 });
+        setTimeout(function(){ location.href = "<?=base_url();?>actividades"; }, 1000);
+        }
+    });
+  }
 
- function cerrar() {
-  $.post('<?=base_url();?>cerrar', function(resp){
-    if(resp=="correecto") location.href = "<?=base_url();?>iniciar";
-  });
- }
+  function cerrar() {
+    $.post('<?=base_url();?>cerrar', function(resp){
+      if(resp=="correecto") location.href = "<?=base_url();?>iniciar";
+    });
+  }
 </script>
 
 
