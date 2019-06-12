@@ -26,7 +26,7 @@ class M_login extends CI_Model {
 	{
 		$this->db->select('u.id_usuario, u.usuario, d.id_dependencia, d.dependencia_abrev');
 		$this->db->from('s0_usuarios u');
-		$this->db->join('s0_dependencia d','d.id_dependencia = u.id_usuario','INNER');
+		$this->db->join('s0_dependencia d','d.id_dependencia = u.id_dependencia','INNER');
 		$this->db->where('u.activo', 1);
 		$this->db->where($where);
 

@@ -93,10 +93,10 @@ class Control_entregable extends CI_Controller {
 			</select>
 			</td>
 			<td>
-			<input name="meta_'.$id_entregable.'" id="meta_'.$datos['id_entregables'].'" type="number" class="form-control">
+			<input name="meta_'.$id_entregable.'" id="meta_'.$datos['id_entregables'].'" type="number" step="any" class="form-control">
 			</td>
 			<td>
-			<input name="avance_'.$id_entregable.'" id="avance_'.$datos['id_entregables'].' "type="number" class="form-control">
+			<input name="avance_'.$id_entregable.'" id="avance_'.$datos['id_entregables'].' "type="number" min="1" max="100" class="form-control">
 			</td>
 			<td>
 			<input name="monto_'.$id_entregable.'" id="monto_'.$datos['id_entregables'].' "type="number" class="form-control">

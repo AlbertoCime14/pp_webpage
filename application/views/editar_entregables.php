@@ -4,6 +4,7 @@
   <h2>
     Entregables
   </h2>
+  <div class="text-right"><a href="<?=base_url();?>actividades" class="btn btn-md btn-default float-right"><span class="fa fa-mail-reply"></span>Regresar</a></div>
 <section>
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item">

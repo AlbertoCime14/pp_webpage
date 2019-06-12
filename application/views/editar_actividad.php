@@ -3,6 +3,7 @@
   <h2>
     Actividades
   </h2>
+  <div class="text-right"><a href="<?=base_url();?>actividades" class="btn btn-md btn-default float-right"><span class="fa fa-mail-reply"></span>Regresar</a></div>
   <!--Panel del la primera captura-->
   <div class="panel panel-default">
     <div class="panel-heading">
