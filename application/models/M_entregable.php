@@ -12,6 +12,7 @@ class M_entregable extends CI_Model {
 	public function listar_entregables(){
         $this->db->select('*');
         $this->db->from('s0_entregables');
+        $this->db->order_by('id_entregables');
         $query = $this->db->get();
 		
         foreach ($query->result() as $row) {
@@ -32,6 +33,21 @@ class M_entregable extends CI_Model {
         }
         return $datos;
     }
+    public function listar_entregable($id){
+      $this->db->select('*');
+      $this->db->from('s0_entregables');
+      $this->db->where('id_entregables',$id);
+      $query = $this->db->get()->row();
+      $datos = array();
+      foreach($query as $campo => $value)
+      {
+        $datos[$campo] = $value;
+      }
+
+      
+      return $datos;
+  }
+
   public function agregar_entregable($nombre,$id_actividad){
 		//	$id_actividad=1;
 			$data = array(
@@ -40,36 +56,30 @@ class M_entregable extends CI_Model {
 			);
 			
 
-		$this->db->insert('s0_entregables', $data);
+    $this->db->insert('s0_entregables', $data);
+    return $this->db->insert_id();
   } 
-  public function recuperar_periodicidad(){
-    $this->db->select('*');
-    $this->db->from('s0_temporalidad');
-   
-    $query = $this->db->get();
+      public function recuperar_periodicidad(){
+        
+        $sql = "SELECT *
+            FROM s0_temporalidad s";
 
-    foreach ($query->result() as $row) {
-       $datos[] = [
-         'id_temp'       => $row->id_temp , 
-          'nombre_temp'       => $row->nombre_temp ,  
-        ];
+        return $this->db->query($sql);
     }
-    return $datos;
-}
-public function recuperar_u(){
-  $this->db->select('*');
-  $this->db->from('s0_unidad_medida');
- 
-  $query = $this->db->get();
+    public function recuperar_u(){
+      
+          $sql = "SELECT *
+                FROM s0_unidad_medida m";
 
-  foreach ($query->result() as $row) {
-     $datos[] = [
-       'id_unidad'       => $row->id_unidad , 
-        'nombre'       => $row->nombre ,  
-      ];
-  }
-  return $datos;
-}
+            return $this->db->query($sql);
+    }
+
+    public function actualizar_registro($tabla,$id,$datos)
+    {
+      $this->db->where('id_entregables', $id);
+      $this->db->update($tabla, $datos);
+      $_SESSION['sql'] = $this->db->last_query();
+    }
 
 	
 }

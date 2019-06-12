@@ -30,6 +30,7 @@ class Control_login extends CI_Controller {
 			//$this->session->set_userdata($datos);
 			$_SESSION['id_dependencia'] = $dependencia_id;
 			$_SESSION['dependencia_abrev'] = $depennom;
+			
 			echo 'correcto';
 		}
 		else echo 'incorrecto';

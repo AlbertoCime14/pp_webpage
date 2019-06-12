@@ -86,8 +86,16 @@ $route['login'] = 'Control_login/inicia_sesion';
 
 //===============Control de actividades=========
 $route['actividades'] = 'control_generico/listar_actividades';
+
 //=======================manda a la vista para guardar la nueva informacion=============//
 $route['actividades/add'] = 'control_generico/agregaractividad';
+$route['actividades/editar/(:any)'] = 'control_generico/editar_actividad/';
+$route['actividadess'] = 'control_generico/example';
+$route['actividades/entregables/(:any)'] = 'control_generico/editar_entregables/';
+
+
+$route['actividadess'] = 'control_generico/example';
+
 //=================para listar la actividad que se desea actualizar===============//
 $route['actividades/editar/(:any)'] = 'control_generico/editar_actividad/';
 //=================sirve para actulizar la actividad===============//
@@ -126,7 +134,13 @@ $route['actividades/nombreubp/(:any)'] = 'control_combobox/buscarnombreubp/';
 $route['actividades/pp/(:any)'] = 'control_combobox/buscarplan/';
 
 
+
+
 //===============Control de entregables=========
 $route['actividades/entregables/(:any)'] = 'control_generico/listar_entregable/';
 $route['entregables/add'] = 'Control_entregable/agregar_entregable';
+
+$route['componente/query'] = 'control_alineacion_entregable/getcomponente';
+
+$route['alineacion/guardar'] = 'control_alineacion_entregable/dataentry';
 
