@@ -88,12 +88,18 @@ $route['login'] = 'Control_login/inicia_sesion';
 $route['actividades'] = 'control_generico/listar_actividades';
 //=======================manda a la vista para guardar la nueva informacion=============//
 $route['actividades/add'] = 'control_generico/agregaractividad';
+//=================para listar la actividad que se desea actualizar===============//
 $route['actividades/editar/(:any)'] = 'control_generico/editar_actividad/';
-$route['actividadess'] = 'control_generico/example';
+//=================sirve para actulizar la actividad===============//
+$route['actividades/actualizar'] = 'control_generico/actualizar_actividad/';
+//=============================sirve para recuperar la informacion de la actividad
+$route['actividades/recupera_actividad/(:any)'] = 'control_generico/mostardatosactividad';
+$route['actividades/recupera_combox/(:any)'] = 'control_generico/mostarcomboactividad';
+
 $route['actividades/entregables/(:any)'] = 'control_generico/editar_entregables/';
 
 
-$route['actividadess'] = 'control_generico/example';
+
 
 //==================Recuperar combobox anidados===============//
 //=======================cat temas ====================//

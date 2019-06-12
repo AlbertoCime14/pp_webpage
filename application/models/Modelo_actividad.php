@@ -62,5 +62,64 @@ $this->db->where('id_actividad_estrategica', $id);
 $this->db->update('s0_actividad_estrategica', $data);
 
   }
+public function recuperaractividad($idactividad){
+  $this->db->select('*');
+  $this->db->from('s0_actividad_estrategica'); 
+  $this->db->where('id_actividad_estrategica',$idactividad); 
+    $query = $this->db->get();
+    
+        foreach ($query->result() as $row) {
+           $datos[] = [
+              'id_actividad_estrategica'           => $row->id_actividad_estrategica,
+              'Nombre'                             => $row->Nombre, 
+              'objetivo_general'                   => $row->objetivo_general, 
+              'descripcion'                        => $row->descripcion, 
+              'monto_propio'                       => $row->monto_propio, 
+              'monto_otro'                         => $row->monto_otro, 
+              'fecha_inicio'                       => $row->fecha_inicio, 
+              'fecha_fin'                          => $row->fecha_fin, 
+              'fecha_captura'                      => $row->fecha_captura, 
+              'cat_lineaaccion_ped_lineaaccionid'  => $row->cat_lineaaccion_ped_lineaaccionid, 
+              'ubp_id_ubp'                         => $row->ubp_id_ubp, 
+              'poblacion_objetivo_id_poblacion'    => $row->poblacion_objetivo_id_poblacion, 
+              'origen_fuente_id_origen'            => $row->origen_fuente_id_origen, 
+              'fuente_financiamiento_id_ff'        => $row->fuente_financiamiento_id_ff, 
+
+            ];
+        }
+        return $datos;
+
+  }
+  /**********  Recupera los combox previamente guardados del la bd *************/
+  public function recuperarcombobox($idactividad){
+  $this->db->select('*');
+  $this->db->from('s0_cat_ejes'); 
+  $this->db->join('s0_cat_temas','s0_cat_temas.cat_ejes_ejeid=s0_cat_ejes.ejeid'); 
+  $this->db->join('s0_cat_objetivos','s0_cat_objetivos.cat_temas_temaid=s0_cat_temas.temaid');
+  $this->db->join('s0_cat_estrategias_ped','s0_cat_estrategias_ped.cat_objetivos_objetivoid=s0_cat_objetivos.objetivoid'); 
+  $this->db->join('s0_cat_lineaaccion_ped','s0_cat_lineaaccion_ped.cat_estrategias_ped_estrategiaid=s0_cat_estrategias_ped.estrategiaid');
+  $this->db->join('s0_ods','s0_ods.ods_id_ods=s0_cat_lineaaccion_ped.ods_id_ods');
+    
+
+      $this->db->where('s0_cat_lineaaccion_ped.lineaaccionid',$idactividad);
+     
+    $query = $this->db->get();
+    
+        foreach ($query->result() as $row) {
+           $datos[] = [
+            
+             'lineaaccionid'           => $row->lineaaccionid,
+              'id_ods'           => $row->id_ods,
+              'numero_ods'           => $row->numero_ods,
+              'estrategiaid'           => $row->estrategiaid,
+              'objetivoid'           => $row->objetivoid,
+              'temaid'           => $row->temaid,
+               'ejeid'           => $row->ejeid
+
+            ];
+        }
+        return $datos;
+
+  }
 
 }

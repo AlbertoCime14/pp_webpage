@@ -36,10 +36,11 @@ function add_actividad() {
 Busqueda de los temas mediante el id eje
 **/
 
-function busquedapp(ideje){
+function busquedapp(){
+     var eje=document.getElementById('cboEje').value;
     document.getElementById('cboPP').disabled=false;
     $('#cboPP').empty();
-    var eje=document.getElementById('cboEje').value;
+   
          /*Url estatica*/
       var url=document.getElementById("url").value;
             $.ajax({         
@@ -69,7 +70,7 @@ function busquedapp(ideje){
                     alert("Error: " + errorThrown);
 
                 }
-                }); 
+    }); 
     
 }
 /**
@@ -542,18 +543,113 @@ var autorizo="example";
 
 //===========================llamada  de ajax paara actualizar los datos===============//
 /******** Datos de la actualizacion  *********/
-var datos="id_actividad_estrategica="+txtActividadId+"&Nombre="+Nombre+"&objetivo_general="+objetivo_general+"&descripcion="+descripcion+"&monto_propio="+txtMontoPropio+"&monto_otro="+txtMontoOtras+"&fecha_inicio="+txtFechaInicio+"&fecha_fin="+txtFechafin+"&elaboro="+elaboro+"&autorizo="+autorizo+"&cat_lineaaccion_ped_lineaaccionid="+cboLineaacion+"&ubp_id_ubp="+cboUbp+"&poblacion_objetivo_id_poblacion="+cobPoblacion+"&origen_fuente_id_origen="+cbofuente+"&fuente_financiamiento_id_ff="+nombrefuente;
-              $.ajax({         
-                type: "POST",
-                url: url+"actividades/editar/"+txtActividadId,
-                data: datos,
+//var datos="id_actividad_estrategica="+txtActividadId+"&Nombre="+Nombre+"&objetivo_general="+objetivo_general+"&descripcion="+descripcion+"&monto_propio="+txtMontoPropio+"&monto_otro="+txtMontoOtras+"&fecha_inicio="+txtFechaInicio+"&fecha_fin="+txtFechafin+"&elaboro="+elaboro+"&autorizo="+autorizo+"&cat_lineaaccion_ped_lineaaccionid="+cboLineaacion+"&ubp_id_ubp="+cboUbp+"&poblacion_objetivo_id_poblacion="+cobPoblacion+"&origen_fuente_id_origen="+cbofuente+"&fuente_financiamiento_id_ff="+nombrefuente;
+  var datos="id_actividad_estrategica="+txtActividadId+"&objetivo_general="+objetivo_general+"&descripcion="+descripcion+"&monto_propio="+txtMontoPropio+"&monto_otro="+txtMontoOtras+"&fecha_inicio="+txtFechaInicio+"&fecha_fin="+txtFechafin+"&elaboro="+elaboro+"&autorizo="+autorizo+"&cat_lineaaccion_ped_lineaaccionid="+cboLineaacion+"&ubp_id_ubp="+cboUbp+"&poblacion_objetivo_id_poblacion="+cobPoblacion+"&origen_fuente_id_origen="+cbofuente+"&fuente_financiamiento_id_ff="+nombrefuente;
+     $.ajax({         
+          type: "POST",
+          url: url+"actividades/actualizar",
+          data: datos,
                 success: function(data) {         
-                //=========================================//
-                notie.alert({ type: 1, text: 'Correcto!', time: 2 });
-                setTimeout(function(){ location.href = url+"actividades"; }, 1000);
+    //=========================================//
+    notie.alert({ type: 1, text: 'Correcto!', time: 2 });
+    setTimeout(function(){ location.href = url+"actividades"; }, 1000);
+            },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Status: " + textStatus);
+                    alert("Error: " + errorThrown);
+                }
+             });
+}
 
+//============================================================sirve para pintar nuevamente la informacion dinamicamente===============//
+   
+ //Recuperado automatico la informacion de la acividad
+    $(document).ready(setTimeout(function() {
+     var url=document.getElementById("url").value;
+     var txtActividadId=document.getElementById('txtActividadId').value;
+      // $("#cobPoblacion option[value='2']").attr("selected", true);
+      //$('#lblods').text('ODS: '+v);
 
+             $.ajax({         
+                type: "GET",
+                url: url+"actividades/recupera_actividad/"+txtActividadId,
+                data: "ok=ok",
+                success: function(data) { 
+                var value=0;
+                      JSON.parse(data, function (k, v) {
+                   
+                      if(k=='monto_propio'){
+                           document.getElementById('txtMontoPropio').value=v;
+                      }else{}  
+                      if(k=='monto_otro'){
+                           document.getElementById('txtMontoOtras').value=v;
+                           actualizar_monto();
+                      }else{}
+                     if(k=='fecha_inicio'){
+                    document.getElementById('txtFechaInicio').value=v;
+                      }else{} 
+                    if(k=='fecha_fin'){
+                    document.getElementById('txtFechafin').value=v;
+                      }else{} 
+                      if(k=='ubp_id_ubp'){
+                   $('#cboUbp option[value='+v+']').attr("selected", true);
+                   busquedanombreubpypp();
+                      }else{}
+                    if(k=='poblacion_objetivo_id_poblacion'){
+                   $('#cobPoblacion option[value='+v+']').attr("selected", true);
+                      }else{}
+                     if(k=='origen_fuente_id_origen'){
+                   $('#cbofuente option[value='+v+']').attr("selected", true);
+                      }else{} 
+                     if(k=='fuente_financiamiento_id_ff'){
+                   $('#nombrefuente option[value='+v+']').attr("selected", true);
+                      }else{}  
+                      //================si tiene algo el lineaaccionid realiza un subconsuta===============//
+                          if(k=='cat_lineaaccion_ped_lineaaccionid'){
+                  // $('#nombrefuente option[value='+v+']').attr("selected", true);
+                          if(v==0){
+                                }else{                   
+                                $.ajax({         
+                                    type: "GET",
+                                    url: url+"actividades/recupera_combox/"+txtActividadId,
+                                    data: "ok=ok",
+                                    success: function(data) {
+                                      JSON.parse(data, function (i, o) {
+                                            /*********** realiza subconsuta de la vase de datos tiene no tiene vacio el lineaaccionid***************/
+                                    if(i=='ejeid'){
+                                    $('#cboEje option[value='+o+']').attr("selected", true);
+                                     busquedapp();                                                            
+                                    }else{}
+                                    if(i=='temaid'){                           
+                                    $(document).ready(setTimeout(function() {     
+                                    $('#cboPP option[value='+o+']').attr("selected", true);
+                                    busquedaobjetivo();
+                                    },1000));                               
+                                    }else{}                             
+                                     $(document).ready(setTimeout(function() {     
+                                      if(i=='objetivoid'){
+                                    $('#cboObjetivo option[value='+o+']').attr("selected", true);  
+                                    busquedaestrategias();                                                         
+                                    }else{}  
+                                    },2000)); 
+                                    $(document).ready(setTimeout(function() {     
+                                      if(i=='estrategiaid'){       
+                                    $('#cboEstrategia option[value='+8+']').attr("selected", true); 
+                                    busquedalineaaccion();                                                      
+                                    }else{}  
+                                    },3000));
+                                       $(document).ready(setTimeout(function() {     
+                                      if(i=='lineaaccionid'){     
+                                    $('#cboLineaacion option[value='+v+']').attr("selected", true);                                                       
+                                    }else{}  
+                                    },4000));
 
+                                          });
+                                     }});   
+                                }
+                      }else{}                               
+                
+            });  
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
                     alert("Status: " + textStatus);
@@ -561,4 +657,7 @@ var datos="id_actividad_estrategica="+txtActividadId+"&Nombre="+Nombre+"&objetiv
 
                 }
                 });
-}
+}, 0));
+
+
+  

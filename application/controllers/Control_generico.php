@@ -59,10 +59,30 @@ class Control_generico extends CI_Controller {
 
 	}
 	public function editar_actividad(){
-				//actualiza los datos de la actividad
-		if(isset($_POST['id_actividad_estrategica'])){
+
+		$dataeje['ejes'] = $this->Modelo_actividad->recuperareje();
+		$this->load->view('masterpage/head');
+		$this->load->view('editar_actividad',$dataeje);	
+		$this->load->view('masterpage/footer');
+	}
+	//==================recupera informacion si existe informacion guardada de la actividad
+	public function mostardatosactividad(){
+		$idactividad=$this->uri->segment(3);
+		 $data = $this->Modelo_actividad->recuperaractividad($idactividad); 
+		 $datos=json_encode($data);
+		echo $datos;
+	}
+		public function mostarcomboactividad(){
+		$idactividad=$this->uri->segment(3);
+		 $data = $this->Modelo_actividad->recuperarcombobox($idactividad); 
+		 $datos=json_encode($data);
+		echo $datos;
+	}
+	//==========================fin ================================//
+	public function actualizar_actividad(){
+					//actualiza los datos de la actividad
 			$id_actividad_estrategica = $this->input->post('id_actividad_estrategica');
-			$Nombre = $this->input->post('Nombre');
+			//	$Nombre = $this->input->post('Nombre');
 			$objetivo_general = $this->input->post('objetivo_general');
 			$descripcion = $this->input->post('descripcion');
 			$monto_propio = $this->input->post('monto_propio');
@@ -77,30 +97,23 @@ class Control_generico extends CI_Controller {
 			$origen_fuente_id_origen = $this->input->post('origen_fuente_id_origen');
 			$fuente_financiamiento_id_ff= $this->input->post('fuente_financiamiento_id_ff');
 			    $data = array(
-        'id_actividad_estrategica' => $id_actividad_estrategica,
-        'Nombre' => $Nombre,
-        'objetivo_general' => $objetivo_general,
-        'descripcion' => $descripcion,
-        'monto_propio' => $monto_propio,
-        'monto_otro' => $monto_otro,
-        'fecha_inicio' => $fecha_inicio,
-        'fecha_fin' => $fecha_fin,
-        'elaboro' => $elaboro,
-        'autorizo' => $autorizo,
-        'cat_lineaaccion_ped_lineaaccionid' => $cat_lineaaccion_ped_lineaaccionid,
-        'ubp_id_ubp' => $ubp_id_ubp,
-        'poblacion_objetivo_id_poblacion' => $poblacion_objetivo_id_poblacion,
-        'origen_fuente_id_origen' => $origen_fuente_id_origen,
-        'fuente_financiamiento_id_ff'=>$fuente_financiamiento_id_ff
-        );
-		 $this->Modelo_actividad->actualizaractividad($data,$id_actividad_estrategica);
-
-
-		}
-	 $dataeje['ejes'] = $this->Modelo_actividad->recuperareje();
-	$this->load->view('masterpage/head');
-	$this->load->view('editar_actividad',$dataeje);	
-	$this->load->view('masterpage/footer');
+	        'id_actividad_estrategica' => $id_actividad_estrategica,
+	     		//   'Nombre' => $Nombre,
+	        'objetivo_general' => $objetivo_general,
+	        'descripcion' => $descripcion,
+	        'monto_propio' => $monto_propio,
+	        'monto_otro' => $monto_otro,
+	        'fecha_inicio' => $fecha_inicio,
+	        'fecha_fin' => $fecha_fin,
+	        'elaboro' => $elaboro,
+	        'autorizo' => $autorizo,
+	        'cat_lineaaccion_ped_lineaaccionid' => $cat_lineaaccion_ped_lineaaccionid,
+	        'ubp_id_ubp' => $ubp_id_ubp,
+	        'poblacion_objetivo_id_poblacion' => $poblacion_objetivo_id_poblacion,
+	        'origen_fuente_id_origen' => $origen_fuente_id_origen,
+	        'fuente_financiamiento_id_ff'=>$fuente_financiamiento_id_ff
+	        );
+			$this->Modelo_actividad->actualizaractividad($data,$id_actividad_estrategica);
 	}
 	public function editar_entregables(){
 	$this->load->view('masterpage/head');
@@ -109,7 +122,8 @@ class Control_generico extends CI_Controller {
 	}
 	public function example(){
 		 $data = $this->Modelo_actividad->listar_actividades(); 
-		 print_r($data);
+		$datos=json_encode($data);
+		echo $datos;
 	}
 	
 }
