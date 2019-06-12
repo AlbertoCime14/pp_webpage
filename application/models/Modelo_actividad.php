@@ -32,11 +32,12 @@ class Modelo_actividad extends CI_Model {
         }
         return $datos;
     }
-  public function agregaractividad($nombre){
+  public function agregaractividad($nombre,$ubp_id_ubp){
     $fecha_captura = date("Y-m-d");
     $data = array(
         'Nombre' => $nombre,
-        'fecha_captura' => $fecha_captura
+        'fecha_captura' => $fecha_captura,
+        'ubp_id_ubp' =>$ubp_id_ubp
     );
 
   $this->db->insert('s0_actividad_estrategica', $data);

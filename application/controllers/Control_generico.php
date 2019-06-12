@@ -84,9 +84,10 @@ class Control_generico extends CI_Controller {
 
    }
   
-   public function agregaractividad(){
+     public function agregaractividad(){
 	$nombre = $this->input->post('nombre');
-	$this->Modelo_actividad->agregaractividad($nombre);
+	$ubp_id_ubp = $this->input->post('ubp_id_ubp');
+	$this->Modelo_actividad->agregaractividad($nombre,$ubp_id_ubp);
 
 
 }
