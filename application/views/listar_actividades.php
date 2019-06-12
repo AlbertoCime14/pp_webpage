@@ -4,7 +4,7 @@
 <section class="page-section-top-alt-np mt-25 pb-155 pb-md-105 pb-sm-85" id="section-login-mp"> 
 <div class="container">
   <h2>
-    Actividades <?=$_SESSION['id_dependencia']?>
+    Actividades
   </h2>
   <div class="panel panel-default">
     <div class="panel-heading">
@@ -130,21 +130,25 @@
 
 }
 
-  function eliminarActividad(id){
-    e.preventDefault();
-    $.ajax({
-        type: "POST",
-        url: url+"index.php/Control_actividad/eliminar_actividad",
-        data: "id="+id,
-        success: function(resp){
-          if(resp == '0')
-           
-        },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
-            alert('Ha cocurrido un error');
-        }
-    }); 
-  }
+function eliminarActividad(id){
+  e.preventDefault();
+  $.ajax({
+      type: "POST",
+      url: url+"actividades/add",
+      data: "nombre="+nombre,
+      success: function() {
+          $("#tablacontenidos").load(" #tablacontenidos");
+           document.getElementById("txtActividad").disabled = false;
+           document.getElementById("btnAdd").disabled = false;
+            document.getElementById("txtActividad").value = "";
+      },
+      error: function(XMLHttpRequest, textStatus, errorThrown) {
+          alert("Status: " + textStatus);
+          alert("Error: " + errorThrown);
+
+      }
+  }); 
+}
 
 </script>
 

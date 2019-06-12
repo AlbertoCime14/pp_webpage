@@ -132,6 +132,7 @@ class M_combobox extends CI_Model {
         $this->db->select('*');
         $this->db->from('s0_ubp');
         $this->db->where('dependencia_id_dependencia',$_SESSION['id_dependencia']);
+		$this->db->order_by("nombre_ubp", "asc");
         $query = $this->db->get();
 		
         foreach ($query->result() as $row) {
