@@ -136,7 +136,7 @@
               //alert( key + ": " + value );
               dataEntry(value);
           });
-          //alert(scs);
+          updateActividad();
         }
       
       
@@ -159,6 +159,29 @@
               }else{
                 console.log('error');
               }
+            }
+          });
+        }
+        function updateActividad(){
+          var url=document.getElementById("url").value;
+          var formData = new FormData();
+          formData.append('key', $("#key").val());
+          formData.append('elaboro', $("#elaboro").val());
+          formData.append('autorizo', $("#autorizo").val());
+          $.ajax({
+            url: url+'alineacion/autorizo',
+            data: formData,
+            type: 'post',
+            processData: false,
+            contentType: false,
+            dataType: 'json',
+            success: function(json){
+              if(json > 0){
+                notie.alert({ type: 1, text: 'Correcto!', time: 2 });
+              }else{
+                console.log('error');
+              }
+              
             }
           });
         }

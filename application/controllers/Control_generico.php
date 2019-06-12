@@ -62,7 +62,11 @@ class Control_generico extends CI_Controller {
 		//Agregue estos metodos
 		
 		$data['compromiso'] = $this->M_alineacion_entregable->getCompromiso();
-		$data['entregables'] = $this->M_alineacion_entregable->getEntregables(base64_decode($this->uri->segment(3)));
+		$key=base64_decode($this->uri->segment(3));
+		
+		$data['entregables'] = $this->M_alineacion_entregable->getEntregables($key);
+		
+		$data['actividad'] = $this->M_alineacion_entregable->getActividad($key);
 		foreach ($data['entregables'] as $r) {
 			$temp = $this->M_alineacion_entregable->findRecord($r->id_entregables);
 			if(!empty($temp[0])){

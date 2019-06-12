@@ -200,6 +200,17 @@ echo '</td>';
     <?php } ?>
   </tbody>
 </table>
+<div class="container-fluid" style="padding-bottom: 20px">
+  <div class="col-md-6">
+    <label>Elaboro: </label>
+    <input type="text" id="elaboro" class="form-control" value="<?php if(isset($actividad->elaboro)) { echo $actividad->elaboro;}?>">
+  </div>
+<div class="col-md-6">
+  <label>Autorizo: </label>
+  <input type="text" id="autorizo" class="form-control" value="<?php if(isset($actividad->autorizo)) { echo $actividad->autorizo;}?>">
+
+</div>
+</div>
 <input type="hidden" id="array" value="<?php echo trim($pk, '.');?>">
 <section>
     <input type="button" onclick="alinear_entregable('<?php echo trim($pk, '.');?>')" class="btn btn-dark" value="Guardar" >
@@ -216,6 +227,7 @@ echo '</td>';
 <?php include("contacto.php") ?>
 <?php $actividad_id = base64_decode($this->uri->segment(3));?>
 <input type="text" value="<?= $actividad_id; ?>" id="id_Actividad" style="visibility: hidden">
+<input type="hidden" id="key" value="<?php echo $this->uri->segment(3);?>">
 </footer>
 <script src="<?=base_url();?>js/funcionesentregables.js"></script>
 <script>

@@ -143,4 +143,5 @@ $route['entregables/add'] = 'Control_entregable/agregar_entregable';
 $route['componente/query'] = 'control_alineacion_entregable/getcomponente';
 
 $route['alineacion/guardar'] = 'control_alineacion_entregable/dataentry';
+$route['alineacion/autorizo'] = 'control_alineacion_entregable/updateactividad';
 
