@@ -14,6 +14,7 @@ class M_entregable extends CI_Model {
         $this->db->from('s0_entregables');
         $this->db->order_by('id_entregables');
         $query = $this->db->get();
+        $datos = array();
 		
         foreach ($query->result() as $row) {
            $datos[] = [

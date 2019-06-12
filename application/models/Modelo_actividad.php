@@ -17,6 +17,7 @@ class Modelo_actividad extends CI_Model {
         $this->db->join('s0_dependencia','s0_dependencia.id_dependencia=s0_ubp.dependencia_id_dependencia','left');
          $this->db->join('s0_tbl_eje_dependencia','s0_tbl_eje_dependencia.id_institucion=s0_dependencia.id_dependencia','left');
         $this->db->join('s0_cat_ejes','s0_cat_ejes.ejeid=s0_tbl_eje_dependencia.id_cat_eje','left');
+        $this->db->where('s0_actividad_estrategica.activo',1);
 
         $query = $this->db->get();
 		

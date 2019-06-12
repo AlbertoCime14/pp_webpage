@@ -123,6 +123,26 @@
 
 }
 
+function eliminarActividad(id){
+  e.preventDefault();
+  $.ajax({
+      type: "POST",
+      url: url+"actividades/add",
+      data: "nombre="+nombre,
+      success: function() {
+          $("#tablacontenidos").load(" #tablacontenidos");
+           document.getElementById("txtActividad").disabled = false;
+           document.getElementById("btnAdd").disabled = false;
+            document.getElementById("txtActividad").value = "";
+      },
+      error: function(XMLHttpRequest, textStatus, errorThrown) {
+          alert("Status: " + textStatus);
+          alert("Error: " + errorThrown);
+
+      }
+  }); 
+}
+
 </script>
 
 <!--Footer Begins-->
