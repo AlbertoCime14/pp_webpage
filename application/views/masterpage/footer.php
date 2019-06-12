@@ -31,7 +31,8 @@
 <script src="<?=base_url();?>js/main.js" type="text/javascript"></script>
 <script src="<?=base_url();?>js/notie.js"></script>
 
-
+<!--Aqui para poner las nuevas funciones-->
+<script src="<?=base_url();?>js/funcionesactividades.js"></script>
 <!--<script src="<?=base_url();?>js/funcionesentregables.js"></script>-->
 <script>
 

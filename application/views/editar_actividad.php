@@ -175,9 +175,13 @@
 <!--
 Variables de la actividad
 -->
+
+
 <?php 
   $idactividad = $this->uri->segment(3);
 ?>
+<!--Aqui para poner las nuevas funciones-->
+<script src="<?=base_url();?>js/funcionesactividades.js"></script>
 <input type="text" id="txtActividadId" style="visibility: hidden;" value=<?=base64_decode($idactividad);?>>
 <!--Footer Begins-->
 <footer>
@@ -187,4 +191,3 @@ Variables de la actividad
 </footer>
 
 <!--Aqui para poner las nuevas funciones-->
-<script src="<?=base_url();?>js/funcionesactividades.js"></script>

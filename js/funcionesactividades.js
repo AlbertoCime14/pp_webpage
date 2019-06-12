@@ -616,33 +616,7 @@ var autorizo="example";
                                     success: function(data) {
                                       JSON.parse(data, function (i, o) {
                                             /*********** realiza subconsuta de la vase de datos tiene no tiene vacio el lineaaccionid***************/
-                                    if(i=='ejeid'){
-                                    $('#cboEje option[value='+o+']').attr("selected", true);
-                                     busquedapp();                                                            
-                                    }else{}
-                                    if(i=='temaid'){                           
-                                    $(document).ready(setTimeout(function() {     
-                                    $('#cboPP option[value='+o+']').attr("selected", true);
-                                    busquedaobjetivo();
-                                    },1000));                               
-                                    }else{}                             
-                                     $(document).ready(setTimeout(function() {     
-                                      if(i=='objetivoid'){
-                                    $('#cboObjetivo option[value='+o+']').attr("selected", true);  
-                                    busquedaestrategias();                                                         
-                                    }else{}  
-                                    },2000)); 
-                                    $(document).ready(setTimeout(function() {     
-                                      if(i=='estrategiaid'){       
-                                    $('#cboEstrategia option[value='+8+']').attr("selected", true); 
-                                    busquedalineaaccion();                                                      
-                                    }else{}  
-                                    },3000));
-                                       $(document).ready(setTimeout(function() {     
-                                      if(i=='lineaaccionid'){     
-                                    $('#cboLineaacion option[value='+v+']').attr("selected", true);                                                       
-                                    }else{}  
-                                    },4000));
+                                            alert(i+ " " +o);
 
                                           });
                                      }});   
