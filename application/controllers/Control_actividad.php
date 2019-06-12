@@ -13,5 +13,16 @@ class Control_actividad extends CI_Controller {
 		
 	}
 
-	//function 
+	function eliminar_actividad()
+	{
+		if(isset($_POST['id']) && !empty($_POST['id']))
+		{
+			$id = $this->input->post('id');
+			$model = new M_general();
+
+			$where['id_actividad_estrategica'] = $id;
+			if($model->desactivar_registro('s0_actividad_estrategica',$where) > 0) echo '0';
+			else echo '1';
+		}
+	} 
 }

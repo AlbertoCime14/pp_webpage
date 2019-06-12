@@ -135,25 +135,21 @@
 
 }
 
-function eliminarActividad(id){
-  e.preventDefault();
-  $.ajax({
-      type: "POST",
-      url: url+"actividades/add",
-      data: "nombre="+nombre,
-      success: function() {
-          $("#tablacontenidos").load(" #tablacontenidos");
-           document.getElementById("txtActividad").disabled = false;
-           document.getElementById("btnAdd").disabled = false;
-            document.getElementById("txtActividad").value = "";
-      },
-      error: function(XMLHttpRequest, textStatus, errorThrown) {
-          alert("Status: " + textStatus);
-          alert("Error: " + errorThrown);
-
-      }
-  }); 
-}
+  function eliminarActividad(id){
+    e.preventDefault();
+    $.ajax({
+        type: "POST",
+        url: url+"index.php/Control_actividad/eliminar_actividad",
+        data: "id="+id,
+        success: function(resp){
+          if(resp == '0')
+           
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            alert('Ha cocurrido un error');
+        }
+    }); 
+  }
 
 </script>
 
