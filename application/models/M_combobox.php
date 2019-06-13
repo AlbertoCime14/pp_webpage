@@ -14,6 +14,7 @@ class M_combobox extends CI_Model {
         $this->db->select('*');
         $this->db->from('s0_cat_temas');
         $this->db->where('cat_ejes_ejeid',$ideje);
+		$this->db->order_by("tema", "ASC");
         $query = $this->db->get();
 		
         foreach ($query->result() as $row) {
@@ -28,7 +29,9 @@ class M_combobox extends CI_Model {
 	    public function recuperarobjetivo($idtema){
         $this->db->select('*');
         $this->db->from('s0_cat_objetivos');
+		$this->db->order_by("objetivo", "ASC");
         $this->db->where('cat_temas_temaid',$idtema);
+		
         $query = $this->db->get();
 		
         foreach ($query->result() as $row) {
@@ -43,7 +46,9 @@ class M_combobox extends CI_Model {
     	public function recuperarestrategias($idobjetivo){
         $this->db->select('*');
         $this->db->from('s0_cat_estrategias_ped');
+		$this->db->order_by("estrategia", "ASC");
         $this->db->where('cat_objetivos_objetivoid',$idobjetivo);
+		
         $query = $this->db->get();
 		
         foreach ($query->result() as $row) {
@@ -58,6 +63,7 @@ class M_combobox extends CI_Model {
         public function recuperarlineasaccion($idestrategia){
         $this->db->select('*');
         $this->db->from('s0_cat_lineaaccion_ped');
+		$this->db->order_by("lineaaccion", "ASC");
         $this->db->where('cat_estrategias_ped_estrategiaid',$idestrategia);
         $query = $this->db->get();
 		
@@ -89,6 +95,7 @@ class M_combobox extends CI_Model {
       public function recuperarpoblacionobj(){
         $this->db->select('*');
         $this->db->from('s0_poblacion_objetivo');
+		$this->db->order_by("nombre", "ASC");
         $query = $this->db->get();
 		
         foreach ($query->result() as $row) {
@@ -117,6 +124,7 @@ class M_combobox extends CI_Model {
     public function recuperarnombrefuente(){
         $this->db->select('*');
         $this->db->from('s0_fuente_financiamiento');
+		$this->db->order_by("nombre_ff", "ASC");
         $query = $this->db->get();
 		
         foreach ($query->result() as $row) {
@@ -159,7 +167,7 @@ class M_combobox extends CI_Model {
         public function recuperarplanpresupuestal($id_ubp){
         $this->db->select('*');
         $this->db->from('s0_programa_presupuestal');
-         $this->db->join('s0_ubp','s0_ubp.programa_presupuestal_id_pp=s0_programa_presupuestal.id_pp','left');
+         $this->db->join('s0_ubp','s0_ubp.programa_presupuestal_id_pp=s0_programa_presupuestal.id_pp');
         $this->db->where('id_ubp',$id_ubp);
         $query = $this->db->get();
 		

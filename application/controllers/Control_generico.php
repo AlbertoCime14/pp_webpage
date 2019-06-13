@@ -152,10 +152,6 @@ public function editar_entregables(){
 		 $data = $this->Modelo_actividad->listar_actividades(); 
 		 print_r($data);
 }
-
-
-
-
 	
 	//==================recupera informacion si existe informacion guardada de la actividad
 	public function mostardatosactividad(){

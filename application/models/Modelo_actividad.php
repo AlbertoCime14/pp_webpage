@@ -14,6 +14,7 @@ class Modelo_actividad extends CI_Model {
 			$this->db->from('s0_actividad_estrategica');
 			$this->db->join('s0_ubp','s0_ubp.id_ubp=s0_actividad_estrategica.ubp_id_ubp');
 			$where='dependencia_id_dependencia='.$_SESSION['id_dependencia'].' AND activo=1';
+			$this->db->order_by("id_actividad_estrategica", "desc");
 			 $this->db->where($where);
 			
 			
@@ -47,6 +48,7 @@ class Modelo_actividad extends CI_Model {
             $this->db->select('*');
             $this->db->from('s0_cat_ejes');
         $this->db->join('s0_tbl_eje_dependencia','s0_tbl_eje_dependencia.id_cat_eje=s0_cat_ejes.ejeid');
+		$this->db->order_by("eje", "ASC");
          $this->db->where('s0_tbl_eje_dependencia.id_institucion',  $_SESSION['id_dependencia'] );
 
         $query = $this->db->get();
