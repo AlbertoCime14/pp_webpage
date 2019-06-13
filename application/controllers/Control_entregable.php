@@ -93,15 +93,15 @@ class Control_entregable extends CI_Controller {
 			</select>
 			</td>
 			<td>
-			<input name="meta_'.$id_entregable.'" id="meta_'.$datos['id_entregables'].'" type="number" min="1" max="99999999999999" maxlength="11" onKeyPress="return soloNumeros(event,\'decNO\');" class="form-control" >
+			<input name="meta_'.$id_entregable.'" id="meta_'.$datos['id_entregables'].'" type="number" min="1" max="99999999999999" maxlength="11" onKeyPress="return soloNumeros(event,\'decNO\');" class="form-control" required>
 			</td>
 			<td>
 			<input name="avance_'.$id_entregable.'" id="avance_'.$datos['id_entregables'].' "type="text"
-			maxlength="11" onKeyPress="return soloNumeros(event,\'decNO\');" class="form-control">
+			maxlength="11" onKeyPress="return soloNumeros(event,\'decNO\');" class="form-control" required>
 			</td>
 			<td>
 			<input name="monto_'.$id_entregable.'" id="monto_'.$datos['id_entregables'].' "type="text"
-			maxlength="19" onKeyPress="return soloNumeros(event,\'decOK\');" class="form-control">
+			maxlength="19" onKeyPress="return soloNumeros(event,\'decOK\');" class="form-control" required>
 			</td>
 			<td>
 			<input type="button" class="btn btn-dark" value="Eliminar" onclick="desactivar_entregable('.$datos['id_entregables'].');">
