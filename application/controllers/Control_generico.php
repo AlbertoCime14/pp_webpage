@@ -104,6 +104,7 @@ class Control_generico extends CI_Controller {
 public function editar_actividad(){
 	//actualiza los datos de la actividad
 if(isset($_POST['id_actividad_estrategica'])){
+
 $id_actividad_estrategica = $this->input->post('id_actividad_estrategica');
 $Nombre = $this->input->post('Nombre');
 $objetivo_general = $this->input->post('objetivo_general');

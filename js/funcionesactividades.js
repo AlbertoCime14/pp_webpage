@@ -47,7 +47,10 @@ function busquedapp(){
                 type: "GET",
                 url: url+"actividades/cat_temas/"+eje,
                 data: "ok=ok",
-                success: function(data) {         
+                success: function(data) { 
+                var o = new Option("option text", 0);
+                $("#cboPP").append(o);
+                $(o).html('Seleccione una opción');        
                 value=0;
                 JSON.parse(data, function (k, v) {
                     if(isNaN(v)===true){
@@ -87,7 +90,10 @@ function busquedaobjetivo(){
                 type: "GET",
                 url: url+"actividades/obj/"+tema,
                 data: "ok=ok",
-                success: function(data) {         
+                success: function(data) {
+                var o = new Option("option text", 0);
+                $("#cboObjetivo").append(o);
+                $(o).html('Seleccione una opción');         
                 value=0;
                 JSON.parse(data, function (k, v) {
                     if(isNaN(v)===true){
@@ -126,9 +132,12 @@ function busquedaestrategias(){
                 type: "GET",
                 url: url+"actividades/cat/"+objetivo,
                 data: "ok=ok",
-                success: function(data) {         
-                value=0;
-                JSON.parse(data, function (k, v) {
+                success: function(data) {
+                    var o = new Option("option text", 0);
+                    $("#cboEstrategia").append(o);
+                    $(o).html('Seleccione una opción');
+                    value=0;
+                    JSON.parse(data, function (k, v) {
                     if(isNaN(v)===true){
                         if(typeof v === 'object'){}else{
                             //texto
@@ -157,17 +166,20 @@ Busqueda del las alineacciones mediante el id estrategias
 **/
 
 function busquedalineaaccion(){
-        $('#busquedapoblacion').empty();
-     document.getElementById('cboLineaacion').disabled=false;
-     $('#cboLineaacion').empty();
+    $('#busquedapoblacion').empty();
+    document.getElementById('cboLineaacion').disabled=false;
+    $('#cboLineaacion').empty();
     var estrategia=document.getElementById('cboEstrategia').value;
          /*Url estatica*/
-      var url=document.getElementById("url").value;
+    var url=document.getElementById("url").value;
             $.ajax({         
                 type: "GET",
                 url: url+"actividades/cat_linea/"+estrategia,
                 data: "ok=ok",
-                success: function(data) {         
+                success: function(data) {
+                var o = new Option("option text", 0);
+                $("#cboLineaacion").append(o);
+                $(o).html('Seleccione una opción');
                 value=0;
                 JSON.parse(data, function (k, v) {
                     if(isNaN(v)===true){
