@@ -1,4 +1,6 @@
 
+    
+       
     function add_entregable() {
         var nombre=document.getElementById("txtEntregable").value;
          //document.getElementById("txtEntregable").disabled = true;
@@ -193,6 +195,30 @@
           
         }
 
+        function desactivar_entregable(id_entregables){
+                  var url=document.getElementById("url").value;
+              var r = confirm("¿Seguro desea eliminar el entregable?");
+              if (r == true) {
+                  $.ajax({
+                  type: "POST",
+                  url: url+"Control_entregable/eliminar_entregable",
+                  data: "id_entregables="+id_entregables,
+                  success: function() {
+                    notie.alert({ type: 1, text: 'Correcto!', time: 2 });
+                        $("#tablacontenidos").load(" #tablacontenidos");
+                  },
+                  error: function(XMLHttpRequest, textStatus, errorThrown) {
+                      alert("Status: " + textStatus);
+                      alert("Error: " + errorThrown);
+                  }
+              });
+        
+      } else {
+      
+    }
+     
+      
+     }
 
 
 

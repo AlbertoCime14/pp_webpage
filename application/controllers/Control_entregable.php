@@ -101,7 +101,9 @@ class Control_entregable extends CI_Controller {
 			<td>
 			<input name="monto_'.$id_entregable.'" id="monto_'.$datos['id_entregables'].' "type="number" class="form-control">
 			</td>
-			
+			<td>
+			<input type="button" class="btn btn-dark" value="Eliminar" onclick="desactivar_entregable('.$datos['id_entregables'].');">
+			</td>
 			</tr>';
 		//$html.='</form>';
 
@@ -142,6 +144,14 @@ class Control_entregable extends CI_Controller {
 		}
 		echo 'Correcto!';
 		//$this->M_entregable->actualizar_registro('s0_entregables',$id_entregables,$datos);
+	}
+	function eliminar_entregable(){
+		$id_entregables=$this->input->post('id_entregables');
+		$data = array(
+		'activo' => 0
+		);
+		$model = new M_entregable();
+		$model->desactivar_entregable($data,$id_entregables);
 	}
 
 	

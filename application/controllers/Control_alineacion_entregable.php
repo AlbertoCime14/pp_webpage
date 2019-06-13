@@ -29,7 +29,7 @@ class Control_alineacion_entregable extends CI_Controller {
 			$data['entregables_id_entregables'] = $_POST['key'];
 			$data['compromisos_id_compromiso'] = $_POST['compromiso'];
 			$data['componente_id_componente'] = $_POST['componente'];
-			$query = $this->M_alineacion_entregable->dataQuery($_POST['key']);
+			$query = $this->M_alineacion_entregable->dataQuery($_POST['key'])[0];
 			if(!isset($query->id_alineacion)){
 				$response = $this->M_alineacion_entregable->dataEntry($data);
 			}else{
@@ -50,6 +50,7 @@ class Control_alineacion_entregable extends CI_Controller {
 		echo $response;
 	}
 	public function getView(){
+		$array = null;
 		$data['compromiso'] = $this->M_alineacion_entregable->getCompromiso();
 		//$key=base64_decode($this->uri->segment(3));
 		$key = base64_decode($_GET['key']);

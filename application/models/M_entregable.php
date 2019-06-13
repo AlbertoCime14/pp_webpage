@@ -64,7 +64,7 @@ class M_entregable extends CI_Model {
       public function recuperar_periodicidad(){
         
         $sql = "SELECT *
-            FROM s0_temporalidad s";
+            FROM s0_temporalidad s ORDER BY `nombre_temp` ASC";
 
         return $this->db->query($sql);
     }
@@ -82,6 +82,12 @@ class M_entregable extends CI_Model {
       $this->db->update($tabla, $datos);
       $_SESSION['sql'] = $this->db->last_query();
     }
+
+    public function desactivar_entregable($data,$id_entregables)
+  {
+   	$this->db->where('id_entregables', $id_entregables);
+	$this->db->update('s0_entregables', $data);   
+  }
 
 	
 }

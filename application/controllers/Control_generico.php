@@ -250,6 +250,9 @@ public function editar_entregables(){
 			<td>
 			<input name="monto_'.$id_entregable.'" id="monto_'.$datos['id_entregables'].' "type="number" class="form-control"  value="'.$datos['monto_ejercido'].'">
 			</td>
+			<td>
+			<input type="button" class="btn btn-dark" value="Eliminar" onclick="desactivar_entregable('.$datos['id_entregables'].');">
+			</td>
 			
 			</tr>';
 		//$html.='</form>';

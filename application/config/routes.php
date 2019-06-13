@@ -148,3 +148,4 @@ $route['alineacion/guardar'] = 'control_alineacion_entregable/dataentry';
 $route['alineacion/autorizo'] = 'control_alineacion_entregable/updateactividad';
 $route['alineacion/consulta'] = 'control_alineacion_entregable/getview';
 
+$route['entregables/eliminar'] = 'Control_entregable/eliminar_entregable/';

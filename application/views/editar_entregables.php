@@ -230,6 +230,7 @@ echo '</td>';
 <input type="text" value="<?= $actividad_id; ?>" id="id_Actividad" style="visibility: hidden">
 <input type="hidden" id="key" value="<?php echo $this->uri->segment(3);?>">
 </footer>
+<script src="<?=base_url();?>js/jquery-2.1.3.min.js"></script>
 <script src="<?=base_url();?>js/funcionesentregables.js"></script>
 <script>
   var numEntregables = <?=$num_entregables?>;
