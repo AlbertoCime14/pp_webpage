@@ -101,7 +101,7 @@
     <div class="panel panel-default">
     <div class="panel-heading">
       <!--Buscador-->
-         Modulo monerario
+         Módulo monerario
     </div>
     <div class="panel-body">
       <!--Tabla de contenidos-->
