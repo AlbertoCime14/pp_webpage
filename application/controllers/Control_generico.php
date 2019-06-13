@@ -169,7 +169,7 @@ public function editar_entregables(){
 	public function actualizar_actividad(){
 					//actualiza los datos de la actividad
 			$id_actividad_estrategica = $this->input->post('id_actividad_estrategica');
-			//	$Nombre = $this->input->post('Nombre');
+			$Nombre = $this->input->post('Nombre');
 			$objetivo_general = $this->input->post('objetivo_general');
 			$descripcion = $this->input->post('descripcion');
 			$monto_propio = $this->input->post('monto_propio');
@@ -185,7 +185,7 @@ public function editar_entregables(){
 			$fuente_financiamiento_id_ff= $this->input->post('fuente_financiamiento_id_ff');
 			    $data = array(
 	        'id_actividad_estrategica' => $id_actividad_estrategica,
-	     		//   'Nombre' => $Nombre,
+	       'Nombre' => $Nombre,
 	        'objetivo_general' => $objetivo_general,
 	        'descripcion' => $descripcion,
 	        'monto_propio' => $monto_propio,
@@ -203,6 +203,7 @@ public function editar_entregables(){
 			$this->Modelo_actividad->actualizaractividad($data,$id_actividad_estrategica);
 	}
 	
+
 	
 	public function fila_entregable($id_entregable,$num_entregables){
 	

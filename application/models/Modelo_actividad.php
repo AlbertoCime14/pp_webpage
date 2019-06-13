@@ -74,7 +74,6 @@ public function recuperaractividad($idactividad){
     
         foreach ($query->result() as $row) {
            $datos[] = [
-              'id_actividad_estrategica'           => $row->id_actividad_estrategica,
               'Nombre'                             => $row->Nombre, 
               'objetivo_general'                   => $row->objetivo_general, 
               'descripcion'                        => $row->descripcion, 
