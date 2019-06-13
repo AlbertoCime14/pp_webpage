@@ -93,13 +93,15 @@ class Control_entregable extends CI_Controller {
 			</select>
 			</td>
 			<td>
-			<input name="meta_'.$id_entregable.'" id="meta_'.$datos['id_entregables'].'" type="text" min="1" max="100000000000000000" class="form-control" >
+			<input name="meta_'.$id_entregable.'" id="meta_'.$datos['id_entregables'].'" type="number" min="1" max="99999999999999" maxlength="11" onKeyPress="return soloNumeros(event,\'decNO\');" class="form-control" >
 			</td>
 			<td>
-			<input name="avance_'.$id_entregable.'" id="avance_'.$datos['id_entregables'].' "type="number"  class="form-control">
+			<input name="avance_'.$id_entregable.'" id="avance_'.$datos['id_entregables'].' "type="text"
+			maxlength="11" onKeyPress="return soloNumeros(event,\'decNO\');" class="form-control">
 			</td>
 			<td>
-			<input name="monto_'.$id_entregable.'" id="monto_'.$datos['id_entregables'].' "type="number" class="form-control">
+			<input name="monto_'.$id_entregable.'" id="monto_'.$datos['id_entregables'].' "type="text"
+			maxlength="19" onKeyPress="return soloNumeros(event,\'decOK\');" class="form-control">
 			</td>
 			<td>
 			<input type="button" class="btn btn-dark" value="Eliminar" onclick="desactivar_entregable('.$datos['id_entregables'].');">
@@ -130,7 +132,7 @@ class Control_entregable extends CI_Controller {
 		for($i=0; $i<$num; $i++)	
 		{
 			$id=$this->input->post('id'.$i);
-			$datos['nombre']=$this->input->post('nombre'.$id);
+			$datos['nombre']=trim($this->input->post('nombre'.$id));
 			$datos['Unidad_medida_id_unidad']=$this->input->post('cbo_unidad'.$id);
 			$datos['temporalidad_id_temp']=$this->input->post('cbo_periodicidad_'.$id);
 			$datos['mismo_benef']= $this->input->post('beneficiario_'.$id);

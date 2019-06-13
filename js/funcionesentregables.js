@@ -2,7 +2,7 @@
     
        
     function add_entregable() {
-        var nombre=document.getElementById("txtEntregable").value;
+        var nombre=document.getElementById("txtEntregable").value.trim();
          //document.getElementById("txtEntregable").disabled = true;
           //document.getElementById("btnAdd").disabled = true;
           var id_actividad=document.getElementById("id_Actividad").value;
