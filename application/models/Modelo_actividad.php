@@ -13,7 +13,8 @@ class Modelo_actividad extends CI_Model {
         $this->db->select('*');
 			$this->db->from('s0_actividad_estrategica');
 			$this->db->join('s0_ubp','s0_ubp.id_ubp=s0_actividad_estrategica.ubp_id_ubp');
-			$this->db->where('dependencia_id_dependencia',$_SESSION['id_dependencia']);
+			$where='dependencia_id_dependencia='.$_SESSION['id_dependencia'].' AND activo=1';
+			 $this->db->where($where);
 			
 			
         $query = $this->db->get();
@@ -35,6 +36,12 @@ class Modelo_actividad extends CI_Model {
     );
 
   $this->db->insert('s0_actividad_estrategica', $data);
+  }
+  
+  public function eliminaractividad($data,$id_actividad_estrategica)
+  {
+   	$this->db->where('id_actividad_estrategica', $id_actividad_estrategica);
+	$this->db->update('s0_actividad_estrategica', $data);   
   }
   public function recuperareje(){
             $this->db->select('*');

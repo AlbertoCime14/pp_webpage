@@ -16,7 +16,7 @@
 <div class="form-group row">
   <label for="inputState1" class="col-xs-1 form-label">Eje:</label>
   <div class="col-xs-3">
-  <select id="cboEje" class="form-control" onchange="busquedapp()">
+  <select id="cboEje" class="form-control" onclick="busquedapp()">
     <option selected>Seleccione...</option>
     <?php 
     foreach($ejes as $datoseje)
@@ -29,14 +29,14 @@
   </div>
     <label for="inputState2" class="col-xs-1 form-label">Politica publica:</label>
   <div class="col-xs-3">
-  <select id="cboPP" class="form-control" disabled="disabled" onchange="busquedaobjetivo()">
+  <select id="cboPP" class="form-control" disabled="disabled" onclick="busquedaobjetivo()">
     <option selected>Seleccione...</option>
     
   </select>
   </div>
     <label for="inputState3" class="col-xs-1 form-label">Objetivo:</label>
   <div class="col-xs-3">
-  <select id="cboObjetivo" class="form-control" disabled="disabled" onchange="busquedaestrategias()">
+  <select id="cboObjetivo" class="form-control" disabled="disabled" onclick="busquedaestrategias()">
     <option selected>Seleccione...</option>
   </select>
   </div>
@@ -46,14 +46,14 @@
         <div class="form-group row">
   <label for="inputState1" class="col-xs-1 form-label">Estrategia:</label>
   <div class="col-xs-3">
-  <select id="cboEstrategia" class="form-control" disabled="disabled" onchange="busquedalineaaccion()">
+  <select id="cboEstrategia" class="form-control" disabled="disabled" onclick="busquedalineaaccion()">
     <option selected>Seleccione...</option>
     <option>...</option>
   </select>
   </div>
     <label for="inputState2" class="col-xs-1 form-label" >Lineas de acción:</label>
   <div class="col-xs-3">
-  <select id="cboLineaacion" class="form-control" disabled="disabled" onchange="busquedaods()">
+  <select id="cboLineaacion" class="form-control" disabled="disabled" onclick="busquedaods()">
     <option selected>Seleccione...</option>
   </select>
   </div>
@@ -146,7 +146,7 @@
             <div class="col-xs-1"></div>
             <label for="inputState7" class="col-xs-2 form-label">Numero UBP:</label>
  <div class="col-xs-3">
-  <select id="cboUbp" class="form-control" onchange="busquedanombreubpypp()">
+  <select id="cboUbp" class="form-control" onclick="busquedanombreubpypp()">
     <option selected>Seleccione...</option>
   </select>
  </div>

@@ -91,6 +91,13 @@ class Control_generico extends CI_Controller {
 
 
 }
+	public function eliminaractividad(){
+		$id_actividad_estrategica=$this->input->post('id_actividad_estrategica');
+		$data = array(
+		'activo' => 0
+		);
+		$this->Modelo_actividad->eliminaractividad($data,$id_actividad_estrategica);
+	}
 
 
 
@@ -121,8 +128,6 @@ $fuente_financiamiento_id_ff= $this->input->post('fuente_financiamiento_id_ff');
 'monto_otro' => $monto_otro,
 'fecha_inicio' => $fecha_inicio,
 'fecha_fin' => $fecha_fin,
-'elaboro' => $elaboro,
-'autorizo' => $autorizo,
 'cat_lineaaccion_ped_lineaaccionid' => $cat_lineaaccion_ped_lineaaccionid,
 'ubp_id_ubp' => $ubp_id_ubp,
 'poblacion_objetivo_id_poblacion' => $poblacion_objetivo_id_poblacion,

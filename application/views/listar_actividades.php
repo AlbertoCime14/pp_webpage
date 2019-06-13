@@ -37,8 +37,8 @@
             </div>
 			-->
                         <div class="col-xs-2">
-                          <select id="cboUbp" class="form-control" onchange="busquedanombreubpypp()">
-                            <option>UBP</option>
+                          <select id="cboUbp" class="form-control" onchange="busquedanombreubpypp()" onclick="removerubpindex()">
+                            <option value="0">UBP</option>
                           </select>
                         </div>
 
@@ -56,7 +56,7 @@
   <thead>
     <tr>
       <th scope="col">Nombre de actividad</th>
-      <th scope="col" style="text-align: center;">Opciónes</th>
+      <th scope="col" style="text-align: center;">Opciones</th>
     </tr>
   </thead>
   <tbody>
@@ -78,7 +78,7 @@
  //  echo "<td>".$datos['id'] ." </td>";
     echo "<td>".$datos['Nombre'] ." </td>";
     echo '  <td style="text-align: center;"><a href="'.$url.'actividades/editar/'.base64_encode($datos['id']).'">Editar |</a>
-          <a href="javascript:void(0)" >Eliminar | </a> 
+          <a href="javascript:void(0)" onclick="eliminarActividad('.$datos['id'].')" >Eliminar | </a> 
           <a href="'.$url.'actividades/entregables/'.base64_encode($datos['id']).'" >Editar entregables| </a>
           <a href="javascript:void(0)">Generar reporte</a> </td> ';
     echo "</tr>";
@@ -102,9 +102,11 @@
 <!-------------------------- funcion para guardar la actividad -------------------------------------------->
 <script type="text/javascript">
   function add_actividad() {
-   var nombre=document.getElementById("txtActividad").value;
-   var ubp_id_ubp=document.getElementById("cboUbp").value;
-   
+  	var ubp_id_ubp=document.getElementById("cboUbp").value;
+  	var nombre=document.getElementById("txtActividad").value;
+  	if(ubp_id_ubp==0  || nombre.trim()=="") {
+  		alert("Por favor seleccione un numero de ubp y escriba un nombre de la actividad");
+  	}else{
     document.getElementById("txtActividad").disabled = true;
      document.getElementById("btnAdd").disabled = true;
      /*Url estatica*/
@@ -116,6 +118,7 @@
                 url: url+"actividades/add",
                 data: "nombre="+nombre+"&ubp_id_ubp="+ubp_id_ubp,
                 success: function() {
+                	notie.alert({ type: 1, text: 'Correcto!', time: 2 });
                     $("#tablacontenidos").load(" #tablacontenidos");
                      document.getElementById("txtActividad").disabled = false;
                      document.getElementById("btnAdd").disabled = false;
@@ -125,33 +128,41 @@
                     alert("Status: " + textStatus);
                     alert("Error: " + errorThrown);
 
-                }
+            }
 }); 
-
+  	}
+  	
+  	
+   
 }
-
-function eliminarActividad(id){
-  e.preventDefault();
-  $.ajax({
+</script>
+<!--------------------eliminar actividad-------------------->
+<script type="text/javascript" charset="utf-8">
+	function eliminarActividad(id){
+		 var url=document.getElementById("url").value;
+ var r = confirm("¿Seguro desea eliminar la actividad?");
+  if (r == true) {
+  	  $.ajax({
       type: "POST",
-      url: url+"actividades/add",
-      data: "nombre="+nombre,
+      url: url+"actividades/eliminar",
+      data: "id_actividad_estrategica="+id,
       success: function() {
-          $("#tablacontenidos").load(" #tablacontenidos");
-           document.getElementById("txtActividad").disabled = false;
-           document.getElementById("btnAdd").disabled = false;
-            document.getElementById("txtActividad").value = "";
+      	notie.alert({ type: 1, text: 'Correcto!', time: 2 });
+           $("#tablacontenidos").load(" #tablacontenidos");
       },
       error: function(XMLHttpRequest, textStatus, errorThrown) {
           alert("Status: " + textStatus);
           alert("Error: " + errorThrown);
-
       }
-  }); 
+  });
+    
+  } else {
+    
+  }
+
+ 
 }
-
 </script>
-
 <!--------------------seleccionar el ubp --------------------->
 <input type="text" value="<?=base_url();?>" id="url" style="visibility: hidden">
 <script type="text/javascript">
@@ -197,6 +208,11 @@ function busquedaubp(){
                 }
                 }); 
 }
+</script>
+<script>
+	function removerubpindex(){
+		$("#cboUbp option[value='0']").remove();
+	}
 </script>
 
 <!--Footer Begins-->

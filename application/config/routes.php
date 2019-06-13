@@ -100,6 +100,8 @@ $route['actividadess'] = 'control_generico/example';
 $route['actividades/editar/(:any)'] = 'control_generico/editar_actividad/';
 //=================sirve para actulizar la actividad===============//
 $route['actividades/actualizar'] = 'control_generico/actualizar_actividad/';
+//=================sirve para eliminar la actividad===============//
+$route['actividades/eliminar'] = 'control_generico/eliminaractividad/';
 //=============================sirve para recuperar la informacion de la actividad
 $route['actividades/recupera_actividad/(:any)'] = 'control_generico/mostardatosactividad';
 $route['actividades/recupera_combox/(:any)'] = 'control_generico/mostarcomboactividad';
