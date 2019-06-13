@@ -370,8 +370,12 @@ function busquedanombrefuente(){
 function actualizar_monto(){
     var MontoPropio=document.getElementById("txtMontoPropio").value;
     var MontoOtras=document.getElementById("txtMontoOtras").value;
-    if(MontoPropio==""  || MontoOtras==""){
-
+    if(MontoPropio<0  || MontoOtras<0){
+			if(MontoPropio<0){
+				document.getElementById("txtMontoPropio").value=0;
+			}else{
+				document.getElementById("txtMontoOtras").value=0;
+			}
     }else{
            var montototal=parseFloat(MontoPropio)+parseFloat(MontoOtras);
        // document.getElementById("txtMontototal").value; 
