@@ -107,14 +107,14 @@ if(isset($_POST['id_actividad_estrategica'])){
 
 $id_actividad_estrategica = $this->input->post('id_actividad_estrategica');
 $Nombre = $this->input->post('Nombre');
-$objetivo_general = $this->input->post('objetivo_general');
-$descripcion = $this->input->post('descripcion');
+$objetivo_general = trim($this->input->post('objetivo_general'));
+$descripcion = trim($this->input->post('descripcion'));
 $monto_propio = $this->input->post('monto_propio');
 $monto_otro = $this->input->post('monto_otro');
 $fecha_inicio = $this->input->post('fecha_inicio');
 $fecha_fin = $this->input->post('fecha_fin');
-$elaboro = $this->input->post('elaboro');
-$autorizo = $this->input->post('autorizo');
+$elaboro = trim($this->input->post('elaboro'));
+$autorizo = trim($this->input->post('autorizo'));
 $cat_lineaaccion_ped_lineaaccionid = $this->input->post('cat_lineaaccion_ped_lineaaccionid');
 $ubp_id_ubp = $this->input->post('ubp_id_ubp');
 $poblacion_objetivo_id_poblacion = $this->input->post('poblacion_objetivo_id_poblacion');
@@ -185,21 +185,21 @@ public function editar_entregables(){
 			$origen_fuente_id_origen = $this->input->post('origen_fuente_id_origen');
 			$fuente_financiamiento_id_ff= $this->input->post('fuente_financiamiento_id_ff');
 			    $data = array(
-	        'id_actividad_estrategica' => $id_actividad_estrategica,
-	       'Nombre' => $Nombre,
-	        'objetivo_general' => $objetivo_general,
-	        'descripcion' => $descripcion,
-	        'monto_propio' => $monto_propio,
-	        'monto_otro' => $monto_otro,
-	        'fecha_inicio' => $fecha_inicio,
-	        'fecha_fin' => $fecha_fin,
-	        'elaboro' => $elaboro,
-	        'autorizo' => $autorizo,
-	        'cat_lineaaccion_ped_lineaaccionid' => $cat_lineaaccion_ped_lineaaccionid,
-	        'ubp_id_ubp' => $ubp_id_ubp,
-	        'poblacion_objetivo_id_poblacion' => $poblacion_objetivo_id_poblacion,
-	        'origen_fuente_id_origen' => $origen_fuente_id_origen,
-	        'fuente_financiamiento_id_ff'=>$fuente_financiamiento_id_ff
+		        'id_actividad_estrategica' => $id_actividad_estrategica,
+		       	'Nombre' => trim($Nombre),
+		        'objetivo_general' => $objetivo_general,
+		        'descripcion' => $descripcion,
+		        'monto_propio' => $monto_propio,
+		        'monto_otro' => $monto_otro,
+		        'fecha_inicio' => $fecha_inicio,
+		        'fecha_fin' => $fecha_fin,
+		        'elaboro' => $elaboro,
+		        'autorizo' => $autorizo,
+		        'cat_lineaaccion_ped_lineaaccionid' => $cat_lineaaccion_ped_lineaaccionid,
+		        'ubp_id_ubp' => $ubp_id_ubp,
+		        'poblacion_objetivo_id_poblacion' => $poblacion_objetivo_id_poblacion,
+		        'origen_fuente_id_origen' => $origen_fuente_id_origen,
+		        'fuente_financiamiento_id_ff'=>$fuente_financiamiento_id_ff
 	        );
 			$this->Modelo_actividad->actualizaractividad($data,$id_actividad_estrategica);
 	}
@@ -243,13 +243,13 @@ public function editar_entregables(){
 		$html.='</select>
 			</td>
 			<td>
-			<input name="meta_'.$id_entregable.'" id="meta_'.$datos['id_entregables'].'" type="number" step="any" class="form-control" value="'.$datos['meta_Anual'].'">
+			<input name="meta_'.$id_entregable.'" id="meta_'.$datos['id_entregables'].'" type="number" min="1" max="99999999999999" maxlength="11" onKeyPress="return soloNumeros(event,\'decNO\');"  class="form-control" value="'.$datos['meta_Anual'].'">
 			</td>
 			<td>
-			<input name="avance_'.$id_entregable.'" id="avance_'.$datos['id_entregables'].' "type="number" min="1" max="100" class="form-control"  value="'.$datos['avace_acumulado'].'">
+			<input name="avance_'.$id_entregable.'" id="avance_'.$datos['id_entregables'].' "type="text" maxlength="11" onKeyPress="return soloNumeros(event,\'decNO\');" class="form-control"  value="'.$datos['avace_acumulado'].'">
 			</td>
 			<td>
-			<input name="monto_'.$id_entregable.'" id="monto_'.$datos['id_entregables'].' "type="number" class="form-control"  value="'.$datos['monto_ejercido'].'">
+			<input name="monto_'.$id_entregable.'" id="monto_'.$datos['id_entregables'].' "type="text" maxlength="19" onKeyPress="return soloNumeros(event,\'decOK\');" class="form-control"  value="'.$datos['monto_ejercido'].'">
 			</td>
 			<td>
 			<input type="button" class="btn btn-dark" value="Eliminar" onclick="desactivar_entregable('.$datos['id_entregables'].');">

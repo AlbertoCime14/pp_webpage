@@ -165,7 +165,8 @@
                   notie.alert({ type: 1, text: 'Correcto!', time: 2 });
                 }
                 else{
-                  alert("sin cambios en el compromiso y en el componente");
+                  notie.alert({ type: 1, text: 'Correcto!', time: 2 });
+                  //alert("sin cambios en el compromiso y en el componente");
                 }
                 
               }
@@ -173,7 +174,7 @@
             });
           }
           else{
-            alert ("error");
+            //alert ("error");
           }
           
         }

@@ -250,6 +250,9 @@ echo '</td>';
       }
     });
   }
+  
+  var isIE = document.all?true:false;
+  var isNS = document.layers?true:false;
   function soloNumeros(e,decReq) {
       var key = (isIE) ? event.keyCode : e.which;
       var obj = (isIE) ? event.srcElement : e.target;
