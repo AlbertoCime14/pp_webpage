@@ -515,6 +515,13 @@ function actualizaractividad(){
   var url=document.getElementById("url").value;
 /** id de la actividad modificando**/
 var txtActividadId=document.getElementById('txtActividadId').value;
+
+/*** Sive para poner el nombre de la actividad estrategica****/
+var Nombre=document.getElementById('txtNombreactividad').value;
+/**Sirve para obtener el objetivo general de la actividad***/
+var objetivo_general=document.getElementById('txtObjetivo').value;
+/*****Sirve para obtener la descripcion de la actividad*********/
+var descripcion=document.getElementById('txtDescripcion').value;
 /** id Lineas de accion**/
 var cboLineaacion=document.getElementById('cboLineaacion').value;
 /** id UBP**/
@@ -534,17 +541,16 @@ var txtFechaInicio=document.getElementById('txtFechaInicio').value;
 /** Para sacar la fecha de fin**/
 var txtFechafin=document.getElementById('txtFechafin').value;
 
+/*** Sive para poner el nombre de la actividad estrategica****/
+
 //===============================Campos utilizables cuando se requieran===================//
-var Nombre="example";
-var objetivo_general="example";
-var descripcion="example";
 var elaboro="example";
 var autorizo="example";
 
 //===========================llamada  de ajax paara actualizar los datos===============//
 /******** Datos de la actualizacion  *********/
-//var datos="id_actividad_estrategica="+txtActividadId+"&Nombre="+Nombre+"&objetivo_general="+objetivo_general+"&descripcion="+descripcion+"&monto_propio="+txtMontoPropio+"&monto_otro="+txtMontoOtras+"&fecha_inicio="+txtFechaInicio+"&fecha_fin="+txtFechafin+"&elaboro="+elaboro+"&autorizo="+autorizo+"&cat_lineaaccion_ped_lineaaccionid="+cboLineaacion+"&ubp_id_ubp="+cboUbp+"&poblacion_objetivo_id_poblacion="+cobPoblacion+"&origen_fuente_id_origen="+cbofuente+"&fuente_financiamiento_id_ff="+nombrefuente;
-  var datos="id_actividad_estrategica="+txtActividadId+"&objetivo_general="+objetivo_general+"&descripcion="+descripcion+"&monto_propio="+txtMontoPropio+"&monto_otro="+txtMontoOtras+"&fecha_inicio="+txtFechaInicio+"&fecha_fin="+txtFechafin+"&elaboro="+elaboro+"&autorizo="+autorizo+"&cat_lineaaccion_ped_lineaaccionid="+cboLineaacion+"&ubp_id_ubp="+cboUbp+"&poblacion_objetivo_id_poblacion="+cobPoblacion+"&origen_fuente_id_origen="+cbofuente+"&fuente_financiamiento_id_ff="+nombrefuente;
+var datos="id_actividad_estrategica="+txtActividadId+"&Nombre="+Nombre+"&objetivo_general="+objetivo_general+"&descripcion="+descripcion+"&monto_propio="+txtMontoPropio+"&monto_otro="+txtMontoOtras+"&fecha_inicio="+txtFechaInicio+"&fecha_fin="+txtFechafin+"&elaboro="+elaboro+"&autorizo="+autorizo+"&cat_lineaaccion_ped_lineaaccionid="+cboLineaacion+"&ubp_id_ubp="+cboUbp+"&poblacion_objetivo_id_poblacion="+cobPoblacion+"&origen_fuente_id_origen="+cbofuente+"&fuente_financiamiento_id_ff="+nombrefuente;
+ // var datos="id_actividad_estrategica="+txtActividadId+"&objetivo_general="+objetivo_general+"&descripcion="+descripcion+"&monto_propio="+txtMontoPropio+"&monto_otro="+txtMontoOtras+"&fecha_inicio="+txtFechaInicio+"&fecha_fin="+txtFechafin+"&elaboro="+elaboro+"&autorizo="+autorizo+"&cat_lineaaccion_ped_lineaaccionid="+cboLineaacion+"&ubp_id_ubp="+cboUbp+"&poblacion_objetivo_id_poblacion="+cobPoblacion+"&origen_fuente_id_origen="+cbofuente+"&fuente_financiamiento_id_ff="+nombrefuente;
      $.ajax({         
           type: "POST",
           url: url+"actividades/actualizar",
@@ -577,7 +583,15 @@ var autorizo="example";
                 success: function(data) { 
                 var value=0;
                       JSON.parse(data, function (k, v) {
-                   
+                     if(k=='Nombre'){
+                           document.getElementById('txtNombreactividad').value=v;
+                      }else{} 
+                      if(k=='objetivo_general'){
+                           document.getElementById('txtObjetivo').value=v;
+                      }else{} 
+                       if(k=='descripcion'){
+                           document.getElementById('txtDescripcion').value=v;
+                      }else{} 
                       if(k=='monto_propio'){
                            document.getElementById('txtMontoPropio').value=v;
                       }else{}  

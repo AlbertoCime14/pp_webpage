@@ -8,7 +8,12 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <!--Buscador-->
-         Actividad : Mejorar la calidad
+        <div class="form-group row">
+        	<div class="col-xs-12">
+        	  <label  class="col-xs-3 form-label">Actividad: </label>
+        	  <input id="txtNombreactividad" class="col-xs-3 form-control"/>
+        	  </div>
+        </div>
     </div>
     <div class="panel-body">
       <!--Tabla de contenidos-->
@@ -70,6 +75,29 @@
   </section>
     </div>
   </div>
+  
+  <!---Panel de objetivo y descripcion----->
+    <div class="panel panel-default">
+    <div class="panel-heading">Objetivo general</div>
+    <div class="panel-body">
+    	<section>
+    		<textarea id="txtObjetivo" maxlength="300" class="form-control"></textarea>
+    	</section>
+    </div>
+  </div>
+  
+  <!------descripcion----->
+  <div class="panel panel-default">
+    <div class="panel-heading">Descripción</div>
+    <div class="panel-body">
+    	<section>
+    		<textarea id="txtDescripcion" maxlength="300" class="form-control"></textarea>
+    	</section>
+    </div>
+  </div>
+
+
+<!----Modulo monetario---------->
     <div class="panel panel-default">
     <div class="panel-heading">
       <!--Buscador-->

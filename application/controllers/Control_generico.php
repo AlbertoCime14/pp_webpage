@@ -120,7 +120,6 @@ $poblacion_objetivo_id_poblacion = $this->input->post('poblacion_objetivo_id_pob
 $origen_fuente_id_origen = $this->input->post('origen_fuente_id_origen');
 $fuente_financiamiento_id_ff= $this->input->post('fuente_financiamiento_id_ff');
 	$data = array(
-'id_actividad_estrategica' => $id_actividad_estrategica,
 'Nombre' => $Nombre,
 'objetivo_general' => $objetivo_general,
 'descripcion' => $descripcion,
