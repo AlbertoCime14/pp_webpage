@@ -29,11 +29,11 @@ class Control_alineacion_entregable extends CI_Controller {
 			$data['entregables_id_entregables'] = $_POST['key'];
 			$data['compromisos_id_compromiso'] = $_POST['compromiso'];
 			$data['componente_id_componente'] = $_POST['componente'];
-			$query = $this->M_alineacion_entregable->dataQuery($_POST['key'])[0];
-			if(!isset($query->id_alineacion)){
+			$query = $this->M_alineacion_entregable->dataQuery($_POST['key']);
+			if(!isset($query[0]->id_alineacion)){
 				$response = $this->M_alineacion_entregable->dataEntry($data);
 			}else{
-				$response = $this->M_alineacion_entregable->updateRecord($query->id_alineacion, $data);
+				$response = $this->M_alineacion_entregable->updateRecord($query[0]->id_alineacion, $data);
 			}
 			echo $response;
 		}
