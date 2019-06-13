@@ -133,64 +133,81 @@
     });
   }
          function alinear_entregable(array){
-          if (array >1) {
+          
             var keys = array.split('.');
             $.each( keys, function( key, value ) {
                 //alert( key + ": " + value );
                 dataEntry(value);
             });
             updateActividad();
-          } else {
-            alert("Error");
           }
-         
-        }
+        
       
       
         function dataEntry(id){
           var url=document.getElementById("url").value;
           var formData = new FormData();
           formData.append('key', $("#entregable"+id).val());
-          formData.append('compromiso', $("#compromiso"+id).val());
-          formData.append('componente', $("#componente"+id).val());
-          $.ajax({
-            url: url+'alineacion/guardar',
-            data: formData,
-            type: 'post',
-            processData: false,
-            contentType: false,
-            dataType: 'json',
-            success: function(json){
-              if(json > 0){
-                notie.alert({ type: 1, text: 'Correcto!', time: 2 });
-              }else{
-                console.log('error');
+          var compromiso = $("#compromiso"+id).val();
+          var componente=$("#componente"+id).val();
+          formData.append('compromiso', compromiso);
+          formData.append('componente', componente);
+          if(compromiso >0 && componente >0){
+            $.ajax({
+              url: url+'alineacion/guardar',
+              data: formData,
+              type: 'post',
+              processData: false,
+              contentType: false,
+              dataType: 'json',
+              success: function(json){
+                if(json > 0){
+                  notie.alert({ type: 1, text: 'Correcto!', time: 2 });
+                }
+                else{
+                  alert("sin cambios en el compromiso y en el componente");
+                }
+                
               }
-            }
-          });
+              
+            });
+          }
+          else{
+            alert ("error");
+          }
+          
         }
         function updateActividad(){
           var url=document.getElementById("url").value;
           var formData = new FormData();
           formData.append('key', $("#key").val());
-          formData.append('elaboro', $("#elaboro").val());
-          formData.append('autorizo', $("#autorizo").val());
-          $.ajax({
-            url: url+'alineacion/autorizo',
-            data: formData,
-            type: 'post',
-            processData: false,
-            contentType: false,
-            dataType: 'json',
-            success: function(json){
-              if(json > 0){
-                notie.alert({ type: 1, text: 'Correcto!', time: 2 });
-              }else{
-                console.log('error');
+          var autorizo=$("#autorizo").val().trim();
+          var elaboro=$("#elaboro").val().trim();
+          formData.append('elaboro', elaboro);
+          formData.append('autorizo',autorizo );
+
+          if(autorizo != "" && elaboro !=""){
+            $.ajax({
+              url: url+'alineacion/autorizo',
+              data: formData,
+              type: 'post',
+              processData: false,
+              contentType: false,
+              dataType: 'json',
+              success: function(json){
+                if(json > 0){
+                  notie.alert({ type: 1, text: 'Correcto!', time: 2 });
+                }else{
+                  console.log('sin cambios en el elaboro y autorizo');
+                }
+                
               }
-              
-            }
-          });
+            });
+          }else{
+            alert("Los campos ELABORO Y AUTORIZO no pueden quedar vacios ");
+          }
+
+         
         }
         function cargarAlineacion(){
           var url=document.getElementById("url").value;
