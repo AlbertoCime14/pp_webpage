@@ -133,12 +133,17 @@
     });
   }
          function alinear_entregable(array){
-          var keys = array.split('.');
-          $.each( keys, function( key, value ) {
-              //alert( key + ": " + value );
-              dataEntry(value);
-          });
-          updateActividad();
+          if (array >1) {
+            var keys = array.split('.');
+            $.each( keys, function( key, value ) {
+                //alert( key + ": " + value );
+                dataEntry(value);
+            });
+            updateActividad();
+          } else {
+            alert("Error");
+          }
+         
         }
       
       

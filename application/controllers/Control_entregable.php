@@ -63,7 +63,7 @@ class Control_entregable extends CI_Controller {
 		//$html='<form  id="formulario_'.$datos['id_entregables'].'" >';
 		$html = '<tr id="'.$num_entregables.'">
 		<td><input type="hidden" name="id'.$num_entregables.'" id="id'.$num_entregables.'" value="'.$datos['id_entregables'].'">
-		<input name="nombre'.$id_entregable.'" type="text" id="nombre_'.$datos['id_entregables'].'" class="form-control" value="'.$datos['nombre'].'"></td>
+		<input name="nombre'.$id_entregable.'" type="text" id="nombre_'.$datos['id_entregables'].'" class="form-control" value="'.$datos['nombre'].'" required></td>
 		<td>'.$this->selector_unidad(0,$id_entregable).'</td>';
 		
 		/*foreach ($unidad as $u){
@@ -93,10 +93,10 @@ class Control_entregable extends CI_Controller {
 			</select>
 			</td>
 			<td>
-			<input name="meta_'.$id_entregable.'" id="meta_'.$datos['id_entregables'].'" type="number" step="any" class="form-control">
+			<input name="meta_'.$id_entregable.'" id="meta_'.$datos['id_entregables'].'" type="text" min="1" max="100000000000000000" class="form-control" >
 			</td>
 			<td>
-			<input name="avance_'.$id_entregable.'" id="avance_'.$datos['id_entregables'].' "type="number" min="1" max="100" class="form-control">
+			<input name="avance_'.$id_entregable.'" id="avance_'.$datos['id_entregables'].' "type="number"  class="form-control">
 			</td>
 			<td>
 			<input name="monto_'.$id_entregable.'" id="monto_'.$datos['id_entregables'].' "type="number" class="form-control">
@@ -130,7 +130,7 @@ class Control_entregable extends CI_Controller {
 		for($i=0; $i<$num; $i++)	
 		{
 			$id=$this->input->post('id'.$i);
-			if(isset($_POST['nombre']))$datos['nombre']=$this->input->post('nombre'.$id);
+			$datos['nombre']=$this->input->post('nombre'.$id);
 			$datos['Unidad_medida_id_unidad']=$this->input->post('cbo_unidad'.$id);
 			$datos['temporalidad_id_temp']=$this->input->post('cbo_periodicidad_'.$id);
 			$datos['mismo_benef']= $this->input->post('beneficiario_'.$id);

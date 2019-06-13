@@ -250,4 +250,14 @@ echo '</td>';
       }
     });
   }
+  function soloNumeros(e,decReq) {
+      var key = (isIE) ? event.keyCode : e.which;
+      var obj = (isIE) ? event.srcElement : e.target;
+      var isNum = (key > 47 && key < 58) ? true : false;
+      var dotOK = (key==46 && decReq=='decOK' && (obj.value.indexOf(".")<0 || obj.value.length==0)) ? true:false;
+      var isDel = (key==0 || key==8 ) ? true:false;
+      var isEnter = (key==13) ? true:false;
+      //e.which = (!isNum && !dotOK && isNS) ? 0 : key;
+      return (isNum || dotOK || isDel || isEnter);
+}
 </script>
