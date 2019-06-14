@@ -552,7 +552,9 @@ var nombrefuente=document.getElementById('nombrefuente').value;
 /** Sacar el monto propio**/
 //var txtMontoPropio=document.getElementById('txtMontoPropio').value;
 /** Sacarl el monto de otras fuentes**/
+/**
 var txtMontoOtras=document.getElementById('txtMontoOtras').value;
+**/
 /** Para sacar la fecha de inicio**/
 var txtFechaInicio=document.getElementById('txtFechaInicio').value;
 /** Para sacar la fecha de fin**/
@@ -573,7 +575,7 @@ var datos="id_actividad_estrategica="+txtActividadId+"&Nombre="+Nombre+"&objetiv
           url: url+"actividades/actualizar",
           data: datos,
                 success: function(data) {  
-                alert(datos);       
+
     //=========================================//
     notie.alert({ type: 1, text: 'Correcto!', time: 2 });
     //setTimeout(function(){ location.href = url+"actividades"; }, 1000);
