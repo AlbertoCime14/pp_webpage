@@ -200,6 +200,7 @@ public function editar_entregables(){
 	
 	public function fila_entregable($id_entregable,$num_entregables){
 	
+		$url=base_url();
 		$model = new M_entregable();		
 		
 		$datos = $model->listar_entregable($id_entregable);
@@ -223,7 +224,7 @@ public function editar_entregables(){
 		$html .=	'</select>
 			</td>
 			<td>
-				<select name="munizipable_'.$id_entregable.'" id="munizipable_'.$datos['id_entregables'].'" class="form-control">';
+				<select name="munizipable_'.$id_entregable.'" id="munizipable_'.$datos['id_entregables'].'" class="form-control" onchange="myFunction('.$datos['id_entregables'].')">';
 		$html.=	($datos['municipalizable'] == 1) ? '<option value="1" selected>Si</option>':'<option value="1">Si</option>';
 		$html.=	($datos['municipalizable'] == 0) ? '<option value="0" selected>No</option>':'<option value="0">No</option>';
 		$html.=	'</select>
@@ -244,9 +245,14 @@ public function editar_entregables(){
 			<input name="monto_'.$id_entregable.'" id="monto_'.$datos['id_entregables'].' "type="text" maxlength="19" onKeyPress="return soloNumeros(event,\'decOK\');" class="form-control"  value="'.$datos['monto_ejercido'].'" required>
 			</td>
 			<td>
-			<input type="button" class="btn btn-dark" value="Eliminar" onclick="desactivar_entregable('.$datos['id_entregables'].');">
-			</td>
+			<input type="button" class="btn btn-danger" value="Eliminar" onclick="desactivar_entregable('.$datos['id_entregables'].');" style="font-size:11px;">
 			
+			</td>
+			<td>
+			<a 	 href="'.$url.'municipalizacion/editar" >
+			      <input type="button" class="btn btn-black" value="Munizipalización" style="font-size:11px;">
+			</a>
+			</td>
 			</tr>';
 		//$html.='</form>';
 
@@ -298,7 +304,7 @@ public function editar_entregables(){
    
 		//////////////////////////////////////////////////////////////////////////////////////
    
-		print_r($data3);
+		var_dump($data2);
    
 		$ej = '';
 		$te = '';
@@ -376,5 +382,11 @@ public function editar_entregables(){
    
 		/////////////////////////////////////////////////////////////////////////////////////
    }
+   public function municipalizacion(){
+	$this->load->view('masterpage/head');
+	$this->load->view('municipalizacion');
+	$this->load->view('masterpage/footer');
+   }
+   
 	
 }

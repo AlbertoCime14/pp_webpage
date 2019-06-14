@@ -38,7 +38,7 @@
     <div class="panel-body">
       <!--Tabla de contenidos-->
       <form name="frmentregables" id="frmentregables" onsubmit="guardar(this,event);">
-      <table class="table table-striped" id="tablacontenidos">
+      <table class="table table-striped" id="tablacontenidos" >
   <thead>
     <tr>
       <th scope="col">Nombre</th>
@@ -263,4 +263,25 @@ echo '</td>';
       //e.which = (!isNum && !dotOK && isNS) ? 0 : key;
       return (isNum || dotOK || isDel || isEnter);
 }
+function myFunction(id_entregable) {
+    var id_value = document.getElementById("alineacion_"+id_entregable).value;
+    
+    if(id_value== 1){
+    
+        //$("#munizipalizacion").click(function(){
+        $("#munizipalizacion").show();
+      //});
+      
+      
+    }
+    else{
+        //$("#munizipalizacion").click(function(){
+       
+        $("#munizipalizacion").css('display','none');
+    }
+      //document.getElementById("demo").innerHTML = "You selected: " + x;
+      
+    
+}
+
 </script>

@@ -52,7 +52,7 @@ class Control_entregable extends CI_Controller {
 		$num_entregables = $this->input->post('numEntregables');
 		$id_actividad = $this->input->post('id_Actividad');
 		$id_entregable = $model->agregar_entregable($nombre,$id_actividad);
-		
+		$url=base_url();
 		$datos = $model->listar_entregable($id_entregable);
 	
 		$query = $model->recuperar_periodicidad();
@@ -81,7 +81,7 @@ class Control_entregable extends CI_Controller {
 			</select>
 			</td>
 			<td>
-				<select name="munizipable_'.$id_entregable.'" id="munizipable_'.$datos['id_entregables'].'" class="form-control">
+				<select name="munizipable_'.$id_entregable.'" id="munizipable_'.$datos['id_entregables'].'" class="form-control" onchange="myFunction('.$datos['id_entregables'].')">
 					<option value="1" selected>Si</option>
 					<option value="0">No</option>
 			</select>
@@ -104,7 +104,12 @@ class Control_entregable extends CI_Controller {
 			maxlength="19" onKeyPress="return soloNumeros(event,\'decOK\');" class="form-control" required>
 			</td>
 			<td>
-			<input type="button" class="btn btn-dark" value="Eliminar" onclick="desactivar_entregable('.$datos['id_entregables'].');">
+			<input type="button" class="btn btn-danger" value="Eliminar" onclick="desactivar_entregable('.$datos['id_entregables'].');" style="font-size:11px;">
+			</td>
+			<td>
+			<a 	 href="'.$url.'municipalizacion/editar" >
+				<input type="button" class="btn btn-black" value="Munizipalización" style="font-size:11px;">
+			</a>
 			</td>
 			</tr>';
 		//$html.='</form>';
