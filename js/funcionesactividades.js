@@ -719,47 +719,42 @@ var datos="id_actividad_estrategica="+txtActividadId+"&Nombre="+Nombre+"&objetiv
  actulizartabla();   
 })();
 function actulizartabla() {
-	var montotals=0;
-            $("#tbodyid").empty();
-     var url=document.getElementById("url").value;
-     var txtActividadId=document.getElementById('txtActividadId').value;
-             $.ajax({         
-                type: "GET",
-                url: url+"actividades/fuentesfinanciamiento/"+txtActividadId,
-                data: "ok=ok",
-                success: function(data) { 
+	 $("#tbodyid").empty();
+   var montotals=0;
+   var url=document.getElementById("url").value;
+   var txtActividadId=document.getElementById('txtActividadId').value;
+           $.ajax({         
+              type: "GET",
+              url: url+"actividades/fuentesfinanciamiento/"+txtActividadId,
+              data: "ok=ok",
+              success: function(data) { 
+                //document.getElementById('txtMontototal').value = montotals;
                 var nombre="";
                 var id=0;
-                 
-                      JSON.parse(data, function (k, v) {
-                      	if(k=='id_actividad_fuente'){
-                      		
-            					id=v;                      
-                      }else{
-                      	
-                      } 
-                           	if(k=='nombre_ff'){
-                       nombre=v;                      
-                      }else{} 
-                          	if(k=='monto'){
-                        montotals=montotals+parseFloat(v);
-                   tablafinal='<tr>'+'<td>'+nombre+'</td>'+'<td>'+v+'</td>'+'<td>'+'<input type="submit" class="btn btn-dark" value="Eliminar" onclick=eliminarfuenteff('+id+') />'+'</td>'+'</tr>';
-                            $('#tablamonto tbody').append(tablafinal); 
-                            
-                            document.getElementById('txtMontototal').value='$ '+montotals;
-                                                           
-                      }else{
-                      	
-                      } 
-                   });  
-                  
-                },
-                error: function(XMLHttpRequest, textStatus, errorThrown) {
-                    alert("Status: " + textStatus);
-                    alert("Error: " + errorThrown);
+                JSON.parse(data, function (k, v) {
+                    	if(k=='id_actividad_fuente'){
+                        id=v;                      
+                      }
 
-           }
-      });
+                      if(k=='nombre_ff'){
+                        nombre=v;
+                      }
+                      
+                      if(k=='monto'){
+                        montotals=montotals+parseFloat(v);
+                        tablafinal='<tr>'+'<td>'+nombre+'</td>'+'<td>'+v+'</td>'+'<td>'+'<input type="submit" class="btn btn-dark" value="Eliminar" onclick=eliminarfuenteff('+id+') />'+'</td>'+'</tr>';
+                        $('#tablamonto tbody').append(tablafinal);
+                    } 
+                 }); 
+
+                document.getElementById('txtMontototal').value = montotals;
+              },
+              error: function(XMLHttpRequest, textStatus, errorThrown) {
+                  alert("Status: " + textStatus);
+                  alert("Error: " + errorThrown);
+
+         }
+    });
 }
 
 function agregarfuente(){
