@@ -565,16 +565,17 @@ var autorizo="example";
 
 //===========================llamada  de ajax paara actualizar los datos===============//
 /******** Datos de la actualizacion  *********/
-var datos="id_actividad_estrategica="+txtActividadId+"&Nombre="+Nombre+"&objetivo_general="+objetivo_general+"&descripcion="+descripcion+"&monto_propio="+txtMontoPropio+"&monto_otro="+txtMontoOtras+"&fecha_inicio="+txtFechaInicio+"&fecha_fin="+txtFechafin+"&elaboro="+elaboro+"&autorizo="+autorizo+"&cat_lineaaccion_ped_lineaaccionid="+cboLineaacion+"&ubp_id_ubp="+cboUbp+"&poblacion_objetivo_id_poblacion="+cobPoblacion+"&origen_fuente_id_origen="+cbofuente+"&fuente_financiamiento_id_ff="+nombrefuente;
+var datos="id_actividad_estrategica="+txtActividadId+"&Nombre="+Nombre+"&objetivo_general="+objetivo_general+"&descripcion="+descripcion+"+&fecha_inicio="+txtFechaInicio+"&fecha_fin="+txtFechafin+"&elaboro="+elaboro+"&autorizo="+autorizo+"&cat_lineaaccion_ped_lineaaccionid="+cboLineaacion+"&ubp_id_ubp="+cboUbp+"&poblacion_objetivo_id_poblacion="+cobPoblacion+"&origen_fuente_id_origen="+cbofuente+"&fuente_financiamiento_id_ff="+nombrefuente;
  // var datos="id_actividad_estrategica="+txtActividadId+"&objetivo_general="+objetivo_general+"&descripcion="+descripcion+"&monto_propio="+txtMontoPropio+"&monto_otro="+txtMontoOtras+"&fecha_inicio="+txtFechaInicio+"&fecha_fin="+txtFechafin+"&elaboro="+elaboro+"&autorizo="+autorizo+"&cat_lineaaccion_ped_lineaaccionid="+cboLineaacion+"&ubp_id_ubp="+cboUbp+"&poblacion_objetivo_id_poblacion="+cobPoblacion+"&origen_fuente_id_origen="+cbofuente+"&fuente_financiamiento_id_ff="+nombrefuente;
      $.ajax({         
           type: "POST",
           url: url+"actividades/actualizar",
           data: datos,
-                success: function(data) {         
+                success: function(data) {  
+                alert(datos);       
     //=========================================//
     notie.alert({ type: 1, text: 'Correcto!', time: 2 });
-    setTimeout(function(){ location.href = url+"actividades"; }, 1000);
+    //setTimeout(function(){ location.href = url+"actividades"; }, 1000);
             },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
                     alert("Status: " + textStatus);
@@ -628,12 +629,16 @@ var datos="id_actividad_estrategica="+txtActividadId+"&Nombre="+Nombre+"&objetiv
                     if(k=='poblacion_objetivo_id_poblacion'){
                    $('#cobPoblacion option[value='+v+']').attr("selected", true);
                       }else{}
+                      /**recupera la fuente**/
+                  
                      if(k=='origen_fuente_id_origen'){
                    $('#cbofuente option[value='+v+']').attr("selected", true);
                       }else{} 
+                     /** 
                      if(k=='fuente_financiamiento_id_ff'){
                    $('#nombrefuente option[value='+v+']').attr("selected", true);
                       }else{}  
+                     **/ 
                       //================si tiene algo el lineaaccionid realiza un subconsuta===============//
                           if(k=='cat_lineaaccion_ped_lineaaccionid'){
                   // $('#nombrefuente option[value='+v+']').attr("selected", true);
