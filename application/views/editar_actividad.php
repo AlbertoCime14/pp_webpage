@@ -117,7 +117,7 @@
   <label for="inputState7" class="col-xs-2 form-label">Nombre la fuente de financiamiento:</label>
   <div class="col-xs-3">
   <select id="nombrefuente" class="form-control">
-    <option selected>Seleccione...</option>
+    <option value="0" selected>Seleccione...</option>
   </select>
   
   
@@ -134,7 +134,7 @@
  </div>
         <label for="inputState7" class="col-xs-2 form-label">Monto de la fuente:</label>
   <div class="col-xs-3">
-  <input id="txtMontofuente" type="number" class="form-control" />
+  <input id="txtMontofuente" type="number" class="form-control" value=0 onclick="validarcantidad()" onkeydown="validarcantidad()"/>
       </section>
       <section>
          
@@ -170,7 +170,7 @@
     <tr>
       <th scope="col">Nombre de la fuente de financiamiento</th>
       <th scope="col">Cantidad</th>
-      <th scope="col" style="text-align: center;">Opciones</th>
+      <th scope="col" >Opciones</th>
     </tr>
   </thead>
   <tbody id="tbodyid">

@@ -719,7 +719,7 @@ var datos="id_actividad_estrategica="+txtActividadId+"&Nombre="+Nombre+"&objetiv
  actulizartabla();   
 })();
 function actulizartabla() {
-	
+	var montotals=0;
             $("#tbodyid").empty();
      var url=document.getElementById("url").value;
      var txtActividadId=document.getElementById('txtActividadId').value;
@@ -738,12 +738,14 @@ function actulizartabla() {
                        nombre=v;                      
                       }else{} 
                           	if(k=='monto'){
-                        
+                        montotals=montotals+parseFloat(v);
                    tablafinal='<tr>'+'<td>'+nombre+'</td>'+'<td>'+v+'</td>'+'<td>'+'<input type="submit" class="btn btn-dark" value="Eliminar" onclick=eliminarfuenteff('+id+') />'+'</td>'+'</tr>';
                             $('#tablamonto tbody').append(tablafinal); 
+                            document.getElementById('txtMontototal').value='$ '+montotals;
                                                            
                       }else{} 
                    });  
+                  
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
                     alert("Status: " + textStatus);
@@ -759,13 +761,19 @@ function agregarfuente(){
 	var idfuente=document.getElementById('nombrefuente').value;
 	var monto=document.getElementById('txtMontofuente').value;
 	var url=document.getElementById("url").value;
-	        $.ajax({         
+	if(idfuente==0 || monto<=0){
+		notie.alert({ type: 3, text: 'Error verifica tus datos por favor!', time: 2 });
+	}else{
+		
+		        $.ajax({         
                 type: "POST",
                 url: url+"actividades/agregarfuente",
                 data: "id_actividad="+txtActividadId+"&id_fuente="+idfuente+"&monto="+monto,
                 success: function(data) { 
        				 notie.alert({ type: 1, text: 'Fuente agregada!', time: 2 });
-       				 setTimeout(function(){  
+       				 setTimeout(function(){ 
+       				 	   $("#cobPoblacion option[value='0']").attr("selected", true);
+       				 	   document.getElementById('txtMontofuente').value=0;
        				 	actulizartabla(); }, 500);
        				
                 },
@@ -775,6 +783,7 @@ function agregarfuente(){
 
            }
       });
+	}
 	
 					
 }
@@ -802,6 +811,14 @@ if (r == true) {
 }
 }
 
+function validarcantidad(){
+	var cantidadmonto=document.getElementById('txtMontofuente').value;
+	if(cantidadmonto<0){
+		document.getElementById('txtMontofuente').value=0;
+	}else{
+		
+	}
+}
 /*****
  *
  * $this->db->where('id', $id);
