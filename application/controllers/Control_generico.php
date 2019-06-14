@@ -29,6 +29,8 @@ class Control_generico extends CI_Controller {
 		$this->load->model('M_entregable');
 		$this->load->model('M_unidad_medida');
 		$this->load->model('M_alineacion_entregable');
+		//$this->load->library('excel');
+		$this->load->model('modelo_reporte');
 		//$this->load->library('session');
 	}
 
@@ -294,5 +296,95 @@ public function editar_entregables(){
 
 		return $html;
 	}
+	public function generarreporte(){
+		$id = $_REQUEST['id'];
+		$data = $this->modelo_reporte->loadrepop1($id);
+		$data2 = $this->modelo_reporte->recuperarcombobox($id);
+		$data3 = $this->modelo_reporte->entregables($id);
+   
+		/////////////////////////////FREAGMENTO ARRIBA//////////////////////////////////////// 
+   
+   
+   
+		//////////////////////////////////////////////////////////////////////////////////////
+   
+		print_r($data3);
+   
+		$ej = '';
+		$te = '';
+	   
+		$nombreactividad = '';
+		$objetivogeneral = '';
+		$descripcion = '';
+		$monto_propio ='';
+		$monto_otro = '';
+		$fecha_inicio= '';
+		$fecha_fin= '';
+		$monto_total = '';
+		$elaboro = '';
+		$autorizo = '';
+		$poblacion = '';
+		$origen= '';
+		$nombre_ff = '';
+		$numero_ubp = '';
+		$nombre_ubp = '';
+		$num_pp = '';
+		$nombre_pp = '';
+   
+		
+   
+					   
+		foreach($data as $dat){
+		   $nombreactividad = $dat['Nombre'];
+		   $objetivogeneral = $dat['objetivo_general'];
+		   $descripcion = $dat['descripcion'];
+		   $monto_propio = $dat['monto_propio'];
+		   $monto_otro = $dat['monto_otro'];
+		   $monto_total = $dat['monto_total'];
+		   $fecha_inicio= $dat['fecha_inicio'];
+		   $fecha_fin= $dat['fecha_fin'];
+		   $elaboro = $dat['elaboro'];
+		   $autorizo = $dat['autorizo'];
+			$poblacion = $dat['poblacion'];
+			 $origen = $dat['origen'];
+			 $nombre_ff = $dat['nombre_ff'];
+			 $numero_ubp = $dat['numero_ubp'];
+			 $nombre_ubp = $dat['nombre_ubp'];
+			 $num_pp = $dat['num_pp'];
+			$nombre_pp = $dat['nombre_pp'];
+		}
+   
+		/////////////////////////////FRAGMENTO MEDIO//////////////////////////////////////////
+   
+   
+		
+	   //////////////////////////////////////////////////////////////////////////////////////		
+   
+		foreach($data2 as $dat){
+		   $ej = $dat['eje'];
+		   $te = $dat['tema'];
+		   $obj = $dat['objetivo'];
+		   $estra = $dat['estrategia'];
+		   $linea = $dat['lineaaccion'];
+		   $ods = $dat['nombre_ods'];
+		   
+   
+		   //$reporte->getActiveSheet()->SetCellValue('B9', $ej);
+		   //$reporte->getActiveSheet()->SetCellValue('E9', $te);
+		   //$reporte->getActiveSheet()->SetCellValue('I9', $obj);
+		   //$reporte->getActiveSheet()->SetCellValue('B11', $estra);
+		   //$reporte->getActiveSheet()->SetCellValue('E11', $linea);
+		   //$reporte->getActiveSheet()->SetCellValue('I11', $ods);
+		}
+   
+   
+		
+   
+   
+		////////////////////////////FRAGMENTO ABAJO//////////////////////////////////////////
+   
+   
+		/////////////////////////////////////////////////////////////////////////////////////
+   }
 	
 }
