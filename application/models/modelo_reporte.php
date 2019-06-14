@@ -10,13 +10,11 @@ class modelo_reporte extends CI_Model {
     }
 
 
-    public function loadrepop1($id){
-        $this->db->select('act.Nombre, objetivo_general, descripcion, monto_propio, monto_otro, fecha_inicio,
-        fecha_fin, elaboro, autorizo, (monto_propio + monto_otro) as monto_total, pob.nombre as poblacion, orfu.nombre as origen, nombre_ff, numero_ubp, nombre_ubp, num_pp, nombre_pp');
+    public function actividad($id){
+        $this->db->select('act.Nombre, objetivo_general, descripcion, fecha_inicio, fecha_fin, elaboro, autorizo,
+        pob.nombre as poblacion, numero_ubp, nombre_ubp, num_pp, nombre_pp');
         $this->db->from('s0_actividad_estrategica as act'); 
         $this->db->join('s0_poblacion_objetivo as pob', 'poblacion_objetivo_id_poblacion = pob.id_poblacion');
-        $this->db->join('s0_origen_fuente as orfu', 'origen_fuente_id_origen = id_origen');
-        $this->db->join('s0_fuente_financiamiento as fufi', 'fuente_financiamiento_id_ff = id_ff');
         $this->db->join('s0_ubp as ubp', 'ubp_id_ubp = id_ubp');
         $this->db->join('s0_programa_presupuestal', 'programa_presupuestal_id_pp = id_pp');
         $this->db->where('id_actividad_estrategica',$id); 
@@ -27,16 +25,11 @@ class modelo_reporte extends CI_Model {
                     'Nombre'                             => $row->Nombre, 
                     'objetivo_general'                   => $row->objetivo_general, 
                     'descripcion'                        => $row->descripcion, 
-                    'monto_propio'                       => $row->monto_propio, 
-                    'monto_otro'                         => $row->monto_otro,
-                    'monto_total'                        => $row->monto_total,
                     'fecha_inicio'                       => $row->fecha_inicio, 
                     'fecha_fin'                          => $row->fecha_fin,  
                     'elaboro'                            => $row->elaboro, 
                     'autorizo'                           => $row->autorizo,
                     'poblacion'                          => $row->poblacion,
-                    'origen'                             => $row->origen,
-                    'nombre_ff'                          => $row->nombre_ff,
                     'numero_ubp'                         => $row->numero_ubp,
                     'nombre_ubp'                         => $row->nombre_ubp,
                     'num_pp'                             => $row->num_pp,
@@ -101,9 +94,59 @@ class modelo_reporte extends CI_Model {
     }
 
     public function compromiso($id){
-
+        $this->db->select('s0_entregables.nombre as nom_ent, numero_comrpromiso, nombre_compromiso, nombre_componente');
+        $this->db->from('s0_entregables');
+        $this->db->join('s0_actividad_estrategica', 'id_actividad_estrategica = actividad_estrategica_id_f2');
+        $this->db->join('s0_alineacion_entregable', 'id_entregables = entregables_id_entregables');
+        $this->db->join('s0_compromisos', 'id_compromiso = s0_alineacion_entregable.compromisos_id_compromiso');
+        $this->db->join('s0_componentes', 'id_compromiso = s0_componentes.compromisos_id_compromiso');
+        $this->db->where('s0_actividad_estrategica.id_actividad_estrategica', $id);
+        $query = $this->db->get();
+          
+              foreach ($query->result() as $row) {
+                $datos[] = [
+                    'nom_ent' => $row->nom_ent,
+                    'numero_comrpromiso' => $row->numero_comrpromiso,
+                    'nombre_compromiso' => $row->nombre_compromiso,
+                    'nombre_componente' => $row->nombre_componente
+                ];
+              }
+              return $datos;
     }
 
+    public function dependencia($id){
+        $this->db->select('nombre_dependencia, dependencia_abrev');
+        $this->db->from('s0_dependencia');
+        $this->db->join('s0_ubp', 'id_dependencia = dependencia_id_dependencia');
+        $this->db->join('s0_actividad_estrategica', 'id_ubp = ubp_id_ubp');
+        $this->db->where('id_actividad_estrategica', $id);
+
+        $query = $this->db->get();
+          
+              foreach ($query->result() as $row) {
+                 $datos[] = [
+                    'nombre_dependencia' => $row->nombre_dependencia,
+                    'dependencia_abrev' => $row->dependencia_abrev
+                 ];
+              }
+              return $datos;
+    }
+    public function fuente($id){
+        $this->db->select('nombre_ff, monto');
+        $this->db->from('s0_actividad_estrategica');
+        $this->db->join('s0_actividad_fuente', 'id_actividad_estrategica = id_actividad');
+        $this->db->join('s0_fuente_financiamiento', 'id_ff = id_fuente');
+        $this->db->where('id_actividad_estrategica', $id);
+
+         $query = $this->db->get();
+        foreach ($query->result() as $row) {
+            $datos[] = [
+                'nombre_ff' => $row->nombre_ff,
+                'monto' => $row->monto
+            ];
+          }
+          return $datos;
+    }
 
     public function eje($id){
         $this->db->select('eje');

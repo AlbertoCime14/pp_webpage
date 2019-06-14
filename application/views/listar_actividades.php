@@ -92,6 +92,7 @@
          </div>
   </div>
 </div>
+<a href="<?=base_url();?>Archivos/repo.xls" id='desc'></a>
 </section>
 <!--Aqui para poner las nuevas funciones-->
 <script src="<?=base_url();?>js/jquery-2.1.3.min.js"></script>
@@ -220,7 +221,7 @@ function imp(id){
   
   $.ajax({         
                 type: "GET",
-                url:"<?=base_url()?>index.php/Control_generico/generarreporte",
+                url:"<?=base_url()?>index.php/Control_reporte/gen",
                 data: 'id='+id,
                 success: function(data) {  
                   console.log(data);
