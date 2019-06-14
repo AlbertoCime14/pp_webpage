@@ -730,10 +730,14 @@ function actulizartabla() {
                 success: function(data) { 
                 var nombre="";
                 var id=0;
+                 
                       JSON.parse(data, function (k, v) {
                       	if(k=='id_actividad_fuente'){
+                      		
             					id=v;                      
-                      }else{} 
+                      }else{
+                      	
+                      } 
                            	if(k=='nombre_ff'){
                        nombre=v;                      
                       }else{} 
@@ -741,9 +745,12 @@ function actulizartabla() {
                         montotals=montotals+parseFloat(v);
                    tablafinal='<tr>'+'<td>'+nombre+'</td>'+'<td>'+v+'</td>'+'<td>'+'<input type="submit" class="btn btn-dark" value="Eliminar" onclick=eliminarfuenteff('+id+') />'+'</td>'+'</tr>';
                             $('#tablamonto tbody').append(tablafinal); 
+                            
                             document.getElementById('txtMontototal').value='$ '+montotals;
                                                            
-                      }else{} 
+                      }else{
+                      	
+                      } 
                    });  
                   
                 },
@@ -772,9 +779,11 @@ function agregarfuente(){
                 success: function(data) { 
        				 notie.alert({ type: 1, text: 'Fuente agregada!', time: 2 });
        				 setTimeout(function(){ 
-       				 	   $("#cobPoblacion option[value='0']").attr("selected", true);
+       				 	   $("#nombrefuente option[value='0']").attr("selected", true);
        				 	   document.getElementById('txtMontofuente').value=0;
-       				 	actulizartabla(); }, 500);
+       				 	actulizartabla(); 
+       				 	
+       				 	}, 0);
        				
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -789,6 +798,8 @@ function agregarfuente(){
 }
 
 function eliminarfuenteff(id){
+	
+	 
 	var url=document.getElementById("url").value;
 	var r = confirm('¿Seguro desea eliminar esta fuente de financiamiento?');
 if (r == true) {
@@ -798,7 +809,10 @@ if (r == true) {
                 data: "id_actividad_fuente="+id,
                 success: function(data) { 
        				 notie.alert({ type: 1, text: 'Fuente eliminada!', time: 2 });
-       				 setTimeout(function(){  actulizartabla(); }, 500);
+       				
+       				 setTimeout(function(){  
+       				 	 
+       				 	actulizartabla(); }, 500);
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
                     alert("Status: " + textStatus);

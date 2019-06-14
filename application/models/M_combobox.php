@@ -185,6 +185,7 @@ class M_combobox extends CI_Model {
         $this->db->from('s0_fuente_financiamiento');
          $this->db->join('s0_actividad_fuente','s0_fuente_financiamiento.id_ff=s0_actividad_fuente.id_fuente');
 		 $this->db->join('s0_actividad_estrategica','s0_actividad_estrategica.id_actividad_estrategica=s0_actividad_fuente.id_actividad');
+        $this->db->order_by("id_actividad_fuente", "desc");
         $this->db->where('id_actividad_estrategica',$idactividad);
         $query = $this->db->get();
 		
