@@ -26,14 +26,26 @@
   <thead>
     <tr>
       <th scope="col">Número de municipio</th>
-      <th scope="col" style="text-align: center;">Nombre de municipio</th>
+      <th scope="col" >Nombre de municipio</th>
       <th scope="col">Meta anual por municipio</th>
-      <th scope="col" style="text-align: center;">Unidad de medida</th>
+      <th scope="col" >Unidad de medida</th>
     </tr>
   </thead>
   <tbody>
-
- 
+        <tr>
+            <td><label>1</label></td>
+            <td><label>Temax</label> </td>
+            <td><input type="number" name="" id="" value="100"></td>
+            <td><label>Jovenes</label></td>
+        
+        </tr>
+        <tr>
+            <td><label>1</label></td>
+            <td><label>Temax</label> </td>
+            <td><input type="number" name="" id="" value="100"></td>
+            <td><label>Jovenes</label></td>
+            
+        </tr>
     </tbody>
 </table>
       <!--Cierre-->
