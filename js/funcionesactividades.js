@@ -379,6 +379,7 @@ function busquedanombrefuente(){
 }
 
 /**Actualizacion del valor monetario**/
+/**
 function actualizar_monto(){
     var MontoPropio=document.getElementById("txtMontoPropio").value;
     var MontoOtras=document.getElementById("txtMontoOtras").value;
@@ -400,7 +401,7 @@ function actualizar_monto(){
   
 
 }
-
+**/
 /***Busqueda de las ubp mediante la institucion**/
 (function(){
  busquedaubp();   
@@ -549,7 +550,7 @@ var cbofuente=document.getElementById('cbofuente').value;
 /** id de la fuente de financiamiento**/
 var nombrefuente=document.getElementById('nombrefuente').value;
 /** Sacar el monto propio**/
-var txtMontoPropio=document.getElementById('txtMontoPropio').value;
+//var txtMontoPropio=document.getElementById('txtMontoPropio').value;
 /** Sacarl el monto de otras fuentes**/
 var txtMontoOtras=document.getElementById('txtMontoOtras').value;
 /** Para sacar la fecha de inicio**/
@@ -609,13 +610,17 @@ var datos="id_actividad_estrategica="+txtActividadId+"&Nombre="+Nombre+"&objetiv
                        if(k=='descripcion'){
                            document.getElementById('txtDescripcion').value=v;
                       }else{} 
+                      /**
                       if(k=='monto_propio'){
                            document.getElementById('txtMontoPropio').value=v;
                       }else{}  
+                      **/
+                      /*
                       if(k=='monto_otro'){
                            document.getElementById('txtMontoOtras').value=v;
                            actualizar_monto();
                       }else{}
+                      */
                      if(k=='fecha_inicio'){
                     document.getElementById('txtFechaInicio').value=v;
                       }else{} 
@@ -672,7 +677,7 @@ var datos="id_actividad_estrategica="+txtActividadId+"&Nombre="+Nombre+"&objetiv
                                 /*****************/
                                          if(i=='estrategiaid'){  
                                        $(document).ready(setTimeout(function() {
-                                       busquedaestrategias()
+                                       busquedaestrategias();
                                         },5000));  
                                        $(document).ready(setTimeout(function() {
                                           $('#cboEstrategia option[value='+o+']').attr("selected", true);
@@ -708,6 +713,99 @@ var datos="id_actividad_estrategica="+txtActividadId+"&Nombre="+Nombre+"&objetiv
 }, 0));
 
 
+(function(){
+ actulizartabla();   
+})();
+function actulizartabla() {
+	
+            $("#tbodyid").empty();
+     var url=document.getElementById("url").value;
+     var txtActividadId=document.getElementById('txtActividadId').value;
+             $.ajax({         
+                type: "GET",
+                url: url+"actividades/fuentesfinanciamiento/"+txtActividadId,
+                data: "ok=ok",
+                success: function(data) { 
+                var nombre="";
+                var id=0;
+                      JSON.parse(data, function (k, v) {
+                      	if(k=='id_actividad_fuente'){
+            					id=v;                      
+                      }else{} 
+                           	if(k=='nombre_ff'){
+                       nombre=v;                      
+                      }else{} 
+                          	if(k=='monto'){
+                        
+                   tablafinal='<tr>'+'<td>'+nombre+'</td>'+'<td>'+v+'</td>'+'<td>'+'<input type="submit" class="btn btn-dark" value="Eliminar" onclick=eliminarfuenteff('+id+') />'+'</td>'+'</tr>';
+                            $('#tablamonto tbody').append(tablafinal); 
+                                                           
+                      }else{} 
+                   });  
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Status: " + textStatus);
+                    alert("Error: " + errorThrown);
+
+           }
+      });
+}
+
+function agregarfuente(){
+	
+	var txtActividadId=document.getElementById('txtActividadId').value;
+	var idfuente=document.getElementById('nombrefuente').value;
+	var monto=document.getElementById('txtMontofuente').value;
+	var url=document.getElementById("url").value;
+	        $.ajax({         
+                type: "POST",
+                url: url+"actividades/agregarfuente",
+                data: "id_actividad="+txtActividadId+"&id_fuente="+idfuente+"&monto="+monto,
+                success: function(data) { 
+       				 notie.alert({ type: 1, text: 'Fuente agregada!', time: 2 });
+       				 setTimeout(function(){  
+       				 	actulizartabla(); }, 500);
+       				
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Status: " + textStatus);
+                    alert("Error: " + errorThrown);
+
+           }
+      });
+	
+					
+}
+
+function eliminarfuenteff(id){
+	var url=document.getElementById("url").value;
+	var r = confirm('¿Seguro desea eliminar esta fuente de financiamiento?');
+if (r == true) {
+ 		        $.ajax({         
+                type: "POST",
+                url: url+"actividades/eliminarfuente",
+                data: "id_actividad_fuente="+id,
+                success: function(data) { 
+       				 notie.alert({ type: 1, text: 'Fuente eliminada!', time: 2 });
+       				 setTimeout(function(){  actulizartabla(); }, 500);
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Status: " + textStatus);
+                    alert("Error: " + errorThrown);
+
+           }
+      });
+} else {
+  
+}
+}
+
+/*****
+ *
+ * $this->db->where('id', $id);
+	$this->db->delete('mytable');
+ * 
+ *  *******/
 
 
   

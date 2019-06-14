@@ -61,6 +61,27 @@ class Control_combobox extends CI_Controller {
 	$data['plan']=$this->M_combobox->recuperarplanpresupuestal($idubp);
 	echo json_encode($data);
 	}
-	
+	public function buscarfuentefinanciamiento(){
+	$idactividad=$this->uri->segment(3);
+	$data['plan']=$this->M_combobox->recuperarfuentesfinanciamiento($idactividad);
+	echo json_encode($data);
+	}
+	public function agregarfuentefinanciamiento()
+	{
+		$id_actividad = $this->input->post('id_actividad');
+		$id_fuente = $this->input->post('id_fuente');
+		$monto = $this->input->post('monto');
+		$data = array(
+		'id_actividad' => $id_actividad,
+		'id_fuente' => $id_fuente,
+		'monto' => $monto
+		);
+		$this->M_combobox->agregarfuentefinanciamiento($data);
+	}
+	public function eliminarfuentefinancimiento()
+	{
+		$id_actividad_fuente = $this->input->post('id_actividad_fuente');
+		$this->M_combobox->eliminarfuentefinanciamiento($id_actividad_fuente);
+	}
 	
 }

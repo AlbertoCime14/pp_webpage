@@ -114,16 +114,73 @@
     <option selected>Seleccione...</option>
   </select>
   </div>
-  
   <label for="inputState7" class="col-xs-2 form-label">Nombre la fuente de financiamiento:</label>
   <div class="col-xs-3">
   <select id="nombrefuente" class="form-control">
     <option selected>Seleccione...</option>
   </select>
+  
+  
   </div>
+  
 </div>
       </section>
+         <section>
+                <div class="form-group row">
+                   <div class="col-xs-1"></div>
+            <label for="inputState7" class="col-xs-2 form-label">Fecha de inicio de la actividad:</label>
+ <div class="col-xs-3">
+<input type="date" class="form-control" id="txtFechaInicio">
+ </div>
+        <label for="inputState7" class="col-xs-2 form-label">Monto de la fuente:</label>
+  <div class="col-xs-3">
+  <input id="txtMontofuente" type="number" class="form-control" />
+      </section>
       <section>
+         
+        <div class="form-group row">
+           <div class="col-xs-1"></div>
+                      <label for="inputState7" class="col-xs-2 form-label">Fecha de termino de la actividad:</label>
+ <div class="col-xs-3">
+<input type="date" class="form-control" id="txtFechafin">
+ </div>   <div class="col-xs-6">
+ 					<center>
+ 	              &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp  &nbsp &nbsp  &nbsp &nbsp  &nbsp &nbsp
+ <input type="submit"  class="btn btn-dark" value="Agregar" onclick="agregarfuente()"> 
+      	         </center>  
+      	  </div>   
+        </div>     
+      </section>
+      
+ <section>
+ 	  <div class="form-group row">
+                   <div class="col-xs-1"></div>
+ 	             <label for="inputState7" class="col-xs-2 form-label">Monto total:</label>
+ <div class="col-xs-3">
+<input type="text" class="form-control" placeholder="0.00MXN" disabled="disabled" value="0" id="txtMontototal">
+ </div> 
+  </div> 
+ </section>
+ <section>
+ </br>
+ </section>
+ <section>
+   <table class="table table-striped" id="tablamonto">
+  <thead>
+    <tr>
+      <th scope="col">Nombre de la fuente de financiamiento</th>
+      <th scope="col">Cantidad</th>
+      <th scope="col" style="text-align: center;">Opciones</th>
+    </tr>
+  </thead>
+  <tbody id="tbodyid">
+
+    </tbody>
+</table>
+      <!--Cierre-->
+ 	
+ </section>
+  <!--    <section>
           
          <div class="form-group row">
           <div class="col-xs-1"></div>
@@ -136,30 +193,9 @@
 <input type="number" class="form-control" placeholder="0.00MXN" id="txtMontoOtras" style="visibility: hidden" onclick="actualizar_monto()"> 
  </div>
          </div>
-         
       </section>
-      <section>
-                <div class="form-group row">
-                   <div class="col-xs-1"></div>
-            <label for="inputState7" class="col-xs-2 form-label">Fecha de inicio de la actividad:</label>
- <div class="col-xs-3">
-<input type="date" class="form-control" id="txtFechaInicio">
- </div>
-              <label for="inputState7" class="col-xs-2 form-label">Monto total:</label>
- <div class="col-xs-3">
-<input type="text" class="form-control" placeholder="0.00MXN" disabled="disabled" value="0" id="txtMontototal">
- </div>       
-      </section>
-      <section>
-         
-        <div class="form-group row">
-           <div class="col-xs-1"></div>
-                      <label for="inputState7" class="col-xs-2 form-label">Fecha de termino de la actividad:</label>
- <div class="col-xs-3">
-<input type="date" class="form-control" id="txtFechafin">
- </div>
-        </div>
-      </section>
+      -->
+   
     </div>
   </div>
 

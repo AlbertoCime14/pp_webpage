@@ -179,5 +179,35 @@ class M_combobox extends CI_Model {
         }
         return $datos;
     }
+	
+	  public function recuperarfuentesfinanciamiento($idactividad){
+        $this->db->select('*');
+        $this->db->from('s0_fuente_financiamiento');
+         $this->db->join('s0_actividad_fuente','s0_fuente_financiamiento.id_ff=s0_actividad_fuente.id_fuente');
+		 $this->db->join('s0_actividad_estrategica','s0_actividad_estrategica.id_actividad_estrategica=s0_actividad_fuente.id_actividad');
+        $this->db->where('id_actividad_estrategica',$idactividad);
+        $query = $this->db->get();
+		
+        foreach ($query->result() as $row) {
+           $datos[] = [
+              'id_actividad_fuente'       => $row->id_actividad_fuente ,
+              'nombre_ff'    => $row->nombre_ff ,
+              'monto'    => $row->monto 
+            ];
+        }
+        return $datos;
+    }	
+	  
+	  public function agregarfuentefinanciamiento($data)
+	  {
+		  
+		$this->db->insert('s0_actividad_fuente', $data);
+	  }
+	  	  public function eliminarfuentefinanciamiento($id_actividad_fuente)
+	  {
+	  	$this->db->where('id_actividad_fuente', $id_actividad_fuente);
+		$this->db->delete('s0_actividad_fuente');
+	  }
+	  
 
 }

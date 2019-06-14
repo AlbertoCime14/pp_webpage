@@ -105,6 +105,9 @@ $route['actividades/eliminar'] = 'control_generico/eliminaractividad/';
 //=============================sirve para recuperar la informacion de la actividad
 $route['actividades/recupera_actividad/(:any)'] = 'control_generico/mostardatosactividad';
 $route['actividades/recupera_combox/(:any)'] = 'control_generico/mostarcomboactividad';
+//=============================sirve para recuperar la informacion de las fuentes de la actividad estrategicas
+$route['actividades/recuperarfuentes/(:any)'] = 'control_generico/recuperarfuentes';
+
 
 $route['actividades/entregables/(:any)'] = 'control_generico/editar_entregables/';
 
@@ -134,6 +137,12 @@ $route['actividades/ubp'] = 'control_combobox/busquedaubp/';
 $route['actividades/nombreubp/(:any)'] = 'control_combobox/buscarnombreubp/';
 //========================recuperar nombre de la ubp ==================//
 $route['actividades/pp/(:any)'] = 'control_combobox/buscarplan/';
+//========================recuperar las fuentes de financiamiento de la actividad ==================//
+$route['actividades/fuentesfinanciamiento/(:any)'] = 'control_combobox/buscarfuentefinanciamiento/';
+//========================recuperar las fuentes de financiamiento de la actividad ==================//
+$route['actividades/agregarfuente'] = 'control_combobox/agregarfuentefinanciamiento/';
+$route['actividades/eliminarfuente'] = 'control_combobox/eliminarfuentefinancimiento/';
+
 
 
 
