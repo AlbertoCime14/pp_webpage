@@ -105,62 +105,55 @@
     </div>
     <div class="panel-body">
       <!--Tabla de contenidos-->
-      <section>
-<div class="form-group row">
-  <div class="col-xs-1"></div>
-  <label for="inputState7" class="col-xs-2 form-label">Origen de financiamiento:</label>
-  <div class="col-xs-3">
-  <select id="cbofuente" class="form-control">
+     <section>
+     	<div class="form-group row">
+     		              
+            <label for="inputState7" class="col-xs-2 form-label">Fecha de inicio de la actividad:</label>
+ <div class="col-xs-2">
+<input type="date" class="form-control" id="txtFechaInicio">
+ </div>
+    
+                      <label for="inputState7" class="col-xs-2 form-label">Fecha de termino de la actividad:</label>
+ <div class="col-xs-2">
+<input type="date" class="form-control" id="txtFechafin">
+ </div>  	  
+   <div class="col-xs-2">
+   	  <label for="inputState7" class="col-xs-2 form-label">Origen de financiamiento:</label>
+   	    </div>
+  <div class="col-xs-2">
+  	<select id="cbofuente" class="form-control">
     <option selected>Seleccione...</option>
   </select>
   </div>
-  <label for="inputState7" class="col-xs-2 form-label">Nombre la fuente de financiamiento:</label>
+ 
+     	</div>
+     </section>
+     
+     <!---Montos --->
+     <center>
+     <section>
+     	<div class="form-group row">
+     	<label for="inputState7" class="col-xs-2 form-label">Nombre la fuente de financiamiento:</label>
   <div class="col-xs-3">
   <select id="nombrefuente" class="form-control">
     <option value="0" selected>Seleccione...</option>
   </select>
-  
-  
   </div>
-  
-</div>
-      </section>
-         <section>
-                <div class="form-group row">
-                   <div class="col-xs-1"></div>
-            <label for="inputState7" class="col-xs-2 form-label">Fecha de inicio de la actividad:</label>
- <div class="col-xs-3">
-<input type="date" class="form-control" id="txtFechaInicio">
- </div>
-        <label for="inputState7" class="col-xs-2 form-label">Monto de la fuente:</label>
+     <label for="inputState7" class="col-xs-2 form-label">Monto de la fuente:</label>
   <div class="col-xs-3">
   <input id="txtMontofuente" type="number" class="form-control" value=0 onclick="validarcantidad()" onkeydown="validarcantidad()"/>
-      </section>
-      <section>
-         
-        <div class="form-group row">
-           <div class="col-xs-1"></div>
-                      <label for="inputState7" class="col-xs-2 form-label">Fecha de termino de la actividad:</label>
- <div class="col-xs-3">
-<input type="date" class="form-control" id="txtFechafin">
- </div>   <div class="col-xs-6">
- 					<center>
- 	              &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp &nbsp  &nbsp &nbsp  &nbsp &nbsp  &nbsp &nbsp
- <input type="submit"  class="btn btn-dark" value="Agregar" onclick="agregarfuente()"> 
-      	         </center>  
-      	  </div>   
-        </div>     
-      </section>
-      
- <section>
- 	  <div class="form-group row">
-                   <div class="col-xs-1"></div>
- 	             <label for="inputState7" class="col-xs-2 form-label">Monto total:</label>
- <div class="col-xs-3">
-<input type="text" class="form-control" placeholder="0.00MXN" disabled="disabled" value="0" id="txtMontototal">
- </div> 
-  </div> 
- </section>
+  </div>
+  <div class="col-xs-2">
+
+  	<input type="submit"  class="btn btn-dark" value="Agregar" onclick="agregarfuente()"> 
+  	
+  </div>
+
+     </section>
+       </center>
+     
+
+ 
  <section>
  </br>
  </section>
@@ -180,6 +173,17 @@
       <!--Cierre-->
  	
  </section>
+ 
+  <section>
+ 	  <div class="form-group row">
+                   <div class="col-xs-7"></div>
+ 	             <label for="inputState7" class="col-xs-2 form-label">Monto total:</label>
+ <div class="col-xs-3">
+<input type="text" class="form-control" placeholder="0.00MXN" disabled="disabled" value="0" id="txtMontototal">
+ </div> 
+  </div> 
+ </section>
+ 
   <!--    <section>
           
          <div class="form-group row">
