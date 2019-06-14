@@ -80,7 +80,7 @@
     echo '  <td style="text-align: center;"><a href="'.$url.'actividades/editar/'.base64_encode($datos['id']).'">Editar |</a>
           <a href="javascript:void(0)" onclick="eliminarActividad('.$datos['id'].')" >Eliminar | </a> 
           <a href="'.$url.'actividades/entregables/'.base64_encode($datos['id']).'" >Editar entregables| </a>
-          <a href="javascript:void(0)">Generar reporte</a> </td> ';
+          <a id="download" onclick="imp('. $datos['id']. ')">Generar reporte</a> </td> ';
     echo "</tr>";
 
  
@@ -213,6 +213,27 @@ function busquedaubp(){
 	function removerubpindex(){
 		$("#cboUbp option[value='0']").remove();
 	}
+</script>
+
+<script>
+function imp(id){
+  
+  $.ajax({         
+                type: "GET",
+                url:"<?=base_url()?>index.php/Control_generico/generarreporte",
+                data: 'id='+id,
+                success: function(data) {  
+                  console.log(data);
+                 //document.getElementById('desc').click();
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Status: " + textStatus);
+                    alert("Error: " + errorThrown);
+
+                }
+                }); 
+  
+}
 </script>
 
 <!--Footer Begins-->
