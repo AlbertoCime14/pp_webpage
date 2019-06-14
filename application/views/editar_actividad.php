@@ -129,13 +129,14 @@
           <div class="col-xs-1"></div>
             <label for="inputState7" class="col-xs-2 form-label">Monto de recursos propios:</label>
  <div class="col-xs-3">
-<input type="number" class="form-control" placeholder="0.00MXN" id="txtMontoPropio"  onclick ="actualizar_monto()">
+<input type="number" class="form-control" placeholder="0.00MXN" id="txtMontoPropio"  style="visibility: hidden" onclick ="actualizar_monto()">
  </div>
              <label for="inputState7" class="col-xs-2 form-label">Monto de otras fuentes de financiamiento:</label>
  <div class="col-xs-3">
-<input type="number" class="form-control" placeholder="0.00MXN" id="txtMontoOtras" onclick="actualizar_monto()"> 
+<input type="number" class="form-control" placeholder="0.00MXN" id="txtMontoOtras" style="visibility: hidden" onclick="actualizar_monto()"> 
  </div>
          </div>
+         
       </section>
       <section>
                 <div class="form-group row">

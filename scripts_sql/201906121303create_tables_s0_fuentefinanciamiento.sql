@@ -1,3 +1,4 @@
+﻿use evalua;
 DROP TABLE IF EXISTS `s0_usuarios`;
 
 CREATE TABLE `s0_usuarios` (
@@ -17,3 +18,30 @@ CREATE TABLE `s0_usuarios` (
 /*Data for the table `s0_usuarios` */
 
 insert  into `s0_usuarios`(`id_usuario`,`usuario`,`password`,`nombres`,`primer_apellido`,`segundo_apellido`,`correo`,`id_dependencia`,`id_rol`,`activo`) values (1,'admin','36e618512a68721f032470bb0891adef3362cfa9','Jorge','Estrella','Zavala','jorge.estrella@yucatan.gob.mx',73,1,1);
+
+
+ALTER TABLE s0_actividad_estrategica
+ADD activo int; 
+ALTER TABLE s0_entregables
+ADD activo int; 
+
+
+ALTER TABLE s0_actividad_estrategica
+ALTER activo SET DEFAULT 1;
+
+ALTER TABLE s0_entregables
+ALTER activo SET DEFAULT 1;
+
+
+
+alter table s0_actividad_estrategica drop fuente_financiamiento_id_ff;
+
+DROP TABLE IF EXISTS s0_actividad_fuente;
+
+CREATE TABLE `s0_actividad_fuente` (
+  `id_actividad_fuente` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_actividad` INT,
+   `id_fuente` INT,
+  `monto` decimal(9,2) NOT NULL,
+  PRIMARY KEY (`id_actividad_fuente`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
