@@ -64,19 +64,19 @@ class Control_reporte extends CI_Controller {
         }else if(date("n") == 12){
             $mes = 'Diciembre';
         }
-        if(date("w") == 1){
+        if(date("w") == 2){
             $dia = 'Lunes';
-        }else if(date("w") == 2){
-            $dia = 'Martes';
         }else if(date("w") == 3){
-            $dia = 'Miercoles';
+            $dia = 'Martes';
         }else if(date("w") == 4){
-            $dia = 'Jueves';
+            $dia = 'Miercoles';
         }else if(date("w") == 5){
-            $dia = 'Viernes';
+            $dia = 'Jueves';
         }else if(date("w") == 6){
+            $dia = 'Viernes';
+        }else if(date("w") == 7){
             $dia = 'Sabado';
-        }else if(date("w") == 0){
+        }else if(date("w") == 1){
             $dia = 'Domingo';
         }
         $fecha = $dia. date("d"). ' de ' . $mes. ' del ' . date("Y");
