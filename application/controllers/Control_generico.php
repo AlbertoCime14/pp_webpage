@@ -31,7 +31,9 @@ class Control_generico extends CI_Controller {
 		$this->load->model('M_alineacion_entregable');
 		//$this->load->library('excel');
 		$this->load->model('modelo_reporte');
+		$this->load->model('M_municipio');
 		//$this->load->library('session');
+		
 	}
 
 	public function index()
@@ -224,7 +226,7 @@ public function editar_entregables(){
 		$html .=	'</select>
 			</td>
 			<td>
-				<select name="munizipable_'.$id_entregable.'" id="munizipable_'.$datos['id_entregables'].'" class="form-control" onchange="myFunction('.$datos['id_entregables'].')">';
+				<select name="munizipable_'.$id_entregable.'" id="munizipable_'.$datos['id_entregables'].'" class="form-control" onchange="myFunction('.$datos['id_entregables'].')" selected>';
 		$html.=	($datos['municipalizable'] == 1) ? '<option value="1" selected>Si</option>':'<option value="1">Si</option>';
 		$html.=	($datos['municipalizable'] == 0) ? '<option value="0" selected>No</option>':'<option value="0">No</option>';
 		$html.=	'</select>
@@ -249,8 +251,8 @@ public function editar_entregables(){
 			
 			</td>
 			<td>
-			<a 	 href="'.$url.'municipalizacion/editar" >
-			      <input type="button" class="btn btn-black" value="Munizipalización" style="font-size:11px;">
+			<a 	 href="'.$url.'municipalizacion/editar/'.$datos['id_entregables'].'">
+			      <input type="button" class="btn btn-black" value="Municipalización" id="id_municipalizacion_'.$datos['id_entregables'].'" style="font-size:11px;" >
 			</a>
 			</td>
 			</tr>';
@@ -259,6 +261,31 @@ public function editar_entregables(){
 		return $html;
 		return "correcto";
 	}
+	public function filas_municipios($id_entregable,$id_municipio,$nombre_municipio,$meta){
+	
+		$url=base_url();
+		
+		$html = '<tr id="'.$id_municipio.'">
+		<td>
+		<label name="municipio_'.$id_municipio.'" type="text" id="municipio_'.$id_municipio.'" class="form-control">'.$nombre_municipio.'</label></td>';
+		
+		
+		
+		
+		$html.='<td>
+			<input name="meta_'.$id_municipio.'" id="meta_'.$id_municipio.' "type="text"  class="form-control"  value="'.$meta'" >
+			</td>
+			<td>
+			<label name="id_Umedida_" id="id_Umedida_" type="text"  class="form-control"> Unidad medida</label>
+			</td>
+			
+			</tr>';
+		//$html.='</form>';
+
+		return $html;
+		return "correcto";
+	}
+
 
 	function selector_periodicidad($seleccionado=0,$id_entregable)
 	{
@@ -383,8 +410,20 @@ public function editar_entregables(){
 		/////////////////////////////////////////////////////////////////////////////////////
    }
    public function municipalizacion(){
+	    $key=$this->uri->segment(3);
+		$registros = $this->M_municipio->listar_municipios($key)->result(); 
+		$data['filas'] = '';
+		$data['num_entregables'] = 0;
+
+
+		foreach($registros as $registro)
+	   {
+		   $data['filas'].= $this->filas_municipios($registros->id_entregable,$registros->id_municipio,$registros->municipio,$registros->meta);
+		   $data['num_municipio']++;
+	   }			
+	  
 	$this->load->view('masterpage/head');
-	$this->load->view('municipalizacion');
+	$this->load->view('municipalizacion',$data);
 	$this->load->view('masterpage/footer');
    }
    

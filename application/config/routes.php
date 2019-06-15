@@ -158,4 +158,4 @@ $route['alineacion/autorizo'] = 'control_alineacion_entregable/updateactividad';
 $route['alineacion/consulta'] = 'control_alineacion_entregable/getview';
 
 $route['entregables/eliminar'] = 'Control_entregable/eliminar_entregable/';
-$route['municipalizacion/editar'] = 'Control_generico/municipalizacion/';
+$route['municipalizacion/editar/(:any)'] = 'Control_generico/municipalizacion/';
