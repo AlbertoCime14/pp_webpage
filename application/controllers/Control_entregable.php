@@ -82,8 +82,8 @@ class Control_entregable extends CI_Controller {
 			</td>
 			<td>
 				<select name="munizipable_'.$id_entregable.'" id="munizipable_'.$datos['id_entregables'].'" class="form-control" onchange="myFunction('.$datos['id_entregables'].')">
-					<option value="1" selected>Si</option>
-					<option value="0">No</option>
+					<option value="1" >Si</option>
+					<option value="0" selected >No</option>
 			</select>
 			</td>
 			<td>
@@ -107,8 +107,8 @@ class Control_entregable extends CI_Controller {
 			<input type="button" class="btn btn-danger" value="Eliminar" onclick="desactivar_entregable('.$datos['id_entregables'].');" style="font-size:11px;">
 			</td>
 			<td>
-			<a 	 href="'.$url.'municipalizacion/editar" >
-				<input type="button" class="btn btn-black" value="Munizipalización" style="font-size:11px;">
+			<a 	 href="'.$url.'municipalizacion/editar/'.$datos['id_entregables'].'">
+				<input type="button" class="btn btn-black" value="Municipalización" style="font-size:11px;" id="id_municipalizacion_'.$datos['id_entregables'].'>
 			</a>
 			</td>
 			</tr>';

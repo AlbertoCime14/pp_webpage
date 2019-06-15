@@ -264,24 +264,28 @@ echo '</td>';
       return (isNum || dotOK || isDel || isEnter);
 }
 function myFunction(id_entregable) {
-    var id_value = document.getElementById("alineacion_"+id_entregable).value;
-    
-    if(id_value== 1){
+    var id_value = document.getElementById("munizipable_"+id_entregable).value;
+    var id_entre=id_entregable;
+    if(id_value == 1){
     
         //$("#munizipalizacion").click(function(){
-        $("#munizipalizacion").show();
+        $("#id_municipalizacion_"+id_entre).css('visibility','');
       //});
       
       
     }
     else{
         //$("#munizipalizacion").click(function(){
-       
-        $("#munizipalizacion").css('display','none');
+          $("#id_municipalizacion_"+id_entre).css('visibility','hidden');
+        //$("#munizipalizacion").css('display','none');}
     }
       //document.getElementById("demo").innerHTML = "You selected: " + x;
       
     
+}
+
+function munizipalizacion(id_entregable){
+  
 }
 
 </script>

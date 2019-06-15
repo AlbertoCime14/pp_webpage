@@ -32,20 +32,10 @@
     </tr>
   </thead>
   <tbody>
-        <tr>
-            <td><label>1</label></td>
-            <td><label>Temax</label> </td>
-            <td><input type="number" name="" id="" value="100"></td>
-            <td><label>Jovenes</label></td>
-        
-        </tr>
-        <tr>
-            <td><label>1</label></td>
-            <td><label>Temax</label> </td>
-            <td><input type="number" name="" id="" value="100"></td>
-            <td><label>Jovenes</label></td>
-            
-        </tr>
+  <?php
+  echo $filas;
+  
+ ?>
     </tbody>
 </table>
       <!--Cierre-->
@@ -53,6 +43,13 @@
   </div>
 </div>
 </section>
+<footer>
+<!-- Contact Section -->
+<?php include("contacto.php") ?>
+<?php $id_entregable = $this->uri->segment(3);?>
+<input type="text" value="<?= $id_entregable; ?>" id="id_entregable" style="visibility: hidden">
+<input type="hidden" id="key" value="<?php echo $this->uri->segment(3);?>">
+</footer>
 <!--Aqui para poner las nuevas funciones-->
 <script src="<?=base_url();?>js/jquery-2.1.3.min.js"></script>
 
