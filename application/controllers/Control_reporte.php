@@ -37,6 +37,49 @@ class Control_reporte extends CI_Controller {
         $dep = $this->modelo_reporte->dependencia($id);
         $data4 = $this->modelo_reporte->compromiso($id);
         $data5 = $this->modelo_reporte->fuente($id);
+        $mes = '';
+        $dia = '';
+        if(date("n") == 1){
+            $mes = 'Enero';
+        }else if(date("n") == 2){
+            $mes = 'Febrero';
+        }else if(date("n") == 3){
+            $mes = 'Marzo';
+        }else if(date("n") == 4){
+            $mes = 'Abril';
+        }else if(date("n") == 5){
+            $mes = 'Mayo';
+        }else if(date("n") == 6){
+            $mes = 'Junio';
+        }else if(date("n") == 7){
+            $mes = 'Julio';
+        }else if(date("n") == 8){
+            $mes = 'Agosto';
+        }else if(date("n") == 9){
+            $mes = 'Septiembre';
+        }else if(date("n") == 10){
+            $mes = 'Octubre';
+        }else if(date("n") == 11){
+            $mes = 'Noviembre';
+        }else if(date("n") == 12){
+            $mes = 'Diciembre';
+        }
+        if(date("w") == 1){
+            $dia = 'Lunes';
+        }else if(date("w") == 2){
+            $dia = 'Martes';
+        }else if(date("w") == 3){
+            $dia = 'Miercoles';
+        }else if(date("w") == 4){
+            $dia = 'Jueves';
+        }else if(date("w") == 5){
+            $dia = 'Viernes';
+        }else if(date("w") == 6){
+            $dia = 'Sabado';
+        }else if(date("w") == 0){
+            $dia = 'Domingo';
+        }
+        $fecha = $dia. date("d"). ' de ' . $mes. ' del ' . date("Y");
         //print_r($data2);
 
         $reporte = new PHPExcel();
@@ -58,6 +101,8 @@ class Control_reporte extends CI_Controller {
 	    $num_pp = '';
         $nombre_pp = '';
         
+
+        $reporte->getActiveSheet()->SetCellValue('I6', $fecha);
         foreach($dep as $de){
             $reporte->getActiveSheet()->SetCellValue('C6', $de['nombre_dependencia']);
             $reporte->getActiveSheet()->SetCellValue('B6', $de['dependencia_abrev']);
@@ -81,15 +126,15 @@ class Control_reporte extends CI_Controller {
          $reporte->getActiveSheet()->SetCellValue('B14', $nombreactividad);
          $reporte->getActiveSheet()->SetCellValue('B16', $objetivogeneral);
          $reporte->getActiveSheet()->SetCellValue('B18', $descripcion);
-         $reporte->getActiveSheet()->SetCellValue('C34', $fecha_inicio);
-         $reporte->getActiveSheet()->SetCellValue('I34', $fecha_fin);
+         $reporte->getActiveSheet()->SetCellValue('C26', $fecha_inicio);
+         $reporte->getActiveSheet()->SetCellValue('I26', $fecha_fin);
          $reporte->getActiveSheet()->SetCellValue('A74', $elaboro);
          $reporte->getActiveSheet()->SetCellValue('E74', $autorizo);
          $reporte->getActiveSheet()->SetCellValue('B20', $poblacion);
-         $reporte->getActiveSheet()->SetCellValue('B28', $numero_ubp);
-         $reporte->getActiveSheet()->SetCellValue('E28', $nombre_ubp);
-         $reporte->getActiveSheet()->SetCellValue('B30', $num_pp);
-         $reporte->getActiveSheet()->SetCellValue('E30', $nombre_pp);
+         $reporte->getActiveSheet()->SetCellValue('B22', $numero_ubp);
+         $reporte->getActiveSheet()->SetCellValue('E22', $nombre_ubp);
+         $reporte->getActiveSheet()->SetCellValue('B24', $num_pp);
+         $reporte->getActiveSheet()->SetCellValue('E24', $nombre_pp);
 
          foreach($data2 as $dat){
             $ej = $dat['eje'];
