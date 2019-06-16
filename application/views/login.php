@@ -132,7 +132,7 @@
       
       if(resp==="incorrecto") notie.alert({ type: 3, text: 'Datos incorrectos', time: 2 });
       else if(resp==="correcto") {
-        notie.alert({ type: 1, text: 'Correcto!', time: 2 });
+        notie.alert({ type: 1, text: '¡Bienvenido!', time: 2 });
         setTimeout(function(){ location.href = "<?=base_url();?>actividades"; }, 1000);
         }
     });
