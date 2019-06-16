@@ -33,7 +33,8 @@
                             }
                 });
            }else{
-               alert("Asegurate de poner un nombre al entregable");
+               //alert("Asegurate de poner un nombre al entregable");
+               notie.alert({ type: 2, text: 'Debe de ingresar un nombre de entregable', time: 2 });
                document.getElementById("txtEntregable").disabled = false;
                document.getElementById("btnAdd").disabled = false;
                document.getElementById("txtEntregable").value = "";
@@ -79,7 +80,8 @@
                             }
                 });
            }else{
-               alert("Asegurate de poner un nombre al entregable");
+               //alert("Asegurate de poner un nombre al entregable");
+               notie.alert({ type: 2, text: 'Debe de ingresar un nombre de entregable', time: 2 });
                document.getElementById("txtEntregable").disabled = false;
                document.getElementById("btnAdd").disabled = false;
                document.getElementById("txtEntregable").value = "";

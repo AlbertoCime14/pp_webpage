@@ -742,7 +742,7 @@ function actulizartabla() {
                       
                       if(k=='monto'){
                         montotals=montotals+parseFloat(v);
-                        tablafinal='<tr>'+'<td>'+nombre+'</td>'+'<td>'+v+'</td>'+'<td>'+'<input type="submit" class="btn btn-dark" value="Eliminar" onclick=eliminarfuenteff('+id+') />'+'</td>'+'</tr>';
+                        tablafinal='<tr>'+'<td>'+nombre+'</td>'+'<td>'+v+'</td>'+'<td>'+'<input type="submit" class="btn btn-danger" value="Eliminar" onclick=eliminarfuenteff('+id+') />'+'</td>'+'</tr>';
                         $('#tablamonto tbody').append(tablafinal);
                     } 
                  }); 
@@ -764,32 +764,30 @@ function agregarfuente(){
 	var monto=document.getElementById('txtMontofuente').value;
 	var url=document.getElementById("url").value;
 	if(idfuente==0 || monto<=0){
-		notie.alert({ type: 3, text: 'Error verifica tus datos por favor!', time: 2 });
+		notie.alert({ type: 3, text: '¡Error verifica tus datos por favor!', time: 2 });
 	}else{
-		
-		        $.ajax({         
-                type: "POST",
-                url: url+"actividades/agregarfuente",
-                data: "id_actividad="+txtActividadId+"&id_fuente="+idfuente+"&monto="+monto,
-                success: function(data) { 
-       				 notie.alert({ type: 1, text: 'Fuente agregada!', time: 2 });
-       				 setTimeout(function(){ 
-       				 	   $("#nombrefuente option[value='0']").attr("selected", true);
-       				 	   document.getElementById('txtMontofuente').value=0;
-       				 	actulizartabla(); 
-       				 	
-       				 	}, 0);
-       				
-                },
-                error: function(XMLHttpRequest, textStatus, errorThrown) {
-                    alert("Status: " + textStatus);
-                    alert("Error: " + errorThrown);
+      $.ajax({         
+            type: "POST",
+            url: url+"actividades/agregarfuente",
+            data: "id_actividad="+txtActividadId+"&id_fuente="+idfuente+"&monto="+monto,
+            success: function(data) {
+              if(data == 'correcto'){
+    				    notie.alert({ type: 1, text: 'Fuente agregada', time: 2 });
+                document.getElementById('txtMontofuente').value=0;
+                actulizartabla();
+              }else {
+                notie.alert({ type: 2, text: data, time: 2 });
+              }
+    				
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+              notie.alert({ type: 3, text: 'Ha ocurrido un error. Contacte al administrador', time: 2 });
+                alert("Status: " + textStatus);
+                alert("Error: " + errorThrown);
 
-           }
-      });
-	}
-	
-					
+       }
+    });
+	}				
 }
 
 function eliminarfuenteff(id){

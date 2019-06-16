@@ -71,12 +71,23 @@ class Control_combobox extends CI_Controller {
 		$id_actividad = $this->input->post('id_actividad');
 		$id_fuente = $this->input->post('id_fuente');
 		$monto = $this->input->post('monto');
-		$data = array(
-		'id_actividad' => $id_actividad,
-		'id_fuente' => $id_fuente,
-		'monto' => $monto
-		);
-		$this->M_combobox->agregarfuentefinanciamiento($data);
+
+		if(!$this->M_combobox->consultarExisteFuente($id_actividad,$id_fuente))
+		{
+			//Si la fuente no ha sido agregada anteriormente la guardamos
+			$data = array(
+				'id_actividad' => $id_actividad,
+				'id_fuente' => $id_fuente,
+				'monto' => $monto
+			);
+			$this->M_combobox->agregarfuentefinanciamiento($data);
+			echo 'correcto';
+		}
+		else
+		{
+			echo 'Fuente duplicada';
+		}
+		
 	}
 	public function eliminarfuentefinancimiento()
 	{

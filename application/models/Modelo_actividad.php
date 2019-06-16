@@ -86,7 +86,8 @@ public function recuperaractividad($idactividad){
               'ubp_id_ubp'                         => $row->ubp_id_ubp, 
               'poblacion_objetivo_id_poblacion'    => $row->poblacion_objetivo_id_poblacion, 
               'origen_fuente_id_origen'            => $row->origen_fuente_id_origen, 
-              'fuente_financiamiento_id_ff'        => $row->fuente_financiamiento_id_ff, 
+              //'fuente_financiamiento_id_ff'        => $row->fuente_financiamiento_id_ff, 
+              'fuente_financiamiento_id_ff'        => '' 
 
             ];
         }
