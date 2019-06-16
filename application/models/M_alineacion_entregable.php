@@ -22,6 +22,7 @@ class M_alineacion_entregable extends CI_Model {
    		$this->db->select('*');
    		$this->db->from('s0_componentes');
    		$this->db->where('compromisos_id_compromiso', $key);
+   		$this->db->order_by('nombre_componente');
    		$query = $this->db->get();
    		return $query->result();
    	}

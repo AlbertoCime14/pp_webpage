@@ -33,9 +33,9 @@ class Control_reporte extends CI_Controller {
         $id = $_REQUEST['id'];
         $data = $this->modelo_reporte->actividad($id);
         $data2 = $this->modelo_reporte->recuperarcombobox($id);
-        $data3 = $this->modelo_reporte->entregables($id);
+        $entregables = $this->modelo_reporte->entregables($id);
         $dep = $this->modelo_reporte->dependencia($id);
-        $data4 = $this->modelo_reporte->compromiso($id);
+        $compromisos = $this->modelo_reporte->compromiso($id);
         $data5 = $this->modelo_reporte->fuente($id);
         $mes = '';
         $dia = '';
@@ -128,15 +128,15 @@ class Control_reporte extends CI_Controller {
          $reporte->getActiveSheet()->SetCellValue('B18', $descripcion);
          $reporte->getActiveSheet()->SetCellValue('C26', $fecha_inicio);
          $reporte->getActiveSheet()->SetCellValue('I26', $fecha_fin);
-         $reporte->getActiveSheet()->SetCellValue('A74', $elaboro);
-         $reporte->getActiveSheet()->SetCellValue('E74', $autorizo);
+         $reporte->getActiveSheet()->SetCellValue('A75', $elaboro);
+         $reporte->getActiveSheet()->SetCellValue('E75', $autorizo);
          $reporte->getActiveSheet()->SetCellValue('B20', $poblacion);
          $reporte->getActiveSheet()->SetCellValue('B22', $numero_ubp);
          $reporte->getActiveSheet()->SetCellValue('E22', $nombre_ubp);
          $reporte->getActiveSheet()->SetCellValue('B24', $num_pp);
          $reporte->getActiveSheet()->SetCellValue('E24', $nombre_pp);
 
-         foreach($data2 as $dat){
+        foreach($data2 as $dat){
             $ej = $dat['eje'];
             $te = $dat['tema'];
             $obj = $dat['objetivo'];
@@ -152,50 +152,57 @@ class Control_reporte extends CI_Controller {
             $reporte->getActiveSheet()->SetCellValue('E11', $linea);
             $reporte->getActiveSheet()->SetCellValue('I11', $ods);
             
-         }
+        }
          
-         $fil = 40;
+        $fil = 40;
 	 
+        //Entregables
+        if($entregables->num_rows() > 0){
+            $entregables = $entregables->result();
 
-	 foreach($data3 as $dat3){
-		
-		$reporte->getActiveSheet()->SetCellValue('A'.$fil, $dat3['entregable']);
-		$reporte->getActiveSheet()->SetCellValue('C'.$fil, $dat3['nombre_temp']);
-        $reporte->getActiveSheet()->SetCellValue('D'.$fil, $dat3['unidad']);
-        $reporte->getActiveSheet()->SetCellValue('H'.$fil, $dat3['meta_Anual']);
-        $reporte->getActiveSheet()->SetCellValue('I'.$fil, $dat3['avace_acumulado']);
-        $reporte->getActiveSheet()->SetCellValue('J'.$fil, $dat3['monto_ejercido']);
+    	    foreach($entregables as $entregable){
+        		$reporte->getActiveSheet()->SetCellValue('A'.$fil,$entregable->entregable);
+        		$reporte->getActiveSheet()->SetCellValue('C'.$fil,$entregable->nombre_temp);
+                $reporte->getActiveSheet()->SetCellValue('D'.$fil,$entregable->unidad);
+                $reporte->getActiveSheet()->SetCellValue('H'.$fil,$entregable->meta_Anual);
+                $reporte->getActiveSheet()->SetCellValue('I'.$fil,$entregable->avace_acumulado);
+                $reporte->getActiveSheet()->SetCellValue('J'.$fil,$entregable->monto_ejercido);
 
-		if($dat3['mismo_benef'] == 1){
-			$reporte->getActiveSheet()->SetCellValue('E'.$fil, 'Si');
-		}else{
-			$reporte->getActiveSheet()->SetCellValue('E'.$fil, 'No');
-		}
+        		if($entregable->mismo_benef == 1){
+        			$reporte->getActiveSheet()->SetCellValue('E'.$fil, 'Si');
+        		}else{
+        			$reporte->getActiveSheet()->SetCellValue('E'.$fil, 'No');
+        		}
 
-		if($dat3['municipalizable'] == 1){
-			$reporte->getActiveSheet()->SetCellValue('F'.$fil, 'Si');
-		}else{
-			$reporte->getActiveSheet()->SetCellValue('F'.$fil, 'No');
-		}
+        		if($entregable->municipalizable == 1){
+        			$reporte->getActiveSheet()->SetCellValue('F'.$fil, 'Si');
+        		}else{
+        			$reporte->getActiveSheet()->SetCellValue('F'.$fil, 'No');
+        		}
 
-		if($dat3['presenta_alineacion'] == 1){
-			$reporte->getActiveSheet()->SetCellValue('G'.$fil, 'Si');
-		}else{
-			$reporte->getActiveSheet()->SetCellValue('G'.$fil, 'No');
+        		if($entregable->presenta_alineacion == 1){
+        			$reporte->getActiveSheet()->SetCellValue('G'.$fil, 'Si');
+        		}else{
+        			$reporte->getActiveSheet()->SetCellValue('G'.$fil, 'No');
+                }
+                $fil++;
+            }
         }
 
-     }
-
-     $fila = 57;
-	 foreach($data4 as $dat4){
-		 
-		$reporte->getActiveSheet()->SetCellValue('A'.$fila, $dat4['nom_ent']);
-		$reporte->getActiveSheet()->SetCellValue('C'.$fila, $dat4['numero_comrpromiso']);
-		$reporte->getActiveSheet()->SetCellValue('D'.$fila, $dat4['nombre_compromiso']);
-		$reporte->getActiveSheet()->SetCellValue('H'.$fila, $dat4['nombre_componente']);
-		$fila++;
-		
-     }
+        $fila = 57;
+        //Alineación a compromisos
+        if($compromisos->num_rows() > 0){
+            $compromisos = $compromisos->result();
+    	    foreach($compromisos as $comp){
+    		 
+    		  $reporte->getActiveSheet()->SetCellValue('A'.$fila, $comp->nom_ent);
+    		  $reporte->getActiveSheet()->SetCellValue('C'.$fila, $comp->numero_comrpromiso);
+    		  $reporte->getActiveSheet()->SetCellValue('D'.$fila, $comp->nombre_compromiso);
+    		  $reporte->getActiveSheet()->SetCellValue('H'.$fila, $comp->nombre_componente);
+    		  $fila++;
+    		
+            }
+        }
      
      $fi = 30;
 

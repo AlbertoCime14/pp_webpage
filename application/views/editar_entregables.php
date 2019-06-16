@@ -30,8 +30,7 @@
     <div class="panel-heading">
       <!--Buscador-->
         <div class="form-group row">
-          <div class="col-xs-12 col-md-6"></div>
-            <div class="col-xs-12 col-md-4">
+            <div class="col-xs-12 col-md-10">
               <input type="text" class="form-control" placeholder="Ingrese el nombre del entregable" id="txtEntregable">
             </div>
             <div class="col-xs-12 col-md-2">  
@@ -48,13 +47,13 @@
             <table class="table table-striped" id="tablacontenidos" >
               <thead>
                 <tr>
-                  <th scope="col">Nombre</th>
-                  <th scope="col">Unidad de medida</th>
+                  <th scope="col" width="150px">Nombre</th>
+                  <th scope="col" width="150px">Unidad de medida</th>
                   <th scope="col">Periodicidad</th>
                   <th scope="col">Los beneficiarios son los mismos en cada periodo</th>
                   <th scope="col">Municipalizable</th>
                   <th scope="col">Presenta alineación a compromiso</th>
-                  <th scope="col" width="100px">Meta anual</th>
+                  <th scope="col" width="150px">Meta anual</th>
                   <th scope="col">Avance físico acumulado</th>
                   <th scope="col">Monto ejercido acumulado</th>
                   <th scope="col"></th>

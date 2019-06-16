@@ -546,7 +546,8 @@ var cboUbp=document.getElementById('cboUbp').value;
 /** id poblacion objetivo**/
 var cobPoblacion=document.getElementById('cobPoblacion').value;
 /** id origen de la fuente de financiamiento**/
-var cbofuente=document.getElementById('cbofuente').value;
+var cbofuente=0;
+/*var cbofuente=document.getElementById('cbofuente').value;*/
 /** id de la fuente de financiamiento**/
 var nombrefuente=document.getElementById('nombrefuente').value;
 /** Sacar el monto propio**/

@@ -41,8 +41,8 @@
               echo "<td>".$datos['Nombre'] ." </td>";
               echo '<td style="text-align: center;"><a href="'.$url.'actividades/editar/'.base64_encode($datos['id']).'">Editar |</a>
                 <a href="javascript:void(0)" onclick="eliminarActividad('.$datos['id'].')" >Eliminar | </a> 
-                <a href="'.$url.'actividades/entregables/'.base64_encode($datos['id']).'" >Editar entregables<!--| </a>
-                <a id="download" onclick="imp('. $datos['id']. ')">Generar reporte</a>--> </td>';
+                <a href="'.$url.'actividades/entregables/'.base64_encode($datos['id']).'" >Editar entregables| </a>
+                <a style="cursor:pointer;" id="download" onclick="imp('. $datos['id']. ')">Descargar ficha</a></td>';
             echo "</tr>";
           }
         ?>
