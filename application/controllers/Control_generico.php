@@ -54,6 +54,7 @@ class Control_generico extends CI_Controller {
 	public function listar_entregable(){
 		$array=null;
 		$key=base64_decode($this->uri->segment(3));
+		$data['key'] = $this->uri->segment(3);
 		$data['mydata'] = $this->M_entregable->listar_entregables($key); 
 		$data['filas'] = '';
 		$data['num_entregables'] = 0;
@@ -151,7 +152,7 @@ public function editar_entregables(){
 	$this->load->view('masterpage/head');
 	$this->load->view('editar_entregables');
 	$this->load->view('masterpage/footer');
-	}
+}
 	public function example(){
 		 $data = $this->Modelo_actividad->listar_actividades(); 
 		 print_r($data);
@@ -206,18 +207,12 @@ public function editar_entregables(){
 		$model = new M_entregable();		
 		
 		$datos = $model->listar_entregable($id_entregable);
+		$class = ($datos['municipalizable'] == 0) ? 'oculto"':'visible';
 		$html = '<tr id="'.$num_entregables.'">
 		<td><input type="hidden" name="id'.$num_entregables.'" id="id'.$num_entregables.'" value="'.$datos['id_entregables'].'">
 		<input name="nombre'.$id_entregable.'" type="text" id="nombre_'.$datos['id_entregables'].'" class="form-control" value="'.$datos['nombre'].'"></td>
 		<td>'.$this->selector_unidad($datos['Unidad_medida_id_unidad'],$id_entregable).'</td>';
-		
-		/*foreach ($unidad as $u){
-			$html.='<td>
-				<select id="inputState7" class="form-control">
-				<option value="'.$u->id_unidad.'">'.$u->nombre.'</option>
-				</select>
-			</td>';
-		}   */
+	
 		$html.='<td>'.$this->selector_periodicidad($datos['temporalidad_id_temp'],$id_entregable).'</td>';
 		$html.='<td>
 					<select name="beneficiario_'.$datos['id_entregables'].'" id="beneficiario_'.$datos['id_entregables'].'" class="form-control">';
@@ -226,7 +221,7 @@ public function editar_entregables(){
 		$html .=	'</select>
 			</td>
 			<td>
-				<select name="munizipable_'.$id_entregable.'" id="munizipable_'.$datos['id_entregables'].'" class="form-control" onchange="myFunction('.$datos['id_entregables'].')" selected>';
+				<select name="munizipable_'.$id_entregable.'" id="munizipable_'.$datos['id_entregables'].'" class="form-control" onchange="mostrarBotonMunicipalizacion('.$datos['id_entregables'].')">';
 		$html.=	($datos['municipalizable'] == 1) ? '<option value="1" selected>Si</option>':'<option value="1">Si</option>';
 		$html.=	($datos['municipalizable'] == 0) ? '<option value="0" selected>No</option>':'<option value="0">No</option>';
 		$html.=	'</select>
@@ -251,16 +246,14 @@ public function editar_entregables(){
 			
 			</td>
 			<td>
-			<a 	 href="'.$url.'municipalizacion/editar/'.$datos['id_entregables'].'">
-			      <input type="button" class="btn btn-black" value="Municipalización" id="id_municipalizacion_'.$datos['id_entregables'].'" style="font-size:11px;" >
-			</a>
+				<input type="button" class="btn btn-black '.$class.'" value="Municipalización" id="id_municipalizacion_'.$datos['id_entregables'].'" style="font-size:11px;" onclick="capturarMunizipalizacion('.$datos['id_entregables'].');" >
 			</td>
-			</tr>';
-		//$html.='</form>';
+		</tr>';
 
 		return $html;
 		return "correcto";
 	}
+
 	public function filas_municipios($id_entregable,$id_municipio,$nombre_municipio,$meta){
 	
 		$url=base_url();
@@ -273,7 +266,7 @@ public function editar_entregables(){
 		
 		
 		$html.='<td>
-			<input name="meta_'.$id_municipio.'" id="meta_'.$id_municipio.' "type="text"  class="form-control"  value="'.$meta'" >
+			<input name="meta_'.$id_municipio.'" id="meta_'.$id_municipio.' "type="text"  class="form-control"  value="'.$meta.'" >
 			</td>
 			<td>
 			<label name="id_Umedida_" id="id_Umedida_" type="text"  class="form-control"> Unidad medida</label>

@@ -55,8 +55,9 @@ class M_general extends CI_Model {
 		return $con->update($tabla, $datos);
 	}
 
-	public function eliminar_registro($tabla,$where,$con)
+	public function eliminar_registro($tabla,$where,$con='')
 	{
+		if($con == '') $con = $this->db;
 		return $con->delete($tabla,$where);
 	}
 

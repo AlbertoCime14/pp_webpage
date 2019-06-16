@@ -60,38 +60,31 @@ class Control_entregable extends CI_Controller {
 		
 		$query2=$model->recuperar_u();
 		$unidad = $query2->result();
-		//$html='<form  id="formulario_'.$datos['id_entregables'].'" >';
+		$class = ($datos['municipalizable'] == 0) ? 'oculto"':'visible';
 		$html = '<tr id="'.$num_entregables.'">
-		<td><input type="hidden" name="id'.$num_entregables.'" id="id'.$num_entregables.'" value="'.$datos['id_entregables'].'">
-		<input name="nombre'.$id_entregable.'" type="text" id="nombre_'.$datos['id_entregables'].'" class="form-control" value="'.$datos['nombre'].'" required></td>
-		<td>'.$this->selector_unidad(0,$id_entregable).'</td>';
+			<td><input type="hidden" name="id'.$num_entregables.'" id="id'.$num_entregables.'" value="'.$datos['id_entregables'].'">
+			<input name="nombre'.$id_entregable.'" type="text" id="nombre_'.$datos['id_entregables'].'" class="form-control" value="'.$datos['nombre'].'" required></td>
+			<td>'.$this->selector_unidad(0,$id_entregable).'</td>';
 		
-		/*foreach ($unidad as $u){
-			$html.='<td>
-				<select id="inputState7" class="form-control">
-				<option value="'.$u->id_unidad.'">'.$u->nombre.'</option>
-				</select>
-			</td>';
-		}   */
 		$html.='<td>'.$this->selector_periodicidad(0,$id_entregable).'</td>';
 		$html.='<td>
 					<select name="beneficiario_'.$datos['id_entregables'].'" id="beneficiario_'.$datos['id_entregables'].'" class="form-control">
-			<option value="1" selected>Si</option>
-			<option value="0">No</option>
-			</select>
-			</td>
-			<td>
-				<select name="munizipable_'.$id_entregable.'" id="munizipable_'.$datos['id_entregables'].'" class="form-control" onchange="myFunction('.$datos['id_entregables'].')">
-					<option value="1" >Si</option>
-					<option value="0" selected >No</option>
-			</select>
-			</td>
-			<td>
-				<select name="alineacion_'.$id_entregable.'" id="alineacion_'.$datos['id_entregables'].'" class="form-control">
-			<option value="1" selected>Si</option>
-			<option value="0">No</option>
-			</select>
-			</td>
+						<option value="1" selected>Si</option>
+					<option value="0">No</option>
+					</select>
+				</td>
+				<td>
+					<select name="munizipable_'.$id_entregable.'" id="munizipable_'.$datos['id_entregables'].'" class="form-control" onchange="mostrarBotonMunicipalizacion('.$datos['id_entregables'].')">
+						<option value="1" >Si</option>
+						<option value="0" selected >No</option>
+				</select>
+				</td>
+				<td>
+					<select name="alineacion_'.$id_entregable.'" id="alineacion_'.$datos['id_entregables'].'" class="form-control">
+						<option value="1" selected>Si</option>
+						<option value="0">No</option>
+					</select>
+				</td>
 			<td>
 			<input name="meta_'.$id_entregable.'" id="meta_'.$datos['id_entregables'].'" type="number" min="1" max="99999999999999" maxlength="11" onKeyPress="return soloNumeros(event,\'decNO\');" class="form-control" required>
 			</td>
@@ -107,12 +100,9 @@ class Control_entregable extends CI_Controller {
 			<input type="button" class="btn btn-danger" value="Eliminar" onclick="desactivar_entregable('.$datos['id_entregables'].');" style="font-size:11px;">
 			</td>
 			<td>
-			<a 	 href="'.$url.'municipalizacion/editar/'.$datos['id_entregables'].'">
-				<input type="button" class="btn btn-black" value="Municipalización" style="font-size:11px;" id="id_municipalizacion_'.$datos['id_entregables'].'>
-			</a>
+				<input type="button" class="btn btn-black '.$class.'" value="Municipalización" id="id_municipalizacion_'.$datos['id_entregables'].'" style="font-size:11px;" onclick="capturarMunizipalizacion('.$datos['id_entregables'].');" >
 			</td>
-			</tr>';
-		//$html.='</form>';
+		</tr>';
 
 		echo $html;
 		return "correcto";
@@ -161,9 +151,64 @@ class Control_entregable extends CI_Controller {
 		$model->desactivar_entregable($data,$id_entregables);
 	}
 
-	
+	function capturar_municipalizacion(){
+		if(isset($_POST['id_entregable']) && !empty($_POST['id_entregable'])){
 
+			$id_entregable = $this->input->post('id_entregable');
+			$model = new M_entregable();
+			$query_entregable = $model->datos_entregable($id_entregable);
+			$query_metas = $model->metas_municipales($id_entregable);
+			$datos = array();
+			$datos['key'] = $this->input->post('key_entregable');
+			foreach ($query_entregable as $key => $value){
+				$datos[$key] =$value;
+			}
+			$datos['filas'] = '';
+			$datos['suma_metas'] = 0;
+			if($query_metas->num_rows() > 0){
+				$query_metas = $query_metas->result();
+				foreach ($query_metas as $registro){
 
+					$datos['filas'] .= '<tr id="'.$registro->id_municipio.'">
+											<td>'.$registro->id_municipio.'</td>
+											<td>'.$registro->municipio.'</td>
+											<td>
+												<input name="meta_'.$registro->id_municipio.'" id="meta_'.$registro->id_municipio.'" type="text"  class="form-control meta"  value="'.$registro->meta.'" onKeyPress="return soloNumeros(event,\'decOK\')" maxlength="19" onblur="actualizarTotal();" >
+											</td>
+											<td>'.$datos['unidad_medida'].'</td>';
+					$datos['suma_metas'] += $registro->meta;
+				}
+			}
 
+			$this->load->view('masterpage/head');
+			$this->load->view('capturar_municipalizacion',$datos);
+			$this->load->view('masterpage/footer');
+		}else echo '<h1>Acceso denegado</h1>';
+	}
+
+	function guardar_metas_municipio(){
+		if(isset($_POST['id_entregable']) && !empty($_POST['id_entregable'])){
+			$this->load->model('M_general');
+			$model = new M_general();
+			$where['id_entregable'] = $this->input->post('id_entregable');
+
+			//	Eliminamos los registros anteriores
+			$resp = $model->eliminar_registro('s0_municipalizacion',$where);
+			//	Insertamos los nuevos registros
+			for ($i=1; $i < 107 ; $i++) { 
+				if(isset($_POST['meta_'.$i]) && !empty($_POST['meta_'.$i])){
+					$datos = array(	
+									'id_municipio' => $i,
+									'id_entregable' => $this->input->post('id_entregable'),
+									'monto' => $this->input->post('meta_'.$i)
+								);
+					$resp = $model->insertar_registro_no_pk('s0_municipalizacion',$datos);
+				}
+			}
+
+			echo 'correcto';
+		}
+		else echo '<h1>Acceso denegado</h1>';
+	}
 	
 }

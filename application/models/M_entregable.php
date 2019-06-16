@@ -90,5 +90,22 @@ class M_entregable extends CI_Model {
 	$this->db->update('s0_entregables', $data);   
   }
 
+  function metas_municipales($id_entregable){
+    $sql = "SELECT m.id_municipio, m.municipio, IFNULL(muni.monto,'') AS meta
+            FROM s0_cat_municipios m
+            LEFT OUTER JOIN s0_municipalizacion muni ON muni.id_municipio = m.id_municipio AND muni.id_entregable = $id_entregable
+            ORDER BY m.municipio";
+    return $this->db->query($sql);
+  }
+
+  function datos_entregable($id_entregable){
+    $this->db->select('e.id_entregables, e.nombre, e.meta_Anual, u.nombre AS unidad_medida',FALSE);
+    $this->db->from('s0_entregables e');
+    $this->db->join('s0_unidad_medida u','u.id_unidad = e.Unidad_medida_id_unidad','LEFT OUTER');
+    $this->db->where('e.id_entregables',$id_entregable);
+
+    return $this->db->get()->row();
+  }
+
 	
 }

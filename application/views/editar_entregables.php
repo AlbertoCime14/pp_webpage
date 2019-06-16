@@ -1,4 +1,12 @@
+<style type="text/css">
+  .oculto{
+    display: none;
+  }
 
+  .visible{
+    font-size:11px;
+  }
+</style>
 <section class="page-section-top-alt-np mt-25 pb-155 pb-md-105 pb-sm-85" id="section-login-mp"> 
 <div class="container">
   <h2>
@@ -37,88 +45,41 @@
 
     <div class="panel-body">
       <!--Tabla de contenidos-->
-      <form name="frmentregables" id="frmentregables" onsubmit="guardar(this,event);">
-      <table class="table table-striped" id="tablacontenidos" >
-  <thead>
-    <tr>
-      <th scope="col">Nombre</th>
-      <th scope="col">Unidad de medida</th>
-      <th scope="col">Periodicidad</th>
-      <th scope="col">Los beneficiarios son los mismos en cada periodo</th>
-      <th scope="col" >Municipalizable</th>
-      <th scope="col" >Presenta alineación a compromiso</th>
-      <th scope="col" >Meta anual</th>
-      <th scope="col" >Avance físico acumulado</th>
-      <th scope="col" >Monto ejercido acumulado</th>
-      <th scope="col" ></th>
-    </tr>
-  </thead>
-  <tbody>
-   
-  <?php
-  echo $filas;
-  /*
- foreach($mydata as $datos)
-  {
-
-  echo "<tr id=\"".$num_entregables."\">";
- //  echo "<td>".$datos['id'] ." </td>";
       
-      echo '<td><input type="hidden" name="id'.$num_entregables.'" id="id'.$num_entregables.'" value="'.$datos['id_entregables'].'"><input name="nombre'.$datos['id_entregables'].'" type="text" id="nombre_'.$datos['id_entregables'].'" value="'.$datos['nombre'].'" class="form-control"></td>';
-      echo '<td>';
-          echo '<select name="cbo_unidad'.$datos['id_entregables'].'" id="cbo_unidad'.$datos['id_entregables'].'" class="form-control">';
-          
-          echo '<option selected>Seleccione...</option>';
-      echo ' </select>';
-      echo '</td>';
-   
-      echo '<td>';
-        echo '<select name="cbo_periodicidad_" id="cbo_periodicidad" class="form-control">';
-          
-          echo '<option selected>Seleccione...</option>';
-      echo ' </select>';
-      echo '</td>';
-      echo '<td>';
-      echo '<select id="inputState7" class="form-control">';
-          echo ' <option value="1" selected>Si</option>';
-          echo '<option value="0">No</option>';
-      echo ' </select>';
-   echo '</td>';
-   echo '<td>';
-   echo '<select id="inputState7" class="form-control">';
-        echo ' <option value="1" selected>Si</option>';
-        echo '<option value="0">No</option>';
-   echo ' </select>';
-echo '</td>';
-echo '<td>';
-echo '<select id="inputState7" class="form-control">';
-    echo ' <option value="1" selected>Si</option>';
-    echo '<option value="0">No</option>';
-echo ' </select>';
-echo '</td>';
-echo '<td>';
-    echo '<input type="text" class="form-control">';
-echo '</td>';
-echo '<td>';
-    echo '<input type="text" class="form-control">';
-echo '</td>';
-echo '<td>';
-    echo '<input type="text" class="form-control">';
-echo '</td>';
+      <form name="frmentregables" id="frmentregables" onsubmit="guardar(this,event);">
+        <div class="row">
+          <div class="col-md-12 table-responsive">
+            <table class="table table-striped" id="tablacontenidos" >
+              <thead>
+                <tr>
+                  <th scope="col">Nombre</th>
+                  <th scope="col">Unidad de medida</th>
+                  <th scope="col">Periodicidad</th>
+                  <th scope="col">Los beneficiarios son los mismos en cada periodo</th>
+                  <th scope="col">Municipalizable</th>
+                  <th scope="col">Presenta alineación a compromiso</th>
+                  <th scope="col" width="100px">Meta anual</th>
+                  <th scope="col">Avance físico acumulado</th>
+                  <th scope="col">Monto ejercido acumulado</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <?=$filas;?>
+              </tbody>
+            </table>
+          </div>
+        </div>
 
-    echo "</tr>";
-  
-    $num_entregables++;
-    
- 
-  } */
- ?>
-  </tbody>
-</table>
-
-<section>
-    <input type="submit" class="btn btn-dark" value="Guardar" >
-</section>
+        <section>
+            <input type="submit" class="btn btn-dark" value="Guardar" >
+        </section>
+    </form>
+      
+<form method="POST" action="<?=base_url()?>municipalizacion" id="frmMunicipalizar">
+  <input type="hidden" name="id_entregable" id="aux_id_entregable" value="0">
+  <input type="hidden" name="key_entregable" id="key_entregable" value="<?=$key?>">
 </form>
     </div>
   </div>
@@ -263,29 +224,22 @@ echo '</td>';
       //e.which = (!isNum && !dotOK && isNS) ? 0 : key;
       return (isNum || dotOK || isDel || isEnter);
 }
-function myFunction(id_entregable) {
-    var id_value = document.getElementById("munizipable_"+id_entregable).value;
-    var id_entre=id_entregable;
-    if(id_value == 1){
-    
-        //$("#munizipalizacion").click(function(){
-        $("#id_municipalizacion_"+id_entre).css('visibility','');
-      //});
-      
-      
-    }
-    else{
-        //$("#munizipalizacion").click(function(){
-          $("#id_municipalizacion_"+id_entre).css('visibility','hidden');
-        //$("#munizipalizacion").css('display','none');}
-    }
-      //document.getElementById("demo").innerHTML = "You selected: " + x;
-      
-    
+
+function mostrarBotonMunicipalizacion(id_entregable) {
+  var id_value = document.getElementById("munizipable_"+id_entregable).value;
+  if(id_value == 1){
+    $("#id_municipalizacion_"+id_entregable).removeClass('oculto');
+    $("#id_municipalizacion_"+id_entregable).addClass('visible');
+  }
+  else { 
+    $("#id_municipalizacion_"+id_entregable).removeClass('visible');
+    $("#id_municipalizacion_"+id_entregable).addClass('oculto');
+  }
 }
 
-function munizipalizacion(id_entregable){
-  
+function capturarMunizipalizacion(id_entregable){
+  document.getElementById("aux_id_entregable").value = id_entregable;
+  document.getElementById("frmMunicipalizar").submit();
 }
 
 </script>
