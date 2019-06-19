@@ -25,7 +25,7 @@ class Control_reporte extends CI_Controller {
 		session_start();
 		$this->load->helper('url');
 		$this->load->library('excel');
-		$this->load->model('modelo_reporte');
+		$this->load->model('Modelo_reporte');
 		
     }
     

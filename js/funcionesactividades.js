@@ -206,18 +206,18 @@ function busquedalineaaccion(){
 }
 
 /***
-Busqueda de ods mediante el id estrategia
+Busqueda de ods mediante el id linea de acción
 */
 
 function busquedaods(){
     // document.getElementById('cboLineaacion').disabled=false;
      //$('#ods').empty();
-    var estrategia=document.getElementById('cboEstrategia').value;
+    var linea=document.getElementById('cboLineaacion').value;
          /*Url estatica*/
       var url=document.getElementById("url").value;
             $.ajax({         
                 type: "GET",
-                url: url+"actividades/ods/"+estrategia,
+                url: url+"actividades/ods/"+linea,
                 data: "ok=ok",
                 success: function(data) {         
                 value=0;

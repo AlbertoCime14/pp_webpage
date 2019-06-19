@@ -259,4 +259,4 @@ Variables de la actividad
   }
 </script>
 <script src="<?=base_url();?>js/jquery-2.1.3.min.js"></script>
-<script src="<?=base_url();?>js/funcionesactividades.js"></script>
+<script src="<?=base_url();?>js/funcionesactividades.js?v=1"></script>
